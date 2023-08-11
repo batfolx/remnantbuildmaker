@@ -56,7 +56,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function RemnantBuilderApp() {
   return (
       <ThemeProvider theme={darkTheme}>
-          <CssBaseline/>    <Box display={'flex'} flexWrap={'wrap'}>
+          <CssBaseline/>
+          <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={"5px"}>
           <AppBar>
               <Toolbar>
                   <IconButton
@@ -88,7 +89,7 @@ function RemnantBuilderApp() {
               </Toolbar>
           </AppBar>
           {items.map((item) => {
-              return <RemnantItem itemName={item.RingsName} imageLink={item.RingsImageLinkFullPath} description={item.RingsDescription}/>
+              return <RemnantItem itemName={item.RingsName} imageLink={item.RingsImageLinkFullPath} description={item.RingsDescription} itemType={"Ring"}/>
           })}
 
       </Box>
