@@ -1,0 +1,614 @@
+[
+  {
+    "AmuletsName": "Abrasive Whetstone",
+    "AmuletsHref": "/Abrasive+Whetstone",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Abrasive+Whetstone",
+    "AmuletsImageLinkPath": "/file/Remnant-2/abrasive_whetstone_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/abrasive_whetstone_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhen attacking a BLEEDING enemy, Crit Chance is increased by 15% and Crit Damage is increased by 30%.\n",
+    "AmuletsLore": "\nIn truly dire times, you've got to get back to your roots--no pun intended! A lot of weapons we use today, even the deadliest, are made from sticks and stones and whatever else we can find.\n"
+  },
+  {
+    "AmuletsName": "Ankh of Power",
+    "AmuletsHref": "/Ankh+of+Power",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Ankh+of+Power",
+    "AmuletsImageLinkPath": "/file/Remnant-2/ankh_of_power_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/ankh_of_power_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGrants a 15% increase to all damage. Consuming a Relic doubles the bonus for 15s.\n",
+    "AmuletsLore": "\nIn the absence of a tangible creator, intelligent beings often conceive of their own. These 'gods' are likewise entities that house the segments. Is this concurrence deliberate..or the culmination of the significance placed upon them\n"
+  },
+  {
+    "AmuletsName": "Broken Pocket Watch",
+    "AmuletsHref": "/Broken+Pocket+Watch",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Broken+Pocket+Watch",
+    "AmuletsImageLinkPath": "/file/Remnant-2/broken_pocket_watch_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/broken_pocket_watch_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Stamina Regen by 25 and reduces Stamina cost by 50%\n",
+    "AmuletsLore": "\nDon't call it junk just because it's broken. A thing doesn't have to work as intended for it to have meaning. You see, when it comes to gifts... The significance lies in keeping them close.\n"
+  },
+  {
+    "AmuletsName": "Butcher's Fetish",
+    "AmuletsHref": "/Butcher's+Fetish",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Butcher's+Fetish",
+    "AmuletsImageLinkPath": "/file/Remnant-2/butchers_fetish_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/butchers_fetish_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Critical Chance by 15% and Critical Damage by 25% for 15s after striking enemy with a Charged Melee Attack.\n",
+    "AmuletsLore": "\nI can tell just by looking at it that it's from Corsus. That place where its inhabitans have fully embraced the 'Iskal: The fact that it's made from an eye much larger than any human's only adds to its gruesome nature.\n"
+  },
+  {
+    "AmuletsName": "Chains Of Amplification",
+    "AmuletsHref": "/Chains+Of+Amplification",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Chains+Of+Amplification",
+    "AmuletsImageLinkPath": "/file/Remnant-2/chains_of_amplification_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/chains_of_amplification_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases all damage dealt to targets suffering from a Status Effect by 20%.\n",
+    "AmuletsLore": "\nI will tell you what the Fae do not wish to hear. True freedom, unopposed and unrestricted, makes us weak. It is though our chains themselves that we acquire the strength needed to throw them off.\n"
+  },
+  {
+    "AmuletsName": "Cleansing Stone",
+    "AmuletsHref": "/Cleansing+Stone",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Cleansing+Stone",
+    "AmuletsImageLinkPath": "/file/Remnant-2/cleansing_stone_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/cleansing_stone_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nReduces Duration of Elemental Status Effects against wearer by 50%. Relic use cleanses Elemental Status effects and grants 15% of wearers Max Health to all allies within 7m when cleansed.\n",
+    "AmuletsLore": "\nThere is no empirical evidence that the Fey legends of the past ever truly occurred.Indeed, some see history as more allegory than fact, while others claim the past to be unknown and unknowable. It is worth considering what matters more--whether a thing actually happened or whether they believe that it did.\n"
+  },
+  {
+    "AmuletsName": "Core Booster",
+    "AmuletsHref": "/Core+Booster",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Core+Booster",
+    "AmuletsImageLinkPath": "/file/Remnant-2/core_booster_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/core_booster_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases weakspot damage by 50% for 10s after killing an enemy.\n",
+    "AmuletsLore": "\nI cannot begrudge the possibility of a creator. Alepsis-Taura may very well have served as its last and final test, a grand appraisal to prove ourselves worthy of cosmic elevation. But we proved only our desperation, that extinction was preferrable to despair.\n"
+  },
+  {
+    "AmuletsName": "Daredevil's Charm",
+    "AmuletsHref": "/Daredevil's+Charm",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Daredevil's+Charm",
+    "AmuletsImageLinkPath": "/file/Remnant-2/daredevils_charm_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/daredevils_charm_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGain 7.5% to all damage dealt, 3% Movement Speed, and 5% all damage taken for each piece of unequipped armor.\n",
+    "AmuletsLore": "\nLooks rather insignificant, but | know better than to judge a book by its cover. It must have taken a lot of time to acquire it. Though,\u00a0I must say,\u00a0I hope whoever wears it keeps their clothes on.\n"
+  },
+  {
+    "AmuletsName": "Death's Embrace",
+    "AmuletsHref": "/Death's+Embrace",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Death's+Embrace",
+    "AmuletsImageLinkPath": "/file/Remnant-2/death_embrace_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/death_embrace_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGain 20% to all damage when Health is below 100%. Gain HASTE when below 50% Health.\n",
+    "AmuletsLore": "\nEven before the Pan first arrived on Yaesha, there was a strong belief in the\u00a0Balance--the idea that death begets life.\n"
+  },
+  {
+    "AmuletsName": "Decayed Margin",
+    "AmuletsHref": "/Decayed+Margin",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Decayed+Margin",
+    "AmuletsImageLinkPath": "/file/Remnant-2/decayed_margin_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/decayed_margin_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nMelee hits gain 1.5% base damage dealt as Lifesteal. For each 25% missing Health, gain 1.5% additional Melee Lifesteal. When Health is full, gain 25% Melee Damage.\n",
+    "AmuletsLore": "\nSomeday, a long time from now, today's horrors will be no more than a dark, distant memory. [can only hope the people of tomorrow remember the sacrifices it\u00a0took to take back what's ours. It's easy to forget these things when they're not right under your nose.\n"
+  },
+  {
+    "AmuletsName": "Detonation Trigger",
+    "AmuletsHref": "/Detonation+Trigger",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Detonation+Trigger",
+    "AmuletsImageLinkPath": "/file/Remnant-2/detonation_trigger_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/detonation_trigger_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Explosion damage by 25%. Explosions apply 405\u00a0BURNING damage over 5s.\n",
+    "AmuletsLore": "\nN'Erud was not merely a vessel, but a functioning ecosystem, equipped with every propensity for life-and extinction, should the life we sought prove hostile.\n"
+  },
+  {
+    "AmuletsName": "Difference Engine",
+    "AmuletsHref": "/Difference+Engine",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Difference+Engine",
+    "AmuletsImageLinkPath": "/file/Remnant-2/difference_engine_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/difference_engine_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhile a Shield is active, gain 20% damage and 1.5% of base dealt as Lifesteal.\n",
+    "AmuletsLore": "\nThe costodian does not fear death, as by its very nature it has never known life. The ancient Drzr once relied upon insticts-the needs of the flesh. Again and again, we surpassed ourselves until there was nothing to surpass. But I now see it as the shame it was: we forsook the wisdom of our bones.\n"
+  },
+  {
+    "AmuletsName": "Downward Spiral",
+    "AmuletsHref": "/Downward+Spiral",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Downward+Spiral",
+    "AmuletsImageLinkPath": "/file/Remnant-2/downward_spiral_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/downward_spiral_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncrease Fire Rate by 10% and Melee Attack Speed by 15%. For every missing 10% of Max Health, gain 3% Ranged Damage (Max 15%) and 4% Melee Damage (Max 20%).\n",
+    "AmuletsLore": "\nAll life draws naturally from the Balance. Much is asked of those with pleny, and little is asked of those who lack. Thus is the Balance maintained.\n"
+  },
+  {
+    "AmuletsName": "Effigy Pendant",
+    "AmuletsHref": "/Effigy+Pendant",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Effigy+Pendant",
+    "AmuletsImageLinkPath": "/file/Remnant-2/effigy_pendant_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/effigy_pendant_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhile Grey Health is present, gain 15% to all damage dealt, 10% damage reduction and 1 additional hit before Grey Health is removed.\n",
+    "AmuletsLore": "\nAccording to the tales, Tola the Dreamer performed many great deeds in her time. They say she was a prophet and a healer, a protector and a warrior. They say she could not be killed and also that she gave her life so that others might live.  The tales conflict, but I assure you, they are all true.\n"
+  },
+  {
+    "AmuletsName": "Effluvium Enhancer",
+    "AmuletsHref": "/Effluvium+Enhancer",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Effluvium+Enhancer",
+    "AmuletsImageLinkPath": "/file/Remnant-2/effluvium_enhancer_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/effluvium_enhancer_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases ACID damage by 20% and CORROSIVE damage by 50%.\n",
+    "AmuletsLore": "\nThe stasis pods could not save them--piece-by-piece, by hang. they built their own caskets. Where they built a graveyard,\u00a0I have built an ark. I am all that remains. Our final salvation.\n"
+  },
+  {
+    "AmuletsName": "Emergency Switch",
+    "AmuletsHref": "/Emergency+Switch",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Emergency+Switch",
+    "AmuletsImageLinkPath": "/file/Remnant-2/emergency_switch_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/emergency_switch_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhen below 50% health, chance to consume Relic on use is reduced by 35%. Final Relic Charge is not consumed on use, but effect cannot be triggered again for 60s.\n",
+    "AmuletsLore": "\nHouse AI'maruun's stasis pods were wentombed in the most heavily enforced positions on N'Erud. But their place of privilege allotted them nothing. They died like the rest.\n"
+  },
+  {
+    "AmuletsName": "Energized Neck Coil",
+    "AmuletsHref": "/Energized+Neck+Coil",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Energized+Neck+Coil",
+    "AmuletsImageLinkPath": "/file/Remnant-2/energized_neck_coil_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/energized_neck_coil_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Status Effect damage by 25%. Applying a damaging Status Effect creates a 5m Explosion for 20% of the Status Effects full damage.\n",
+    "AmuletsLore": "\nThe Utility stabilizes the unstable. The Utility fulfils purpose. The Utility understands. Before...it was only I, the Keeper. Alone.\n"
+  },
+  {
+    "AmuletsName": "Energy Diverter",
+    "AmuletsHref": "/Energy+Diverter",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Energy+Diverter",
+    "AmuletsImageLinkPath": "/file/Remnant-2/energy_diverter__amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/energy_diverter__amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhile a SHIELD is active, gain 10 Critical Chance and 15% to all damage dealt.\n",
+    "AmuletsLore": "\nThe Ofildi who joined the first Custodian in its uprising were not granted clemency.The Seekers dealt with them and their progenies swiftly and humanely. Not even records of their names endured.\n"
+  },
+  {
+    "AmuletsName": "Escalation Protocol",
+    "AmuletsHref": "/Escalation+Protocol",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Escalation+Protocol",
+    "AmuletsImageLinkPath": "/file/Remnant-2/escalation_protocol_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/escalation_protocol_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases all damage dealt by 2.5% for 10s after killing an enemy.\u00a0Stacks 10x. Dealing damage refreshes the timer.\n",
+    "AmuletsLore": "\nI have witnessed the final moments of countless realms. That which occurred upon the Core was...unique. Necessitated investigation. Termination was undesirable for innumerable reasons... Far too many to delineate at this moment.\n"
+  },
+  {
+    "AmuletsName": "Full Moon Circlet",
+    "AmuletsHref": "/Full+Moon+Circlet",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Full+Moon+Circlet",
+    "AmuletsImageLinkPath": "/file/Remnant-2/full_moon_circlet_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/full_moon_circlet_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nRanged damage Lifesteals 3% of base damage dealt. At full health, damage is increased by 20%.\n",
+    "AmuletsLore": "\nOne of the ancient Pan rulers believed he could cheat death by stealing from theBalance, but we are all one, and one cannot steal from oneself.\n"
+  },
+  {
+    "AmuletsName": "Golden Ribbon",
+    "AmuletsHref": "/Golden+Ribbon",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Golden+Ribbon",
+    "AmuletsImageLinkPath": "/file/Remnant-2/gold_ribbon_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/gold_ribbon_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Mod damage by 25%. Activating a MOD grants HASTE for 15s.\n",
+    "AmuletsLore": "\nTo be Fae is to know magic--to breathe it. It is woven into our every aspect of our being. Even those whose expertise lies in the physical are part and parcel to the power within us all.\n"
+  },
+  {
+    "AmuletsName": "Gunslinger's Charm",
+    "AmuletsHref": "/Gunslinger's+Charm",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Gunslinger's+Charm",
+    "AmuletsImageLinkPath": "/file/Remnant-2/gunslingers_charm_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/gunslingers_charm_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Fire Rate by 15% and Reload Speed by 20%.\n",
+    "AmuletsLore": "\nIve never been one to put stock in superstitions, but I've seen enough gunslingers wear this and handle their weapons with lightning speed to know there's something to it. Maybe it's just a placebo effect, but when it works, it works.\n"
+  },
+  {
+    "AmuletsName": "Gunfire Security Lanyard",
+    "AmuletsHref": "/Gunslinger's+Charm",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Gunslinger's+Charm",
+    "AmuletsImageLinkPath": "/file/Remnant-2/gunfire_security_lanyard_amulets_remnant2_wiki_guide_75px.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/gunfire_security_lanyard_amulets_remnant2_wiki_guide_75px.png",
+    "AmuletsDescription": "\nIncreases Fire Rate by 15% and Reload Speed by 20%.\n",
+    "AmuletsLore": "\nIve never been one to put stock in superstitions, but I've seen enough gunslingers wear this and handle their weapons with lightning speed to know there's something to it. Maybe it's just a placebo effect, but when it works, it works.\n"
+  },
+  {
+    "AmuletsName": "Hallowed Egg",
+    "AmuletsHref": "/Hallowed+Egg",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Hallowed+Egg",
+    "AmuletsImageLinkPath": "/file/Remnant-2/hallowed_egg_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/hallowed_egg_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nSpending at least\u00a030%\u00a0of Firearms magazine to deal damage increases Melee damage by\u00a010%\u00a0for\u00a07s. Stacks\u00a05x.\n",
+    "AmuletsLore": "\nThe crystals are gifts from Yaesha herself. Yet the Ahanae loathe to see the Gul with even a pebble of their power, and thus the priests regulate their harvest. The Radiant Ones fear that the rebels may unlock the crystals' true power--or a power greater than even they themselves know.\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  },
+  {
+    "AmuletsName": "Hyperconductor",
+    "AmuletsHref": "/Hyperconductor",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Hyperconductor",
+    "AmuletsImageLinkPath": "/file/Remnant-2/hyper_conductor_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/hyper_conductor_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGain double Skill Charges. Increases Skill Cooldowns by 50% and reduces Max Power Generation by 15%.For Heavy Weapons, doubles Heavy Weapon Ammo instead.\n",
+    "AmuletsLore": "\nThe Xul developed tools that would abet evolution, should we discover life in a fragile, pupal stage. We saw it as our responsibility to foster those which day become like us.\n"
+  },
+  {
+    "AmuletsName": "Indignant Fetish",
+    "AmuletsHref": "/Indignant+Fetish",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Indignant+Fetish",
+    "AmuletsImageLinkPath": "/file/Remnant-2/indignant_fetish_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/indignant_fetish_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nTaking damage from enemies increases all damage dealt by 25% and reduces all incoming damage by 10%. Lasts 20s.\n",
+    "AmuletsLore": "\nWhat the One True King did not understand--what no tyrant understands--is that\u00a0you cannot control a people through force. Eventually, they will like a diamond, and you will be crushed by that which you had thought broken.\n"
+  },
+  {
+    "AmuletsName": "Inert Overcharger",
+    "AmuletsHref": "/Inert+Overcharger",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Inert+Overcharger",
+    "AmuletsImageLinkPath": "/file/Remnant-2/inert_overcharger_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/inert_overcharger_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nStanding still increases Fire Rate by 20%, Reload Speed by 15%, and reduces Recoil\u00a0by 50%. Lasts 1.5s after moving.\n",
+    "AmuletsLore": "\nTo cease the search for life was not an option. We had to keep going, keep pushing. For a civilization in stasis, standing still, going nowhere-is a civilization dead.\n"
+  },
+  {
+    "AmuletsName": "Insulation Driver",
+    "AmuletsHref": "/Insulation+Driver",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Insulation+Driver",
+    "AmuletsImageLinkPath": "/file/Remnant-2/insulation_driver_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/insulation_driver_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhile\u00a0BULWARK\u00a0is active, gain\u00a015%\u00a0to all damage dealt and\u00a0HASTE.\n",
+    "AmuletsLore": "\nTen generations perished in the time it took to reach the Curatu-Seltis. Only borne upon their entire lifetimes did we arrive at our destination. Fortuitous, then, that they did not live long\u00a0 nough to see the sour fruits of their legacy.\n"
+  },
+  {
+    "AmuletsName": "Jester's Bell",
+    "AmuletsHref": "/Jester's+Bell",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Jester's+Bell",
+    "AmuletsImageLinkPath": "/file/Remnant-2/jesters_bell_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/jesters_bell_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Mod and Skill Cast Speed by 35%. Casting a Skill or Mod increases all damage by 20% for 15s.\n",
+    "AmuletsLore": "\nThose who served the One True King--many of whom now serve under the imposter --were given their positions out of pity or fear. The king preferred to keep close to him those who needed either succor or surveillance. Perhaps predictably, this proved unwise.\n"
+  },
+  {
+    "AmuletsName": "Kinetic Shield Exchanger",
+    "AmuletsHref": "/Kinetic+Shield+Exchanger",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Kinetic+Shield+Exchanger",
+    "AmuletsImageLinkPath": "/file/Remnant-2/kinetic_shield_exchanger_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/kinetic_shield_exchanger_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nWhile a\u00a0SHIELD\u00a0is active, gain\u00a025%\u00a0Mod damage and generate\u00a015%\u00a0additional Mod power.\n",
+    "AmuletsLore": "\nHouse Lythla oversaw the Xul, the brilliant engineers who rent even the stars to their whims. But after such illustrious feats, lethargy festered within their genius. Without passion and purpose, there can be no innovation.\n"
+  },
+  {
+    "AmuletsName": "Kuri Kuri Charm",
+    "AmuletsHref": "/Kuri+Kuri+Charm",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Kuri+Kuri+Charm",
+    "AmuletsImageLinkPath": "/file/Remnant-2/kuri_kuri_charm_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/kuri_kuri_charm_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nFor every\u00a010%\u00a0of Health\u00a0missing (Max\u00a050%), gain\u00a010%\u00a0increased Relic Use Speed and\u00a07%\u00a0chance to not consume a Relic Charge.\n",
+    "AmuletsLore": "\nYaesha is all things. The Pan, her hands. The Wolf, her teeth. The Wisps, her will. The ever vigilant Kuri Kuri serves as her ears and her song.\u00a0\n"
+  },
+  {
+    "AmuletsName": "Laemir Censer",
+    "AmuletsHref": "/Laemir+Censer",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Laemir+Censer",
+    "AmuletsImageLinkPath": "/file/Remnant-2/laemir_censer_amulets_remnant2_wiki_guide_250px.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/laemir_censer_amulets_remnant2_wiki_guide_250px.png",
+    "AmuletsDescription": "\nIncreases Mod Duration by 50%. Increases Mod Cost by 15%.\n",
+    "AmuletsLore": "\nThe Laemir have served the dead so long, they forget what it means to live. Gentle winds whispering through fur, the warmth of morning sun, the tender embrace of another... Void of life's pleasures, they become death themselves.\u00a0\n"
+  },
+  {
+    "AmuletsName": "Matriarch's Insignia",
+    "AmuletsHref": "/Matriarch's+Insignia",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Matriarch's+Insignia",
+    "AmuletsImageLinkPath": "/file/Remnant-2/matriarch_insignia_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/matriarch_insignia_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Melee Damage by 35% and causes all successful Melee Attacks to restore 10 Stamina.\n",
+    "AmuletsLore": "\nA weaker ruler might have forbidden all weapons from her presence, for immortality is not a gift so lightly risked. Instead, Jinas decreed that her Widows should stand beside her with blades drawn.\n"
+  },
+  {
+    "AmuletsName": "Navigator's Pendant",
+    "AmuletsHref": "/Navigator's+Pendant",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Navigator's+Pendant",
+    "AmuletsImageLinkPath": "/file/Remnant-2/navigator_pendant_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/navigator_pendant_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGrants 20 Health, 20 Stamina, and\u00a0-10\u00a0Armor Encumbrance.\n",
+    "AmuletsLore": "\nI foresaw our death.\u00a0I saw it all. Few listened. Even the other Astropaths rejected the ember's sagacity. Rejected their own eyes. Rejected me. In that moment, we were doomed.\n"
+  },
+  {
+    "AmuletsName": "Neckbone Necklace",
+    "AmuletsHref": "/Neckbone+Necklace",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Neckbone+Necklace",
+    "AmuletsImageLinkPath": "/file/Remnant-2/neckbone_necklace_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/neckbone_necklace_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nReduces the Damage of Status Effects applied to wearer by\u00a050%. Gain\u00a025%\u00a0increased Damage when suffering from a Status Effect or Blight.\n",
+    "AmuletsLore": "\nWishes are deadly, dangerous things. Oh, to make a wish is harmless of course, but to have one granted? If such a thing could be done without cost, the world as we know it would cease to be.There is, therefore, always a cost.\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  },
+  {
+    "AmuletsName": "Necklace of Flowing Life",
+    "AmuletsHref": "/Necklace+of+Supremacy",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Necklace+of+Supremacy",
+    "AmuletsImageLinkPath": "/file/Remnant-2/necklace_of_flowing_life_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/necklace_of_flowing_life_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nAfter 7s of not being damaged, increases all damage dealt by 15%. Increases to 25% if Health is full.\n",
+    "AmuletsLore": "\nDo not underestimate the Laemir. They have interred the dead for long and long. If there is a secret to the immoratals' strength, the laemir would be the ons to know.\n"
+  },
+  {
+    "AmuletsName": "Necklace of Supremacy",
+    "AmuletsHref": "/Necklace+of+Supremacy",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Necklace+of+Supremacy",
+    "AmuletsImageLinkPath": "/file/Remnant-2/necklace_of_supremacy_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/necklace_of_supremacy_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nAfter 7s of not being damaged, increases all damage dealt by 15%. Increases to 25% if Health is full.\n",
+    "AmuletsLore": "\nDo not underestimate the Laemir. They have interred the dead for long and long. If there is a secret to the immoratals' strength, the laemir would be the ons to know.\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "/Necklace+of+Supremacy",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Necklace+of+Supremacy",
+    "AmuletsImageLinkPath": "/file/Remnant-2/nightmare_spiral_amulets_remnant2_wiki_guide_250px.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/nightmare_spiral_amulets_remnant2_wiki_guide_250px.png",
+    "AmuletsDescription": "\nAfter 7s of not being damaged, increases all damage dealt by 15%. Increases to 25% if Health is full.\n",
+    "AmuletsLore": "\nDo not underestimate the Laemir. They have interred the dead for long and long. If there is a secret to the immoratals' strength, the laemir would be the ons to know.\n"
+  },
+  {
+    "AmuletsName": "Nightmare Spiral",
+    "AmuletsHref": "/Nightmare+Spiral",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Nightmare+Spiral",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "\nGain 10% of base Ranged damage dealt as Lifesteal. Reduces Healing Effectiveness by 95%.\n",
+    "AmuletsLore": "\nCan't imagine who in their right mind would want a cursed trinket like this. And to think someone went through the trouble of obtaining it? Madness, pure madness.\n"
+  },
+  {
+    "AmuletsName": "Nightweaver's Grudge",
+    "AmuletsHref": "/Nightweaver's+Grudge",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Nightweaver's+Grudge",
+    "AmuletsImageLinkPath": "/file/Remnant-2/nightwavers_grudge_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/nightwavers_grudge_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGain\u00a020%\u00a0Critical Chance and\u00a0HASTE\u00a0when within\u00a015m\u00a0of an entity suffering from a Status Effect.\n",
+    "AmuletsLore": "\nMy sister cared not what befell others, perhaps because she cared not what befell herself. Fear and suffering are all of the same flavor to her, whomever the target of suffering might be.\n"
+  },
+  {
+    "AmuletsName": "Nimue's Ribbon",
+    "AmuletsHref": "/Nimue's+Ribbon",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Nimue's+Ribbon",
+    "AmuletsImageLinkPath": "/file/Remnant-2/nimues_ribbon_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/nimues_ribbon_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncrease Relic Healing Effectiveness by 50% Activating a Relic grants HASTE for 25s.\n",
+    "AmuletsLore": "\nThe Fae have a long and illustrious past, but they have always valued storytellers over historians. The relics tell their tales, passing wisdom from one generation tohe next.\n"
+  },
+  {
+    "AmuletsName": "One True King Sigil",
+    "AmuletsHref": "/One+True+King+Sigil",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/One+True+King+Sigil",
+    "AmuletsImageLinkPath": "/file/Remnant-2/one_true_king_sigil_amulets_remnant2_wiki_guide_250px.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/one_true_king_sigil_amulets_remnant2_wiki_guide_250px.png",
+    "AmuletsDescription": "\nIncreases Mod damage by 20%. Enhances the effect of Faerin's Sigil and Faelin's Sigil by 50% per Sigil equipped.\n",
+    "AmuletsLore": "\nThose close to the king could not be trusted. Indeed, that is why he brought us near. He offered us a portion of his power, tempting us with desire. But eventually, we learned that the cost for this temptation was\u00a0greater than the offering.\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  },
+  {
+    "AmuletsName": "One-Eyed Joker Idol",
+    "AmuletsHref": "/Ravager's+Mark",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Ravager's+Mark",
+    "AmuletsImageLinkPath": "/file/Remnant-2/one-eyed_joker_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/one-eyed_joker_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases all damage dealt to BLEEDING targets by 20%. Bonus increases to 30% for targets with 50% or lower Health.\n",
+    "AmuletsLore": "\nThis artifact has gone by many names over the centuries. It was crafted by an ancient Pan ruler who mercilessly crushed all whom she believed might one day stand against her.\n"
+  },
+  {
+    "AmuletsName": "Range Finder",
+    "AmuletsHref": "/Ravager's+Mark",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Ravager's+Mark",
+    "AmuletsImageLinkPath": "/file/Remnant-2/range_finder_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/range_finder_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases all damage dealt to BLEEDING targets by 20%. Bonus increases to 30% for targets with 50% or lower Health.\n",
+    "AmuletsLore": "\nThis artifact has gone by many names over the centuries. It was crafted by an ancient Pan ruler who mercilessly crushed all whom she believed might one day stand against her.\n"
+  },
+  {
+    "AmuletsName": "Ravager's Mark",
+    "AmuletsHref": "/Ravager's+Mark",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Ravager's+Mark",
+    "AmuletsImageLinkPath": "/file/Remnant-2/ravagers_mark_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/ravagers_mark_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases all damage dealt to BLEEDING targets by 20%. Bonus increases to 30% for targets with 50% or lower Health.\n",
+    "AmuletsLore": "\nThis artifact has gone by many names over the centuries. It was crafted by an ancient Pan ruler who mercilessly crushed all whom she believed might one day stand against her.\n"
+  },
+  {
+    "AmuletsName": "Red Doe Sigil",
+    "AmuletsHref": "/Red+Doe+Sigil",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Red+Doe+Sigil",
+    "AmuletsImageLinkPath": "/file/Remnant-2/red_doe_sigil_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/red_doe_sigil_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Relic Healing Effectiveness by 30% which doubles when the wearer's Health is below 50%.\n",
+    "AmuletsLore": "\nRenamed by the empress for the symbol of life on Yaesha, this artifact is from a time even older than the Pan Empire. Evidence suggests it may have been crafted byJinas's own ancestors.\n"
+  },
+  {
+    "AmuletsName": "Rusted Navigator's Pendant",
+    "AmuletsHref": "/Rusted+Navigator's+Pendant",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Rusted+Navigator's+Pendant",
+    "AmuletsImageLinkPath": "/file/Remnant-2/rusted_navigators_pendant_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/rusted_navigators_pendant_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGrants 15 Health, 15 Stamina, and\u00a0-15\u00a0Armor Encumbrance.\n",
+    "AmuletsLore": "\nSince time immemorial the Drzyr have trusted the Mali, the Astropaths, to guide them through the perilous stars. And we were granted the faith and veneration worthy of our appointment--until it mattered most.\n"
+  },
+  {
+    "AmuletsName": "Samoflange",
+    "AmuletsHref": "/Samoflange",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Samoflange",
+    "AmuletsImageLinkPath": "/file/Remnant-2/samoflange_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/samoflange_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nDirect damage taken from enemies, and any additional damage within\u00a02s, is reduced by\u00a050%. Once the defensive buff expires, all incomig damage to wearer is increased by\u00a015%\u00a0for\u00a010s.\n",
+    "AmuletsLore": "\nThe Drzyr have endured and overcome countless tribulations in the search for life beyond our own. Alepsis-Taura was the apotheosis of an entire species and all that it had dreamed, hoped, and achieved. In these terms,\u00a0I can fathom the Seekers' decision. For where else could we have gone?\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  },
+  {
+    "AmuletsName": "Scavenger's Bauble",
+    "AmuletsHref": "/Scavenger's+Bauble",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Scavenger's+Bauble",
+    "AmuletsImageLinkPath": "/file/Remnant-2/scavengers_bauble_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/scavengers_bauble_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Scrap pickups by 50%, Automatically pick up any nearby crafting materials.\n",
+    "AmuletsLore": "\nEver the more powerful, the Ahanae thought they could control the Gui but they did not realize that power will always flow toward the resourceful.\n"
+  },
+  {
+    "AmuletsName": "Shaed Bloom Crystal",
+    "AmuletsHref": "/Shaed+Bloom+Crystal",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Shaed+Bloom+Crystal",
+    "AmuletsImageLinkPath": "/file/Remnant-2/shaed_bloom_crystal_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/shaed_bloom_crystal_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGain a\u00a030%\u00a0damage bonus. Every\u00a05s, the bonus switches between Physical and Elemental damage.\n",
+    "AmuletsLore": "\nThere are those who subsist on killing and those who thrive upon it, but the ones to be most feared are those who must kill or die themselves--who will use everything at their disposal to take the life of another.\n"
+  },
+  {
+    "AmuletsName": "Shock Device",
+    "AmuletsHref": "/Shock+Device",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Shock+Device",
+    "AmuletsImageLinkPath": "/file/Remnant-2/shock_device_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/shock_device_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases SHOCK damage by 20% and OVERLOADED damage by 50%.\n",
+    "AmuletsLore": "\nOne needn't understand a thing to use it. Don't need to know chemical processes to set something on fire nor biology to birth a child.That said, my Dran understand a lot more than you think, and that helps tremendously.\n"
+  },
+  {
+    "AmuletsName": "Silver Ribbon",
+    "AmuletsHref": "/Silver+Ribbon",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Silver+Ribbon",
+    "AmuletsImageLinkPath": "/file/Remnant-2/silver_ribbon_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/silver_ribbon_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Skill damage by 25%.Activating a SKILL grants HASTE for 15s.\n",
+    "AmuletsLore": "\nMarriage between Fae is a... contractual concept. When two Fae agree that they would provide more benefit to each other together than apart, then their lives are\u00a0bonded......for a time, at least--until the basis for said agreement is no longer valid.\n"
+  },
+  {
+    "AmuletsName": "Soul Anchor",
+    "AmuletsHref": "/Soul+Anchor",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Soul+Anchor",
+    "AmuletsImageLinkPath": "/file/Remnant-2/soul_anchor_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/soul_anchor_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nSummoning increases all damage dealt by 20% for 30s.\n",
+    "AmuletsLore": "\nThe Wolf stood alone and, so, could not stand. For where it might fell ondr two, it could not destroy us all.\n"
+  },
+  {
+    "AmuletsName": "Spirit Wisp Amulet",
+    "AmuletsHref": "/Spirit+Wisp+Amulet",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Spirit+Wisp+Amulet",
+    "AmuletsImageLinkPath": "/file/Remnant-2/spirit_wisp_amulet__amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/spirit_wisp_amulet__amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nActivating a Mod reduces current Skill Cooldowns by\u00a03%\u00a0for every\u00a0300\u00a0Mod Power spent.\n",
+    "AmuletsLore": "\nThe Fae are not the only bearers of magic here. The world is full of magic. You needonly seek it, or wait until it finds you.\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  },
+  {
+    "AmuletsName": "Stalker's Brand",
+    "AmuletsHref": "/Stalker's+Brand",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Stalker's+Brand",
+    "AmuletsImageLinkPath": "/file/Remnant-2/stalkers_brand_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/stalkers_brand_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nGain\u00a010%\u00a0Ranged and\u00a015%\u00a0Melee damage. Bonus double versus enemies not targeting wearer.\n",
+    "AmuletsLore": "\nThe Krell thought to hunt the Doe, thinking stealth and speed their allies. But none were as quick and quiet as Carycua in her native home.\n"
+  },
+  {
+    "AmuletsName": "Talisman of the Sun",
+    "AmuletsHref": "/Talisman+of+the+Sun",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Talisman+of+the+Sun",
+    "AmuletsImageLinkPath": "/file/Remnant-2/talisman_of_the_sun_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/talisman_of_the_sun_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases FIRE damage by 20% and BURNING damage by 50%.\n",
+    "AmuletsLore": "\nLong and long did we sail the Dark Sea, but though everything around us changed --even the stars in the sky-still we sailed beneath the same sun.\n"
+  },
+  {
+    "AmuletsName": "Toxic Release Valve",
+    "AmuletsHref": "/Toxic+Release+Valve",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Toxic+Release+Valve",
+    "AmuletsImageLinkPath": "/file/Remnant-2/toxic_release_valve_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/toxic_release_valve_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nSwapping Firearms releases a Toxic\u00a0Cloud, which deals\u00a0148.5\u00a0ACID\u00a0Damage to all enemies within\u00a07m. and applies\u00a0CORROSION.\u00a0Can only happen once every\u00a03s.\n",
+    "AmuletsLore": "\nInvertebrate organisms from the homeworld mindlessly clung to sides of N'Erud and embarked on the millennian-long jorney with us. Resilient to the end, more so than the Drzyr themselves. Ha. Are they, too, worthy of preservation?\n"
+  },
+  {
+    "AmuletsName": "Twisted Idol",
+    "AmuletsHref": "/Twisted+Idol",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Twisted+Idol",
+    "AmuletsImageLinkPath": "/file/Remnant-2/twisted_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/twisted_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Armor Effectiveness by 30% and reduces Encumbrance by 15.\n",
+    "AmuletsLore": "\nThe very sight of this twisted idol makes my skin crawl. It's hard to fathom how anyone could betray their own kind and bow down to the Root like this the craftsmanship on this piece is meticulous, but it's clear that it was created by a mad cultist, consumed by their devotion to the enemy. Sickening.\n"
+  },
+  {
+    "AmuletsName": "Vengeance Idol",
+    "AmuletsHref": "/Vengeance+Idol",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Vengeance+Idol",
+    "AmuletsImageLinkPath": "/file/Remnant-2/vengeance_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/vengeance_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases all damage dealt by 30% when the wearer's Health is below 50%.\n",
+    "AmuletsLore": "\nThe Balance works both ways, for that is what the word means. When the strong become weak, the weak become strong.\n"
+  },
+  {
+    "AmuletsName": "Void Idol",
+    "AmuletsHref": "/Void+Idol",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Void+Idol",
+    "AmuletsImageLinkPath": "/file/Remnant-2/void_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/void_idol_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Reload Speed by 20%. Reloads only require 50% of magazine from reserves to fully reload.\n",
+    "AmuletsLore": "\nAnd had we come face-to-face with our creator, what would we have found? To be deprived of one's origin is to give it the purpose to seek. To discover the undiscoverable was our ultimate folly.My folly.\n"
+  },
+  {
+    "AmuletsName": "Weightless Weight",
+    "AmuletsHref": "/Void+Idol",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com/Void+Idol",
+    "AmuletsImageLinkPath": "/file/Remnant-2/wightless_weight_amulets_remnant2_wiki_guide.png",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/wightless_weight_amulets_remnant2_wiki_guide.png",
+    "AmuletsDescription": "\nIncreases Reload Speed by 20%. Reloads only require 50% of magazine from reserves to fully reload.\n",
+    "AmuletsLore": "\nAnd had we come face-to-face with our creator, what would we have found? To be deprived of one's origin is to give it the purpose to seek. To discover the undiscoverable was our ultimate folly.My folly.\n"
+  },
+  {
+    "AmuletsName": "",
+    "AmuletsHref": "",
+    "AmuletsFullHref": "https://remnant2.wiki.fextralife.com",
+    "AmuletsImageLinkPath": "",
+    "AmuletsImageLinkFullPath": "https://remnant2.wiki.fextralife.com",
+    "AmuletsDescription": "No Amulets description found",
+    "AmuletsLore": "No Amulets lore found"
+  }
+]
