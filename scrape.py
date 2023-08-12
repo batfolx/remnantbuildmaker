@@ -10,8 +10,8 @@ amulet_url = "Amulets"
 ring_url = "Rings"
 relics_url = "Relics"
 rings_filename = 'rings.json'
-
-endpoints = [weapon_mods_url, mutators_mod, amulet_url, ring_url, relics_url]
+# weapon_mods_url, mutators_mod, amulet_url, ring_url,
+endpoints = [relics_url]
 
 
 def get_remnant_data():
@@ -46,6 +46,12 @@ def get_remnant_data():
             else:
                 item_description = "No item description found."
 
+            if endpoint == 'Relics':
+                additional_item_img = item_soup.find_all('td', class_='infobox_a_image_background')
+                if additional_item_img:
+                    additional_item_img = additional_item_img[0].find_next('img')
+                    item_img = additional_item_img.get('src')
+
             item_lore = item_soup.find_all('blockquote')
             if item_lore:
                 item_lore = item_lore[0]
@@ -65,9 +71,10 @@ def get_remnant_data():
 
             }
             print(f"Currently on item {i + 1} / {len(elements)}, item name being {item_name}")
-            time.sleep(2)
+            time.sleep(1)
 
             items.append(item_payload)
+
 
         item_filename = f"{endpoint}.json"
         with open(item_filename, 'w+') as f:

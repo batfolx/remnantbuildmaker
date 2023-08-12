@@ -13,18 +13,16 @@ class RemnantStorageApi {
      */
     static getLocalLoadOuts() {
         const loadouts = localStorage.getItem(this.LOADOUT_KEY);
-        if (!loadouts) {
-            return [];
+        if (!loadouts || loadouts === "") {
+            const defaults = this.generateDefaultLoadOut();
+            this.saveLocalLoadOuts(defaults);
         }
-        return JSON.parse(loadouts);
+        return JSON.parse(localStorage.getItem(this.LOADOUT_KEY));
     }
 
     static saveLocalLoadOuts(loadouts) {
         if (!loadouts) {
             throw new Error("No loadouts supplied")
-        }
-        if (loadouts.length > this.MAX_LOADOUTS) {
-            throw new Error("Too many loadouts")
         }
         localStorage.setItem(this.LOADOUT_KEY, JSON.stringify(loadouts));
     }
@@ -85,6 +83,10 @@ class RemnantStorageApi {
             loadouts: loadouts,
             currentLoadoutIndex: 0
         }
+    }
+
+    static clearStorage() {
+        localStorage.setItem(this.LOADOUT_KEY, null);
     }
 
 

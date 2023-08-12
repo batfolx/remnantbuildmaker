@@ -1,6 +1,15 @@
-import {alpha, AppBar, Box, IconButton, InputBase, styled, TextField, Toolbar, Typography} from "@mui/material";
+import {
+    AppBar,
+    Box,
+    Button, Dialog, DialogActions, DialogContent, DialogTitle,
+    IconButton,
+    MenuItem, Select,
+    TextField,
+    Toolbar,
+    Tooltip,
+    Typography
+} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {BorderColor} from "./constants";
@@ -9,6 +18,15 @@ import RemnantStorageApi from "./storageApi";
 import {useState} from "react";
 import AmuletsInventory from "./components/AmuletsInventory";
 import RelicsInventory from "./components/RelicsInventory";
+import {UploadFile} from "@mui/icons-material";
+import {useFilePicker} from 'use-file-picker';
+import {exportBuildFile} from "./utilFunctions";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
+import Filter5Icon from '@mui/icons-material/Filter5';
+import Filter1Icon from '@mui/icons-material/Filter1';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -16,55 +34,62 @@ const darkTheme = createTheme({
     },
 });
 
-const Search = styled('div')(({theme}) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({theme}) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({theme}) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
-
 function RemnantBuilderApp() {
 
+    const [openFileSelector, ] = useFilePicker({
+        accept: '.json',
+        multiple: 'false',
+        onFilesRejected: data => {
+            toast.error("Not a valid build file.")
+        },
+        onFilesSuccessfulySelected: ({plainFiles, filesContent}) => {
+            if (!filesContent) {
+                toast.error("No file content found.");
+                return;
+            }
+            let buildData = null;
+            try {
+                buildData = JSON.parse(filesContent[0].content);
+            } catch (e) {
+                toast.error("Not a valid build file.");
+                return;
+            }
+
+            if (!buildData.buildType) {
+                toast.error("No build type found.");
+                return;
+            }
+
+            if (buildData.buildType === "single") {
+
+
+            } else {
+                if (!buildData.loadouts) {
+                    toast.error("Expected build data to have loadouts key, but did not.")
+                    return;
+                }
+
+                if (!Array.isArray(buildData.loadouts)) {
+                    toast.error("Expected build data loadouts to be of type Array, but was not.");
+                    return;
+                }
+
+                if (buildData.loadouts.length !== 5) {
+                    toast.error("Expected build data loadouts length to be 5, but was not.");
+                    return;
+                }
+            }
+            setImportedBuildType(buildData.buildType);
+            setImportedBuildData(buildData);
+            setBuildPreviewOpen(true);
+        }
+    });
+    const [buildPreviewOpen, setBuildPreviewOpen] = useState(false);
+    const [importedBuildData, setImportedBuildData] = useState({});
+    const [importedBuildType, setImportedBuildType] = useState("single");
+    const [exportSingleBuildOpen, setExportSingleBuildOpen] = useState(false);
     const [internalLoadouts, setInternalLoadouts] = useState(RemnantStorageApi.getLocalLoadOuts());
-    if (internalLoadouts.length === 0) {
-        RemnantStorageApi.saveLocalLoadOuts(RemnantStorageApi.generateDefaultLoadOut());
-        setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
-    }
+    const [selectedBuild, setSelectedBuild] = useState(internalLoadouts.loadouts[0]);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
     const [loadoutName, setLoadoutName] = useState("");
 
@@ -74,6 +99,7 @@ function RemnantBuilderApp() {
         }
         internalLoadouts.currentLoadoutIndex = index;
         RemnantStorageApi.saveLocalLoadOuts(internalLoadouts);
+        setInternalLoadouts(internalLoadouts);
     }
 
     const getLoadoutSelector = (romanNumeral, index) => {
@@ -82,13 +108,13 @@ function RemnantBuilderApp() {
             <Box
                 height={100}
                 width={100}
-                style={{ cursor: 'pointer', borderColor: BorderColor}}
+                style={{cursor: 'pointer', borderColor: BorderColor}}
                 onClick={() => {
                     setCurrentLoadoutIndex(index);
                     saveLoadouts(index);
                     setLoadoutName(internalLoadouts.loadouts[index].loadoutName);
                 }}
-                backgroundColor={isHighlighted ? 'white': 'clear'}
+                backgroundColor={isHighlighted ? 'white' : 'clear'}
                 border={1}
                 borderRadius={5}
                 padding={"5px"}
@@ -99,7 +125,6 @@ function RemnantBuilderApp() {
                 </Typography>
             </Box>
         )
-
     }
 
     return (
@@ -125,15 +150,37 @@ function RemnantBuilderApp() {
                         >
                             Remnant Builder
                         </Typography>
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon/>
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{'aria-label': 'search'}}
-                            />
-                        </Search>
+                        <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
+                            <Tooltip title={"Import Build File"}>
+                                <UploadFile/>
+                            </Tooltip>
+                        </IconButton>
+                        <IconButton onClick={() => {
+                            exportBuildFile(internalLoadouts, "full");
+                        }}>
+                            <Tooltip title={"Export Full Build File"}>
+                                <Filter5Icon/>
+                            </Tooltip>
+                        </IconButton>
+
+                        <IconButton onClick={() => {
+                            setExportSingleBuildOpen(true);
+                        }}>
+                            <Tooltip title={"Export Single Build"}>
+                                <Filter1Icon/>
+                            </Tooltip>
+                        </IconButton>
+                        <IconButton onClick={() => {
+                            RemnantStorageApi.clearStorage();
+                            const defaults = RemnantStorageApi.generateDefaultLoadOut();
+                            RemnantStorageApi.saveLocalLoadOuts(defaults);
+                            setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
+                        }}>
+                            <Tooltip title={"Remove all builds"}>
+                                <DeleteIcon style={{color: 'red'}}/>
+                            </Tooltip>
+                        </IconButton>
+
                     </Toolbar>
                 </AppBar>
                 <Box marginLeft={"5%"}>
@@ -142,11 +189,11 @@ function RemnantBuilderApp() {
                 <Box display={'flex'} justifyContent={'center'}>
                     <TextField
                         value={loadoutName}
-                        defaultValue={internalLoadouts.loadouts[currentLoadoutIndex].loadoutName}
                         label={"Loadout Name"}
                         onChange={(e) => {
                             setLoadoutName(e.target.value);
                             internalLoadouts.loadouts[currentLoadoutIndex].loadoutName = e.target.value;
+                            saveLoadouts();
                         }}
                     >
 
@@ -159,14 +206,63 @@ function RemnantBuilderApp() {
                     {getLoadoutSelector("IV", 3)}
                     {getLoadoutSelector("V", 4)}
                 </Box>
+                <ToastContainer/>
 
                 <RingsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                 saveLoadouts={saveLoadouts}/>
                 <AmuletsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                   saveLoadouts={saveLoadouts}/>
                 <RelicsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                  saveLoadouts={saveLoadouts}/>
+                                 saveLoadouts={saveLoadouts}/>
 
+                <Dialog open={buildPreviewOpen} onClose={(event, reason) => {
+                    setBuildPreviewOpen(false);
+                }} fullWidth={true} maxWidth={'xl'}>
+                    <DialogTitle>
+                        Import {importedBuildType} build
+                    </DialogTitle>
+                    <DialogContent>
+
+
+                    </DialogContent>
+
+                </Dialog>
+
+                <Dialog fullWidth={true} maxWidth={'xl'} open={exportSingleBuildOpen} onClose={(event, reason) => {
+                    setExportSingleBuildOpen(false);
+                }}>
+                    <DialogTitle>
+                        Export Single Build
+                    </DialogTitle>
+                    <DialogContent>
+                        <Select fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                            {internalLoadouts.loadouts.map((l, index) => {
+                                return (
+                                    <MenuItem value={l}>
+                                        Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
+                                    </MenuItem>
+                                )
+                            })}
+
+
+                        </Select>
+
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => {
+                            exportBuildFile(selectedBuild, 'single');
+                            setExportSingleBuildOpen(false);
+                        }}>
+                            Export
+                        </Button>
+                        <Button onClick={() => {
+                            setExportSingleBuildOpen(false);
+                        }} color={'primary'} variant={'contained'}>
+                            Close
+                        </Button>
+                    </DialogActions>
+
+                </Dialog>
             </Box>
         </ThemeProvider>
 

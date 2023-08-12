@@ -2,7 +2,6 @@ import {
     Box,
     Typography,
     Dialog,
-    DialogTitle,
     DialogActions,
     Autocomplete,
     TextField,
@@ -15,7 +14,6 @@ import {getOptionLabel, highlightText} from "../utilFunctions";
 import {useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CircleIcon from "@mui/icons-material/Circle";
-import RemnantStorageApi from "../storageApi";
 
 export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
 

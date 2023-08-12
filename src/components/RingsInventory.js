@@ -1,18 +1,15 @@
 import {
     Autocomplete,
     Box,
-    Button,
     Dialog,
     DialogActions,
     DialogContent,
-    DialogContentText,
-    DialogTitle,
     Typography,
     TextField
 } from "@mui/material";
 import PropTypes from "prop-types";
 import {useState} from "react";
-import {BorderColor, HiLightedTextColor, UnHiLightedTextColor} from "../constants";
+import {BorderColor} from "../constants";
 import {highlightText, getOptionLabel} from "../utilFunctions";
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';

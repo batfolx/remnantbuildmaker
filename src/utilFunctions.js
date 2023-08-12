@@ -29,3 +29,16 @@ export function getOptionLabel(item) {
     return `${item.itemName} ${item.itemDescription}`
 }
 
+export async function exportBuildFile(loadouts, buildType) {
+    loadouts.buildType = buildType;
+    const blob = new Blob([JSON.stringify(loadouts)]);
+    const href = await URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = href;
+    const d = new Date();
+    link.download = `remnant_build-${d.toISOString()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
