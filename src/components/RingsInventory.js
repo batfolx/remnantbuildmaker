@@ -19,8 +19,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
 import ringsItemsJson from "../items/rings.json"
 
-export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadouts}) {
+export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
 
+    const loadout = loadouts.loadouts[currentLoadoutIndex];
     const [ringSelectorOpen, setRingSelectorOpen] = useState(false);
     const [selectedRingIndex, setSelectedRingIndex] = useState(0);
     const [searchedRings, setSearchedRings] = useState(ringsItemsJson);
@@ -34,7 +35,7 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
      */
     const getRemnantRingSlotComponent = (ring, index) => {
         return (
-            <Box key={index} style={{
+            <Box key={ring.itemName + index} style={{
                 borderColor: BorderColor,
                 cursor: "pointer",
                 boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
@@ -113,8 +114,8 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
     }
 
     return (
-        <Box>
-            <Box marginLeft={'5%'} marginTop={'1%'} display={'flex'} justifyContent={'start'} alignItems={'start'}
+        <Box marginTop={'25px'}>
+            <Box marginLeft={'5%'} display={'flex'} justifyContent={'start'} alignItems={'start'}
                  flexDirection={'column'}>
                 <Typography fontFamily={'Poppins'} variant={'h4'}>Rings</Typography>
             </Box>
@@ -129,7 +130,9 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
                             height: "100%"
                         }
                     }}
-                    open={ringSelectorOpen} fullWidth={true} maxWidth={'xl'}
+                    open={ringSelectorOpen}
+                    fullWidth={true}
+                    maxWidth={'xl'}
                     onClose={(event, reason) => {
                         if (reason === 'backdropClick') {
                             return false;
@@ -141,7 +144,6 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
                         fullWidth={true}
                         getOptionLabel={(option) => getOptionLabel(option)}
                         value={searchedValue}
-                        autoComplete={"off"}
                         renderInput={(params) => <TextField {...params} label="Search Rings" variant="outlined"/>}
                         onChange={(event, newValue) => {
                             setSearchedValue(newValue);

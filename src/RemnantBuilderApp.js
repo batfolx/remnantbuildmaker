@@ -7,6 +7,7 @@ import {BorderColor} from "./constants";
 import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
 import {useState} from "react";
+import AmuletsInventory from "./components/AmuletsInventory";
 
 const darkTheme = createTheme({
     palette: {
@@ -63,15 +64,11 @@ function RemnantBuilderApp() {
         RemnantStorageApi.saveLocalLoadOuts(RemnantStorageApi.generateDefaultLoadOut());
         internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
     }
-    const [loadouts, setLoadouts] = useState(internalLoadouts.loadouts);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
 
     const saveLoadouts = () => {
-        const payload = {
-            loadouts: loadouts,
-            currentLoadoutIndex: currentLoadoutIndex
-        };
-        RemnantStorageApi.saveLocalLoadOuts(payload);
+        internalLoadouts.currentLoadoutIndex = currentLoadoutIndex;
+        RemnantStorageApi.saveLocalLoadOuts(internalLoadouts);
     }
 
     const getLoadoutSelector = (romanNumeral, index) => {
@@ -97,7 +94,6 @@ function RemnantBuilderApp() {
         )
 
     }
-
 
     return (
         <ThemeProvider theme={darkTheme}>
@@ -144,8 +140,10 @@ function RemnantBuilderApp() {
                     {getLoadoutSelector("V", 4)}
                 </Box>
 
-                <RingsInventory loadout={loadouts[currentLoadoutIndex]} currentLoadoutIndex={currentLoadoutIndex}
+                <RingsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                 saveLoadouts={saveLoadouts}/>
+                <AmuletsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
+                                  saveLoadouts={saveLoadouts}/>
 
             </Box>
         </ThemeProvider>

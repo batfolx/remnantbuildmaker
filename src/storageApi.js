@@ -1,4 +1,5 @@
 import rings from "./items/rings.json";
+import amulets from "./items/Amulets.json";
 
 class RemnantStorageApi {
 
@@ -29,38 +30,39 @@ class RemnantStorageApi {
 
     static generateDefaultLoadOut() {
         const firstFourRings = rings.slice(0, 4);
+        const firstAmulet = amulets[0];
         const loadouts = [
             {
                 rings: firstFourRings,
-                amulet: {},
+                amulet: firstAmulet,
                 relic: {},
                 mutators: [],
                 weaponMods: []
             },
             {
                 rings: firstFourRings,
-                amulet: {},
+                amulet: firstAmulet,
                 relic: {},
                 mutators: [],
                 weaponMods: []
             },
             {
                 rings: firstFourRings,
-                amulet: {},
+                amulet: firstAmulet,
                 relic: {},
                 mutators: [],
                 weaponMods: []
             },
             {
                 rings: firstFourRings,
-                amulet: {},
+                amulet: firstAmulet,
                 relic: {},
                 mutators: [],
                 weaponMods: []
             },
             {
                 rings: firstFourRings,
-                amulet: {},
+                amulet: firstAmulet,
                 relic: {},
                 mutators: [],
                 weaponMods: []
