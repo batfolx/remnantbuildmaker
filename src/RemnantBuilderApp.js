@@ -101,6 +101,13 @@ function RemnantBuilderApp() {
         saveLoadouts();
     }
 
+    const importFullBuild = (data) => {
+        RemnantStorageApi.saveLocalLoadOuts(data);
+        const l = RemnantStorageApi.getLocalLoadOuts();
+        setInternalLoadouts(l);
+        setSelectedBuild(l.loadouts[0]);
+    }
+
     const saveLoadouts = (index) => {
         if (!index) {
             index = currentLoadoutIndex;
@@ -253,6 +260,8 @@ function RemnantBuilderApp() {
                                     <Button variant={'contained'} onClick={() => {
                                         overwriteBuild(importedBuildData);
                                         setBuildPreviewOpen(false);
+                                        const l = RemnantStorageApi.getLocalLoadOuts();
+                                        setSelectedBuild(l.loadouts[0]);
                                         toast.success(`Successfully imported build!`);
                                     }}>
                                         Import
@@ -266,6 +275,22 @@ function RemnantBuilderApp() {
 
                             </Box> :
                             <Box>
+                                <Typography>
+                                    Clicking "Import" will overwrite all of your builds. Continue?
+                                </Typography>
+                                <DialogActions>
+                                    <Button onClick={() => {
+                                        importFullBuild(importedBuildData);
+                                        toast.success("Successfully imported all builds.");
+                                        setBuildPreviewOpen(false);
+                                        setImportedBuildData({});
+                                    }}>
+                                        Import
+                                    </Button>
+                                    <Button>
+
+                                    </Button>
+                                </DialogActions>
 
                             </Box>
                         }
