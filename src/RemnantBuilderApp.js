@@ -36,7 +36,7 @@ const darkTheme = createTheme({
 
 function RemnantBuilderApp() {
 
-    const [openFileSelector, ] = useFilePicker({
+    const [openFileSelector,] = useFilePicker({
         accept: '.json',
         multiple: 'false',
         onFilesRejected: data => {
@@ -93,13 +93,21 @@ function RemnantBuilderApp() {
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
     const [loadoutName, setLoadoutName] = useState("");
 
+    const overwriteBuild = (buildData) => {
+        delete buildData.buildType;
+        const index = internalLoadouts.loadouts.indexOf(selectedBuild);
+        internalLoadouts.loadouts[index] = buildData;
+        delete buildData.selectedIndex;
+        saveLoadouts();
+    }
+
     const saveLoadouts = (index) => {
         if (!index) {
-            index = currentLoadoutIndex
+            index = currentLoadoutIndex;
         }
         internalLoadouts.currentLoadoutIndex = index;
         RemnantStorageApi.saveLocalLoadOuts(internalLoadouts);
-        setInternalLoadouts(internalLoadouts);
+        setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
     }
 
     const getLoadoutSelector = (romanNumeral, index) => {
@@ -172,7 +180,7 @@ function RemnantBuilderApp() {
                         </IconButton>
                         <IconButton onClick={() => {
                             RemnantStorageApi.clearStorage();
-                            const l = RemnantStorageApi.getLocalLoadOuts()
+                            const l = RemnantStorageApi.getLocalLoadOuts();
                             setInternalLoadouts(l);
                             setSelectedBuild(l.loadouts[0]);
                         }}>
@@ -222,9 +230,48 @@ function RemnantBuilderApp() {
                         Import {importedBuildType} build
                     </DialogTitle>
                     <DialogContent>
+                        {importedBuildType === 'single' ?
+                            <Box>
+                                <Typography>
+                                    Choose which build to overwrite
+                                </Typography>
+                                <Select
+                                    fullWidth
+                                    value={selectedBuild}
+                                    label={"Select Build to Overwrite"}
+                                    onChange={(e) => setSelectedBuild(e.target.value)}
+                                >
+                                    {internalLoadouts.loadouts.map((l, index) => {
+                                        return (
+                                            <MenuItem value={l}>
+                                                Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
+                                            </MenuItem>
+                                        )
+                                    })}
+                                </Select>
+                                <DialogActions>
+                                    <Button variant={'contained'} onClick={() => {
+                                        overwriteBuild(importedBuildData);
+                                        setBuildPreviewOpen(false);
+                                        toast.success(`Successfully imported build!`);
+                                    }}>
+                                        Import
+                                    </Button>
+                                    <Button variant={'contained'} onClick={() => {
+                                        setBuildPreviewOpen(false);
+                                    }}>
+                                        Close
+                                    </Button>
+                                </DialogActions>
 
+                            </Box> :
+                            <Box>
+
+                            </Box>
+                        }
 
                     </DialogContent>
+
 
                 </Dialog>
 
