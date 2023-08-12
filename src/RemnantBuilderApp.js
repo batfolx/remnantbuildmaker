@@ -64,9 +64,8 @@ function RemnantBuilderApp() {
        RemnantStorageApi.saveLocalLoadOuts(RemnantStorageApi.generateDefaultLoadOut());
        internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
     }
-    console.log(internalLoadouts);
-    const [loadouts, setLoadouts] = useState(internalLoadouts);
-
+    const [loadouts, setLoadouts] = useState(internalLoadouts.loadouts);
+    const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
 
 
 
@@ -105,7 +104,7 @@ function RemnantBuilderApp() {
                     </Toolbar>
                 </AppBar>
 
-                <RingsInventory loadouts={loadouts} setLoadouts={loadouts}/>
+                <RingsInventory loadout={loadouts[currentLoadoutIndex]} currentLoadoutIndex={currentLoadoutIndex}/>
 
             </Box>
         </ThemeProvider>

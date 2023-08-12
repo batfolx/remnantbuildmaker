@@ -29,12 +29,46 @@ class RemnantStorageApi {
 
     static generateDefaultLoadOut() {
         const firstFourRings = rings.slice(0, 4);
+        const loadouts = [
+            {
+                rings: firstFourRings,
+                amulet: {},
+                relic: {},
+                mutators: [],
+                weaponMods: []
+            },
+            {
+                rings: firstFourRings,
+                amulet: {},
+                relic: {},
+                mutators: [],
+                weaponMods: []
+            },
+            {
+                rings: firstFourRings,
+                amulet: {},
+                relic: {},
+                mutators: [],
+                weaponMods: []
+            },
+            {
+                rings: firstFourRings,
+                amulet: {},
+                relic: {},
+                mutators: [],
+                weaponMods: []
+            },
+            {
+                rings: firstFourRings,
+                amulet: {},
+                relic: {},
+                mutators: [],
+                weaponMods: []
+            }
+        ];
         return {
-            rings: firstFourRings,
-            amulet: {},
-            relic: {},
-            mutators: [],
-            weaponMods: []
+            loadouts: loadouts,
+            currentLoadoutIndex: 0
         }
     }
 

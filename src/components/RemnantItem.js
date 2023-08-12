@@ -1,28 +1,8 @@
 import {Box, Typography} from "@mui/material";
-import {BorderColor, UnHiLightedTextColor, HiLightedTextColor} from "../constants";
+import {BorderColor} from "../constants";
+import { highlightText } from "../utilFunctions";
 
 export default function RemnantItem({itemName, hRef, fullHref, imageLink, description, lore, itemType}) {
-
-    function containsNumbers(str) {
-        return /[0-9]/.test(str);
-    }
-
-    const highlightText = (text) => {
-        const tokenizedText = text.split(" ");
-
-        return (
-            <Box display={"flex"} flexDirection={'row'} flexWrap={'wrap'}>
-                {tokenizedText.map((t, index) => {
-                    if (containsNumbers(t)) {
-                        return <Typography key={index} color={HiLightedTextColor}>{t}&nbsp;</Typography>
-                    } else {
-                        return <Typography key={index} color={UnHiLightedTextColor}>{t}&nbsp;</Typography>
-                    }
-                })}
-
-            </Box>
-        );
-    }
 
     return (
       <Box style={{borderColor: BorderColor}}

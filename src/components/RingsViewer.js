@@ -10,7 +10,7 @@ import {Box} from "@mui/material";
  */
 export function RingsViewer() {
     return (
-        <Box>
+        <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
             {items.map((item) => {
                 return <RemnantItem
                     itemName={item.RingsName}
