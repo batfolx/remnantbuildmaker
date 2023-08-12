@@ -93,6 +93,12 @@ function RemnantBuilderApp() {
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
     const [loadoutName, setLoadoutName] = useState("");
 
+    const setCurrentStats = () => {
+        const l = RemnantStorageApi.getLocalLoadOuts();
+        setSelectedBuild(l.loadouts[0]);
+        setLoadoutName(l.loadouts[l.currentLoadoutIndex].loadoutName);
+    }
+
     const overwriteBuild = (buildData) => {
         delete buildData.buildType;
         const index = internalLoadouts.loadouts.indexOf(selectedBuild);
@@ -105,7 +111,7 @@ function RemnantBuilderApp() {
         RemnantStorageApi.saveLocalLoadOuts(data);
         const l = RemnantStorageApi.getLocalLoadOuts();
         setInternalLoadouts(l);
-        setSelectedBuild(l.loadouts[0]);
+        setCurrentStats();
     }
 
     const saveLoadouts = (index) => {
@@ -127,7 +133,7 @@ function RemnantBuilderApp() {
                 onClick={() => {
                     setCurrentLoadoutIndex(index);
                     saveLoadouts(index);
-                    setLoadoutName(internalLoadouts.loadouts[index].loadoutName);
+                    setCurrentStats();
                 }}
                 backgroundColor={isHighlighted ? 'white' : 'clear'}
                 border={1}
@@ -189,7 +195,7 @@ function RemnantBuilderApp() {
                             RemnantStorageApi.clearStorage();
                             const l = RemnantStorageApi.getLocalLoadOuts();
                             setInternalLoadouts(l);
-                            setSelectedBuild(l.loadouts[0]);
+                            setCurrentStats();
                         }}>
                             <Tooltip title={"Remove all builds"}>
                                 <DeleteIcon style={{color: 'red'}}/>
@@ -209,6 +215,7 @@ function RemnantBuilderApp() {
                             setLoadoutName(e.target.value);
                             internalLoadouts.loadouts[currentLoadoutIndex].loadoutName = e.target.value;
                             saveLoadouts();
+                            setCurrentStats();
                         }}
                     >
 
