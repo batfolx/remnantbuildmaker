@@ -15,16 +15,17 @@ import {getOptionLabel, highlightText} from "../utilFunctions";
 import {useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CircleIcon from "@mui/icons-material/Circle";
+import RemnantStorageApi from "../storageApi";
 
 export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
 
-    const loadout = loadouts.loadouts[currentLoadoutIndex];
+    let loadout = loadouts.loadouts[currentLoadoutIndex];
     const [openAmuletSearch, setOpenAmuletSearch] = useState(false);
-    const [currentAmulet, setCurrentAmulet] = useState(loadout.amulet);
     const [searchedValue, setSearchedValue] = useState(null);
     const [searchedAmulets, setSearchedAmulets] = useState(amuletsItemsJson);
 
-    const getAmuletSlotComponent = (amulet) => {
+    const getAmuletSlotComponent = () => {
+        const currentAmulet = loadout.amulet;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -47,12 +48,12 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                  }}
             >
                 <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                    <Typography textAlign={'center'} variant={'h5'}>{amulet.itemName}</Typography>
+                    <Typography textAlign={'center'} variant={'h5'}>{currentAmulet.itemName}</Typography>
                     <Typography color={'orange'}>Amulet</Typography>
-                    <img alt={amulet.itemImageLinkFullPath} src={amulet.itemImageLinkFullPath}
+                    <img alt={currentAmulet.itemImageLinkFullPath} src={currentAmulet.itemImageLinkFullPath}
                          style={{width: 150, height: 150}}/>
                 </Box>
-                {highlightText(amulet.itemDescription)}
+                {highlightText(currentAmulet.itemDescription)}
             </Box>
         );
     }
@@ -79,7 +80,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                         if (amuletIsSelected) {
                             return;
                         }
-                        setCurrentAmulet(amulet);
+                        loadout.amulet = amulet;
                         setOpenAmuletSearch(false);
                         setSearchedValue(null);
                         saveLoadouts();
@@ -110,7 +111,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                 </Typography>
             </Box>
             <Box display={'flex'} justifyContent={'center'}>
-                {getAmuletSlotComponent(currentAmulet)}
+                {getAmuletSlotComponent()}
             </Box>
 
             <Dialog
