@@ -1,5 +1,4 @@
 import {alpha, AppBar, Box, IconButton, InputBase, styled, Toolbar, Typography} from "@mui/material";
-import RemnantItem from "./components/RemnantItem";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
@@ -67,6 +66,14 @@ function RemnantBuilderApp() {
     const [loadouts, setLoadouts] = useState(internalLoadouts.loadouts);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
 
+    const saveLoadouts = () => {
+        const payload = {
+            loadouts: loadouts,
+            currentLoadoutIndex: currentLoadoutIndex
+        };
+        RemnantStorageApi.saveLocalLoadOuts(payload);
+    }
+
 
 
     return (
@@ -103,8 +110,7 @@ function RemnantBuilderApp() {
                         </Search>
                     </Toolbar>
                 </AppBar>
-
-                <RingsInventory loadout={loadouts[currentLoadoutIndex]} currentLoadoutIndex={currentLoadoutIndex}/>
+                <RingsInventory loadout={loadouts[currentLoadoutIndex]} currentLoadoutIndex={currentLoadoutIndex} saveLoadouts={saveLoadouts}/>
 
             </Box>
         </ThemeProvider>
