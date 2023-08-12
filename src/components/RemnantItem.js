@@ -37,7 +37,6 @@ export default function RemnantItem({itemName, hRef, fullHref, imageLink, descri
               <img alt={imageLink} src={imageLink} style={{width: 150, height: 150}}/>
           </Box>
           {highlightText(description)}
-
       </Box>
     );
 
