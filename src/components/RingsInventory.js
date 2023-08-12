@@ -34,7 +34,12 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
      */
     const getRemnantRingSlotComponent = (ring, index) => {
         return (
-            <Box key={index} style={{borderColor: BorderColor, cursor: "pointer", boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)', transition: 'box-shadow 0.2s'}}
+            <Box key={index} style={{
+                borderColor: BorderColor,
+                cursor: "pointer",
+                boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
+                transition: 'box-shadow 0.2s'
+            }}
                  sx={{
                      ':hover': {
                          boxShadow: 20
@@ -73,7 +78,12 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
 
                 return <Box
                     key={r.itemName}
-                    style={{borderColor: BorderColor, cursor: "pointer", boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', transition: 'box-shadow 0.2s'}}
+                    style={{
+                        borderColor: BorderColor,
+                        cursor: "pointer",
+                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                        transition: 'box-shadow 0.2s'
+                    }}
                     maxHeight={500} padding={"10px"}
                     onClick={() => {
                         if (ringIsSelected) {
@@ -115,14 +125,16 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
             </Box>
 
             <Dialog PaperProps={{
-                sx: {
-                    height: "100%"
-                }
-            }} open={ringSelectorOpen} onClose={() => setRingSelectorOpen(false)} fullWidth={true} maxWidth={'xl'}
+                        sx: {
+                            height: "100%"
+                        }
+                    }}
+                    open={ringSelectorOpen} fullWidth={true} maxWidth={'xl'}
                     onClose={(event, reason) => {
                         if (reason === 'backdropClick') {
                             return false;
                         }
+                        setRingSelectorOpen(false);
                     }}>
                 <DialogActions>
                     <Autocomplete
