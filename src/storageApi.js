@@ -1,5 +1,6 @@
 import rings from "./items/rings.json";
 import amulets from "./items/Amulets.json";
+import relics from "./items/Relics.json";
 
 class RemnantStorageApi {
 
@@ -31,39 +32,51 @@ class RemnantStorageApi {
     static generateDefaultLoadOut() {
         const firstFourRings = rings.slice(0, 4);
         const firstAmulet = amulets[0];
+        const firstRelic = relics[0];
+        const d = new Date().toISOString();
         const loadouts = [
             {
+                loadoutName: "",
+                lastEdited: d,
                 rings: firstFourRings,
                 amulet: firstAmulet,
-                relic: {},
+                relic: firstRelic,
                 mutators: [],
                 weaponMods: []
             },
             {
+                loadoutName: "",
+                lastEdited: d,
                 rings: firstFourRings,
                 amulet: firstAmulet,
-                relic: {},
+                relic: firstRelic,
                 mutators: [],
                 weaponMods: []
             },
             {
+                loadoutName: "",
+                lastEdited: d,
                 rings: firstFourRings,
                 amulet: firstAmulet,
-                relic: {},
+                relic: firstRelic,
                 mutators: [],
                 weaponMods: []
             },
             {
+                loadoutName: "",
+                lastEdited: d,
                 rings: firstFourRings,
                 amulet: firstAmulet,
-                relic: {},
+                relic: firstRelic,
                 mutators: [],
                 weaponMods: []
             },
             {
+                loadoutName: "",
+                lastEdited: d,
                 rings: firstFourRings,
                 amulet: firstAmulet,
-                relic: {},
+                relic: firstRelic,
                 mutators: [],
                 weaponMods: []
             }

@@ -1,4 +1,4 @@
-import {alpha, AppBar, Box, IconButton, InputBase, styled, Toolbar, Typography} from "@mui/material";
+import {alpha, AppBar, Box, IconButton, InputBase, styled, TextField, Toolbar, Typography} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
@@ -8,6 +8,7 @@ import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
 import {useState} from "react";
 import AmuletsInventory from "./components/AmuletsInventory";
+import RelicsInventory from "./components/RelicsInventory";
 
 const darkTheme = createTheme({
     palette: {
@@ -59,15 +60,19 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 
 function RemnantBuilderApp() {
 
-    let internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
+    const [internalLoadouts, setInternalLoadouts] = useState(RemnantStorageApi.getLocalLoadOuts());
     if (internalLoadouts.length === 0) {
         RemnantStorageApi.saveLocalLoadOuts(RemnantStorageApi.generateDefaultLoadOut());
-        internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
+        setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
     }
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
+    const [loadoutName, setLoadoutName] = useState("");
 
-    const saveLoadouts = () => {
-        internalLoadouts.currentLoadoutIndex = currentLoadoutIndex;
+    const saveLoadouts = (index) => {
+        if (!index) {
+            index = currentLoadoutIndex
+        }
+        internalLoadouts.currentLoadoutIndex = index;
         RemnantStorageApi.saveLocalLoadOuts(internalLoadouts);
     }
 
@@ -80,6 +85,8 @@ function RemnantBuilderApp() {
                 style={{ cursor: 'pointer', borderColor: BorderColor}}
                 onClick={() => {
                     setCurrentLoadoutIndex(index);
+                    saveLoadouts(index);
+                    setLoadoutName(internalLoadouts.loadouts[index].loadoutName);
                 }}
                 backgroundColor={isHighlighted ? 'white': 'clear'}
                 border={1}
@@ -132,6 +139,19 @@ function RemnantBuilderApp() {
                 <Box marginLeft={"5%"}>
                     <Typography fontFamily={'Poppins'} variant={'h4'}>Loadout</Typography>
                 </Box>
+                <Box display={'flex'} justifyContent={'center'}>
+                    <TextField
+                        value={loadoutName}
+                        defaultValue={internalLoadouts.loadouts[currentLoadoutIndex].loadoutName}
+                        label={"Loadout Name"}
+                        onChange={(e) => {
+                            setLoadoutName(e.target.value);
+                            internalLoadouts.loadouts[currentLoadoutIndex].loadoutName = e.target.value;
+                        }}
+                    >
+
+                    </TextField>
+                </Box>
                 <Box display={'flex'} margin={'25px'} gap={"25px"} justifyContent={'center'} flexWrap={'wrap'}>
                     {getLoadoutSelector("I", 0)}
                     {getLoadoutSelector("II", 1)}
@@ -143,6 +163,8 @@ function RemnantBuilderApp() {
                 <RingsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                 saveLoadouts={saveLoadouts}/>
                 <AmuletsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
+                                  saveLoadouts={saveLoadouts}/>
+                <RelicsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                   saveLoadouts={saveLoadouts}/>
 
             </Box>
