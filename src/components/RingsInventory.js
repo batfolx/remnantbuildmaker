@@ -16,6 +16,7 @@ import {BorderColor, HiLightedTextColor, UnHiLightedTextColor} from "../constant
 import {highlightText, getOptionLabel} from "../utilFunctions";
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import CircleIcon from '@mui/icons-material/Circle';
 import ringsItemsJson from "../items/rings.json"
 
 export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadouts}) {
@@ -24,9 +25,21 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
     const [selectedRingIndex, setSelectedRingIndex] = useState(0);
     const [searchedRings, setSearchedRings] = useState(ringsItemsJson);
     const [searchedValue, setSearchedValue] = useState(null);
+
+    /**
+     * Gets the ring slot component (rings 1-4)
+     * @param ring The ring object
+     * @param index The index (ring number)
+     * @returns {JSX.Element}
+     */
     const getRemnantRingSlotComponent = (ring, index) => {
         return (
-            <Box key={index} style={{borderColor: BorderColor}}
+            <Box key={index} style={{borderColor: BorderColor, cursor: "pointer", boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)', transition: 'box-shadow 0.2s'}}
+                 sx={{
+                     ':hover': {
+                         boxShadow: 20
+                     }
+                 }}
                  maxHeight={500} padding={"10px"}
                  border={2}
                  borderRadius={3}
@@ -55,11 +68,17 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
     const displaySearchedRings = () => {
         return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
             {searchedRings.map((r) => {
+
+                const ringIsSelected = loadout.rings.some(loadoutRing => loadoutRing.itemId === r.itemId)
+
                 return <Box
                     key={r.itemName}
                     style={{borderColor: BorderColor, cursor: "pointer", boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', transition: 'box-shadow 0.2s'}}
                     maxHeight={500} padding={"10px"}
                     onClick={() => {
+                        if (ringIsSelected) {
+                            return;
+                        }
                         loadout.rings[selectedRingIndex] = r;
                         setRingSelectorOpen(false);
                         setSearchedValue(null);
@@ -76,6 +95,8 @@ export default function RingsInventory({loadout, currentLoadoutIndex, saveLoadou
                              style={{width: 150, height: 150}}/>
                     </Box>
                     {highlightText(r.itemDescription)}
+                    {ringIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
+
                 </Box>
             })}
         </Box>
