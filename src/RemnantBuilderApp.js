@@ -60,8 +60,8 @@ function RemnantBuilderApp() {
 
     let internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
     if (internalLoadouts.length === 0) {
-       RemnantStorageApi.saveLocalLoadOuts(RemnantStorageApi.generateDefaultLoadOut());
-       internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
+        RemnantStorageApi.saveLocalLoadOuts(RemnantStorageApi.generateDefaultLoadOut());
+        internalLoadouts = RemnantStorageApi.getLocalLoadOuts();
     }
     const [loadouts, setLoadouts] = useState(internalLoadouts.loadouts);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
@@ -74,6 +74,29 @@ function RemnantBuilderApp() {
         RemnantStorageApi.saveLocalLoadOuts(payload);
     }
 
+    const getLoadoutSelector = (romanNumeral, index) => {
+        const isHighlighted = currentLoadoutIndex === index;
+        return (
+            <Box
+                height={100}
+                width={100}
+                style={{ cursor: 'pointer', borderColor: BorderColor}}
+                onClick={() => {
+                    setCurrentLoadoutIndex(index);
+                }}
+                backgroundColor={isHighlighted ? 'white': 'clear'}
+                border={1}
+                borderRadius={5}
+                padding={"5px"}
+                display={'flex'}
+                justifyContent={'center'} alignItems={'center'}>
+                <Typography variant={'h2'} color={isHighlighted ? 'black' : 'white'}>
+                    {romanNumeral}
+                </Typography>
+            </Box>
+        )
+
+    }
 
 
     return (
@@ -110,7 +133,19 @@ function RemnantBuilderApp() {
                         </Search>
                     </Toolbar>
                 </AppBar>
-                <RingsInventory loadout={loadouts[currentLoadoutIndex]} currentLoadoutIndex={currentLoadoutIndex} saveLoadouts={saveLoadouts}/>
+                <Box marginLeft={"5%"}>
+                    <Typography fontFamily={'Poppins'} variant={'h4'}>Loadout</Typography>
+                </Box>
+                <Box display={'flex'} margin={'25px'} gap={"25px"} justifyContent={'center'} flexWrap={'wrap'}>
+                    {getLoadoutSelector("I", 0)}
+                    {getLoadoutSelector("II", 1)}
+                    {getLoadoutSelector("III", 2)}
+                    {getLoadoutSelector("IV", 3)}
+                    {getLoadoutSelector("V", 4)}
+                </Box>
+
+                <RingsInventory loadout={loadouts[currentLoadoutIndex]} currentLoadoutIndex={currentLoadoutIndex}
+                                saveLoadouts={saveLoadouts}/>
 
             </Box>
         </ThemeProvider>
