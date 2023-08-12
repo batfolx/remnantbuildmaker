@@ -5,7 +5,7 @@ import { highlightText } from "../utilFunctions";
 export default function RemnantItem({itemName, hRef, fullHref, imageLink, description, lore, itemType}) {
 
     return (
-      <Box style={{borderColor: BorderColor}}
+      <Box key={itemName} style={{borderColor: BorderColor}}
            maxHeight={500} padding={"10px"}
            border={2}
            borderRadius={3}

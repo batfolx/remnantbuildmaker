@@ -22,3 +22,10 @@ export const highlightText = (text) => {
     );
 }
 
+export function getOptionLabel(item) {
+    if (typeof item === 'string') {
+        return item;
+    }
+    return `${item.itemName} ${item.itemDescription}`
+}
+
