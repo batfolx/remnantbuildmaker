@@ -13,7 +13,7 @@ class RemnantStorageApi {
      */
     static getLocalLoadOuts() {
         const loadouts = localStorage.getItem(this.LOADOUT_KEY);
-        if (!loadouts || loadouts === "") {
+        if (loadouts === null || loadouts === "") {
             const defaults = this.generateDefaultLoadOut();
             this.saveLocalLoadOuts(defaults);
         }
@@ -86,7 +86,7 @@ class RemnantStorageApi {
     }
 
     static clearStorage() {
-        localStorage.setItem(this.LOADOUT_KEY, null);
+        localStorage.setItem(this.LOADOUT_KEY, "");
     }
 
 

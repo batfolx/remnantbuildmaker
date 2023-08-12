@@ -172,9 +172,9 @@ function RemnantBuilderApp() {
                         </IconButton>
                         <IconButton onClick={() => {
                             RemnantStorageApi.clearStorage();
-                            const defaults = RemnantStorageApi.generateDefaultLoadOut();
-                            RemnantStorageApi.saveLocalLoadOuts(defaults);
-                            setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
+                            const l = RemnantStorageApi.getLocalLoadOuts()
+                            setInternalLoadouts(l);
+                            setSelectedBuild(l.loadouts[0]);
                         }}>
                             <Tooltip title={"Remove all builds"}>
                                 <DeleteIcon style={{color: 'red'}}/>
@@ -235,7 +235,9 @@ function RemnantBuilderApp() {
                         Export Single Build
                     </DialogTitle>
                     <DialogContent>
-                        <Select fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                        <Select
+                            label={"Select Build"}
+                            fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
                             {internalLoadouts.loadouts.map((l, index) => {
                                 return (
                                     <MenuItem value={l}>
