@@ -11,6 +11,7 @@ class RemnantStorageApi {
 
     static MAX_LOADOUTS = 5;
     static LOADOUT_KEY = "remnantLoadouts";
+    static currentVersion = "1.0.0";
 
     /**
      * Gets the local loadouts
@@ -63,7 +64,8 @@ class RemnantStorageApi {
         const loadouts = Array.from({length: this.MAX_LOADOUTS}, () => ({...entry}))
         return {
             loadouts: loadouts,
-            currentLoadoutIndex: 0
+            currentLoadoutIndex: 0,
+            currentVersion: this.currentVersion
         }
     }
 
