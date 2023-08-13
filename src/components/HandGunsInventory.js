@@ -130,7 +130,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         fullWidth={true}
                         getOptionLabel={(option) => getOptionLabel(option)}
                         value={searchedValue}
-                        renderInput={(params) => <TextField {...params} label="Search Long Guns" variant="outlined"/>}
+                        renderInput={(params) => <TextField {...params} label="Search Hand Guns" variant="outlined"/>}
                         onChange={(event, newValue) => {
                             setSearchedValue(newValue);
                         }}

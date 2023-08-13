@@ -130,7 +130,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                         fullWidth={true}
                         getOptionLabel={(option) => getOptionLabel(option)}
                         value={searchedValue}
-                        renderInput={(params) => <TextField {...params} label="Search Long Guns" variant="outlined"/>}
+                        renderInput={(params) => <TextField {...params} label="Search Melee Weapons" variant="outlined"/>}
                         onChange={(event, newValue) => {
                             setSearchedValue(newValue);
                         }}

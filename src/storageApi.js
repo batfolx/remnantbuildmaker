@@ -4,6 +4,7 @@ import relics from "./items/Relics.json";
 import longGuns from "./items/LongGuns.json";
 import meleeWeapons from "./items/MeleeWeapons.json";
 import handGuns from "./items/Handguns.json";
+import weaponMods from "./items/WeaponMods.json";
 
 class RemnantStorageApi {
 
@@ -38,68 +39,20 @@ class RemnantStorageApi {
         const firstLongGun = longGuns[0];
         const firstMeleeWeapon = meleeWeapons[0];
         const firstHandGun = handGuns[0];
-        const loadouts = [
-            {
-                loadoutName: "",
-                lastEdited: d,
-                rings: firstFourRings,
-                amulet: firstAmulet,
-                relic: firstRelic,
-                mutators: [],
-                weaponMods: [],
-                longGun: firstLongGun,
-                handGun: firstHandGun,
-                meleeWeapon: firstMeleeWeapon
-            },
-            {
-                loadoutName: "",
-                lastEdited: d,
-                rings: firstFourRings,
-                amulet: firstAmulet,
-                relic: firstRelic,
-                mutators: [],
-                weaponMods: [],
-                longGun: firstLongGun,
-                handGun: firstHandGun,
-                meleeWeapon: firstMeleeWeapon
-            },
-            {
-                loadoutName: "",
-                lastEdited: d,
-                rings: firstFourRings,
-                amulet: firstAmulet,
-                relic: firstRelic,
-                mutators: [],
-                weaponMods: [],
-                longGun: firstLongGun,
-                handGun: firstHandGun,
-                meleeWeapon: firstMeleeWeapon
-            },
-            {
-                loadoutName: "",
-                lastEdited: d,
-                rings: firstFourRings,
-                amulet: firstAmulet,
-                relic: firstRelic,
-                mutators: [],
-                weaponMods: [],
-                longGun: firstLongGun,
-                handGun: firstHandGun,
-                meleeWeapon: firstMeleeWeapon
-            },
-            {
-                loadoutName: "",
-                lastEdited: d,
-                rings: firstFourRings,
-                amulet: firstAmulet,
-                relic: firstRelic,
-                mutators: [],
-                weaponMods: [],
-                longGun: firstLongGun,
-                handGun: firstHandGun,
-                meleeWeapon: firstMeleeWeapon
-            },
-        ];
+        const firstWeaponMod = weaponMods[1];
+        const entry = {
+            loadoutName: "",
+            lastEdited: d,
+            rings: firstFourRings,
+            amulet: firstAmulet,
+            relic: firstRelic,
+            mutator: {},
+            weaponMod: firstWeaponMod,
+            longGun: firstLongGun,
+            handGun: firstHandGun,
+            meleeWeapon: firstMeleeWeapon
+        };
+        const loadouts = Array.from({length: this.MAX_LOADOUTS}, () => ({...entry}))
         return {
             loadouts: loadouts,
             currentLoadoutIndex: 0
