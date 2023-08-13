@@ -28,7 +28,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import LongGunsInventory from "./components/LongGunsInventory";
 import HandGunsInventory from "./components/HandGunsInventory";
 import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
-
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const darkTheme = createTheme({
     palette: {
@@ -163,6 +163,11 @@ function RemnantBuilderApp() {
                         >
                             Remnant Builder
                         </Typography>
+                        <IconButton onClick={() => window.open("https://remnant2.wiki.fextralife.com/Remnant+2+Wiki", "_blank")}>
+                            <Tooltip title={"Go to Remnant 2 Wiki"}>
+                                <ExitToAppIcon/>
+                            </Tooltip>
+                        </IconButton>
                         <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
                             <Tooltip title={"Import Build File"}>
                                 <UploadFile/>
