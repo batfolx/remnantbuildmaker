@@ -237,7 +237,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                     Melee Weapons
                 </Typography>
             </Box>
-            <Box display={'flex'} justifyContent={'center'} flexDirection={'column'}>
+            <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getMeleeWeaponSlot()}
                 {getWeaponModSlotComponent()}
                 {getMutatorSlotComponent()}

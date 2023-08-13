@@ -9,7 +9,6 @@ import {
     Tooltip,
     Typography
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {BorderColor} from "./constants";
@@ -154,15 +153,6 @@ function RemnantBuilderApp() {
             <Box>
                 <AppBar position={'static'}>
                     <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            sx={{mr: 2}}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
                         <Typography
                             variant="h6"
                             noWrap
