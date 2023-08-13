@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/remnantbuildmaker/static/css/main.98ec47ca.css",
+    "main.js": "/remnantbuildmaker/static/js/main.2e093f1d.js",
+    "index.html": "/remnantbuildmaker/index.html",
+    "main.98ec47ca.css.map": "/remnantbuildmaker/static/css/main.98ec47ca.css.map",
+    "main.2e093f1d.js.map": "/remnantbuildmaker/static/js/main.2e093f1d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.98ec47ca.css",
+    "static/js/main.2e093f1d.js"
+  ]
+}
