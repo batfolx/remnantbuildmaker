@@ -1,5 +1,5 @@
 import {useState} from "react";
-import longGunsJson from "../items/LongGuns.json";
+import handGunsJson from "../items/Handguns.json";
 import {
     Autocomplete,
     Box,
@@ -14,17 +14,15 @@ import {BorderColor} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
-export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
 
+export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
     let loadout = loadouts.loadouts[currentLoadoutIndex];
-    const [openLongGunSearch, setOpenLongGunSearch] = useState(false);
+    const [openHandGunSearch, setOpenHandGunSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
-    const [searchedLongGuns, setSearchedLongGuns] = useState(longGunsJson);
+    const [searchedHandGuns, setSearchedHandGuns] = useState(handGunsJson);
 
-    const [openWeaponModSearch, setOpenWeaponModSearch] = useState()
-
-    const getLongGunSlotComponent = () => {
-        const currentLongGun = loadout.longGun;
+    const getHandGunSlotComponent = () => {
+        const currentHandGun = loadout.handGun;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -43,31 +41,31 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
-                     setOpenLongGunSearch(true);
+                     setOpenHandGunSearch(true);
                  }}
             >
                 <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                    <Typography textAlign={'center'} variant={'h5'}>{currentLongGun.itemName}</Typography>
-                    <Typography color={'orange'}>Long Gun</Typography>
-                    <img alt={currentLongGun.itemImageLinkFullPath} src={currentLongGun.itemImageLinkFullPath}
+                    <Typography textAlign={'center'} variant={'h5'}>{currentHandGun.itemName}</Typography>
+                    <Typography color={'orange'}>Hand Gun</Typography>
+                    <img alt={currentHandGun.itemImageLinkFullPath} src={currentHandGun.itemImageLinkFullPath}
                          style={{width: 350, height: 150}}/>
                 </Box>
-                {highlightText(currentLongGun.itemDescription)}
+                {highlightText(currentHandGun.itemDescription)}
             </Box>
         );
     }
 
-    const displaySearchedLongGuns = ()  => {
+    const displaySearchedHandGuns = ()  => {
         return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
-            {searchedLongGuns.map((longGun, index) => {
-                if (longGun.itemName === "") {
+            {searchedHandGuns.map((handGun, index) => {
+                if (handGun.itemName === "") {
                     return <Box key={index}/>
                 }
 
-                const longGunIsSelected = loadout.longGun.itemId === longGun.itemId;
+                const longGunIsSelected = loadout.handGun.itemId === handGun.itemId;
 
                 return <Box
-                    key={longGun.itemName + index}
+                    key={handGun.itemName + index}
                     style={{
                         borderColor: BorderColor,
                         cursor: "pointer",
@@ -79,8 +77,8 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (longGunIsSelected) {
                             return;
                         }
-                        loadout.longGun = longGun;
-                        setOpenLongGunSearch(false);
+                        loadout.handGun = handGun;
+                        setOpenHandGunSearch(false);
                         setSearchedValue(null);
                         saveLoadouts();
                     }}
@@ -89,12 +87,12 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                     width={350}
                     justifyContent={'center'}>
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <Typography textAlign={'center'} variant={'h5'}>{longGun.itemName}</Typography>
-                        <Typography color={'orange'}>Long Guns</Typography>
-                        <img alt={longGun.itemImageLinkFullPath} src={longGun.itemImageLinkFullPath}
+                        <Typography textAlign={'center'} variant={'h5'}>{handGun.itemName}</Typography>
+                        <Typography color={'orange'}>Hand Gun</Typography>
+                        <img alt={handGun.itemImageLinkFullPath} src={handGun.itemImageLinkFullPath}
                              style={{width: 350, height: 150}}/>
                     </Box>
-                    {highlightText(longGun.itemDescription)}
+                    {highlightText(handGun.itemDescription)}
                     {longGunIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
 
                 </Box>
@@ -106,11 +104,11 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
         <Box>
             <Box marginTop={'25px'}>
                 <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Long Guns
+                    Hand Guns
                 </Typography>
             </Box>
             <Box display={'flex'} justifyContent={'center'}>
-                {getLongGunSlotComponent()}
+                {getHandGunSlotComponent()}
             </Box>
 
             <Dialog
@@ -121,11 +119,11 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 }}
                 fullWidth={true}
                 maxWidth={'xl'}
-                open={openLongGunSearch} onClose={(event, reason) => {
+                open={openHandGunSearch} onClose={(event, reason) => {
                 if (reason === 'backdropClick') {
                     return false;
                 }
-                setOpenLongGunSearch(false);
+                setOpenHandGunSearch(false);
             }}>
                 <DialogActions>
                     <Autocomplete
@@ -137,20 +135,20 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                             setSearchedValue(newValue);
                         }}
                         onInputChange={(event, newValue) => {
-                            const filteredOptions = longGunsJson.filter((r) => {
+                            const filteredOptions = handGunsJson.filter((r) => {
                                 const label = getOptionLabel(r).toLowerCase();
                                 return label.includes(newValue.toLowerCase());
                             });
-                            setSearchedLongGuns(filteredOptions);
+                            setSearchedHandGuns(filteredOptions);
                             setSearchedValue(newValue);
                         }}
-                        options={longGunsJson}/>
-                    <IconButton onClick={() => setOpenLongGunSearch(false)}>
+                        options={handGunsJson}/>
+                    <IconButton onClick={() => setOpenHandGunSearch(false)}>
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>
                 <DialogContent>
-                    {displaySearchedLongGuns()}
+                    {displaySearchedHandGuns()}
                 </DialogContent>
 
             </Dialog>

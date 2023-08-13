@@ -1,5 +1,5 @@
 import {useState} from "react";
-import longGunsJson from "../items/LongGuns.json";
+import meleeWeaponsJson from "../items/MeleeWeapons.json";
 import {
     Autocomplete,
     Box,
@@ -14,17 +14,15 @@ import {BorderColor} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
-export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
 
+export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
     let loadout = loadouts.loadouts[currentLoadoutIndex];
-    const [openLongGunSearch, setOpenLongGunSearch] = useState(false);
+    const [openMeleeWeaponSearch, setOpenMeleeWeaponSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
-    const [searchedLongGuns, setSearchedLongGuns] = useState(longGunsJson);
+    const [searchedMeleeWeapons, setSearchedMeleeWeapons] = useState(meleeWeaponsJson);
 
-    const [openWeaponModSearch, setOpenWeaponModSearch] = useState()
-
-    const getLongGunSlotComponent = () => {
-        const currentLongGun = loadout.longGun;
+    const getMeleeWeaponSlot = () => {
+        const currentMeleeWeapon = loadout.meleeWeapon;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -43,31 +41,31 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
-                     setOpenLongGunSearch(true);
+                     setOpenMeleeWeaponSearch(true);
                  }}
             >
                 <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                    <Typography textAlign={'center'} variant={'h5'}>{currentLongGun.itemName}</Typography>
-                    <Typography color={'orange'}>Long Gun</Typography>
-                    <img alt={currentLongGun.itemImageLinkFullPath} src={currentLongGun.itemImageLinkFullPath}
+                    <Typography textAlign={'center'} variant={'h5'}>{currentMeleeWeapon.itemName}</Typography>
+                    <Typography color={'orange'}>Melee Weapon</Typography>
+                    <img alt={currentMeleeWeapon.itemImageLinkFullPath} src={currentMeleeWeapon.itemImageLinkFullPath}
                          style={{width: 350, height: 150}}/>
                 </Box>
-                {highlightText(currentLongGun.itemDescription)}
+                {highlightText(currentMeleeWeapon.itemDescription)}
             </Box>
         );
     }
 
-    const displaySearchedLongGuns = ()  => {
+    const displaySearchedMeleeWeapons = ()  => {
         return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
-            {searchedLongGuns.map((longGun, index) => {
-                if (longGun.itemName === "") {
+            {searchedMeleeWeapons.map((meleeWeapon, index) => {
+                if (meleeWeapon.itemName === "") {
                     return <Box key={index}/>
                 }
 
-                const longGunIsSelected = loadout.longGun.itemId === longGun.itemId;
+                const longGunIsSelected = loadout.meleeWeapon.itemId === meleeWeapon.itemId;
 
                 return <Box
-                    key={longGun.itemName + index}
+                    key={meleeWeapon.itemName + index}
                     style={{
                         borderColor: BorderColor,
                         cursor: "pointer",
@@ -79,8 +77,8 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (longGunIsSelected) {
                             return;
                         }
-                        loadout.longGun = longGun;
-                        setOpenLongGunSearch(false);
+                        loadout.meleeWeapon = meleeWeapon;
+                        setOpenMeleeWeaponSearch(false);
                         setSearchedValue(null);
                         saveLoadouts();
                     }}
@@ -89,12 +87,12 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                     width={350}
                     justifyContent={'center'}>
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <Typography textAlign={'center'} variant={'h5'}>{longGun.itemName}</Typography>
-                        <Typography color={'orange'}>Long Guns</Typography>
-                        <img alt={longGun.itemImageLinkFullPath} src={longGun.itemImageLinkFullPath}
+                        <Typography textAlign={'center'} variant={'h5'}>{meleeWeapon.itemName}</Typography>
+                        <Typography color={'orange'}>Melee Weapon</Typography>
+                        <img alt={meleeWeapon.itemImageLinkFullPath} src={meleeWeapon.itemImageLinkFullPath}
                              style={{width: 350, height: 150}}/>
                     </Box>
-                    {highlightText(longGun.itemDescription)}
+                    {highlightText(meleeWeapon.itemDescription)}
                     {longGunIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
 
                 </Box>
@@ -106,11 +104,11 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
         <Box>
             <Box marginTop={'25px'}>
                 <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Long Guns
+                    Melee Weapons
                 </Typography>
             </Box>
             <Box display={'flex'} justifyContent={'center'}>
-                {getLongGunSlotComponent()}
+                {getMeleeWeaponSlot()}
             </Box>
 
             <Dialog
@@ -121,11 +119,11 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 }}
                 fullWidth={true}
                 maxWidth={'xl'}
-                open={openLongGunSearch} onClose={(event, reason) => {
+                open={openMeleeWeaponSearch} onClose={(event, reason) => {
                 if (reason === 'backdropClick') {
                     return false;
                 }
-                setOpenLongGunSearch(false);
+                setOpenMeleeWeaponSearch(false);
             }}>
                 <DialogActions>
                     <Autocomplete
@@ -137,20 +135,20 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                             setSearchedValue(newValue);
                         }}
                         onInputChange={(event, newValue) => {
-                            const filteredOptions = longGunsJson.filter((r) => {
+                            const filteredOptions = meleeWeaponsJson.filter((r) => {
                                 const label = getOptionLabel(r).toLowerCase();
                                 return label.includes(newValue.toLowerCase());
                             });
-                            setSearchedLongGuns(filteredOptions);
+                            setSearchedMeleeWeapons(filteredOptions);
                             setSearchedValue(newValue);
                         }}
-                        options={longGunsJson}/>
-                    <IconButton onClick={() => setOpenLongGunSearch(false)}>
+                        options={meleeWeaponsJson}/>
+                    <IconButton onClick={() => setOpenMeleeWeaponSearch(false)}>
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>
                 <DialogContent>
-                    {displaySearchedLongGuns()}
+                    {displaySearchedMeleeWeapons()}
                 </DialogContent>
 
             </Dialog>

@@ -27,6 +27,8 @@ import Filter5Icon from '@mui/icons-material/Filter5';
 import Filter1Icon from '@mui/icons-material/Filter1';
 import DeleteIcon from '@mui/icons-material/Delete';
 import LongGunsInventory from "./components/LongGunsInventory";
+import HandGunsInventory from "./components/HandGunsInventory";
+import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
 
 
 const darkTheme = createTheme({
@@ -236,8 +238,15 @@ function RemnantBuilderApp() {
                                   saveLoadouts={saveLoadouts}/>
                 <RelicsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                  saveLoadouts={saveLoadouts}/>
-                <LongGunsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                 saveLoadouts={saveLoadouts}/>
+                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} alignContent={'start'}>
+                    <LongGunsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
+                                       saveLoadouts={saveLoadouts}/>
+                    <HandGunsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
+                                       saveLoadouts={saveLoadouts}/>
+                    <MeleeWeaponsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
+                                           saveLoadouts={saveLoadouts}/>
+                </Box>
+
 
                 <Dialog open={buildPreviewOpen} onClose={(event, reason) => {
                     setBuildPreviewOpen(false);
