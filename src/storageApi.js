@@ -1,6 +1,9 @@
 import rings from "./items/rings.json";
 import amulets from "./items/Amulets.json";
 import relics from "./items/Relics.json";
+import longGuns from "./items/LongGuns.json";
+import meleeWeapons from "./items/MeleeWeapons.json";
+import handGuns from "./items/Handguns.json";
 
 class RemnantStorageApi {
 
@@ -32,6 +35,9 @@ class RemnantStorageApi {
         const firstAmulet = amulets[0];
         const firstRelic = relics[0];
         const d = new Date().toISOString();
+        const firstLongGun = longGuns[0];
+        const firstMeleeWeapon = meleeWeapons[0];
+        const firstHandGun = handGuns[0];
         const loadouts = [
             {
                 loadoutName: "",
@@ -40,7 +46,10 @@ class RemnantStorageApi {
                 amulet: firstAmulet,
                 relic: firstRelic,
                 mutators: [],
-                weaponMods: []
+                weaponMods: [],
+                longGun: firstLongGun,
+                handGun: firstHandGun,
+                meleeWeapon: firstMeleeWeapon
             },
             {
                 loadoutName: "",
@@ -49,7 +58,10 @@ class RemnantStorageApi {
                 amulet: firstAmulet,
                 relic: firstRelic,
                 mutators: [],
-                weaponMods: []
+                weaponMods: [],
+                longGun: firstLongGun,
+                handGun: firstHandGun,
+                meleeWeapon: firstMeleeWeapon
             },
             {
                 loadoutName: "",
@@ -58,7 +70,10 @@ class RemnantStorageApi {
                 amulet: firstAmulet,
                 relic: firstRelic,
                 mutators: [],
-                weaponMods: []
+                weaponMods: [],
+                longGun: firstLongGun,
+                handGun: firstHandGun,
+                meleeWeapon: firstMeleeWeapon
             },
             {
                 loadoutName: "",
@@ -67,7 +82,10 @@ class RemnantStorageApi {
                 amulet: firstAmulet,
                 relic: firstRelic,
                 mutators: [],
-                weaponMods: []
+                weaponMods: [],
+                longGun: firstLongGun,
+                handGun: firstHandGun,
+                meleeWeapon: firstMeleeWeapon
             },
             {
                 loadoutName: "",
@@ -76,8 +94,11 @@ class RemnantStorageApi {
                 amulet: firstAmulet,
                 relic: firstRelic,
                 mutators: [],
-                weaponMods: []
-            }
+                weaponMods: [],
+                longGun: firstLongGun,
+                handGun: firstHandGun,
+                meleeWeapon: firstMeleeWeapon
+            },
         ];
         return {
             loadouts: loadouts,

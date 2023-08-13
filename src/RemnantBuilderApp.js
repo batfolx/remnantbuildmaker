@@ -26,6 +26,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Filter5Icon from '@mui/icons-material/Filter5';
 import Filter1Icon from '@mui/icons-material/Filter1';
 import DeleteIcon from '@mui/icons-material/Delete';
+import LongGunsInventory from "./components/LongGunsInventory";
 
 
 const darkTheme = createTheme({
@@ -102,10 +103,13 @@ function RemnantBuilderApp() {
     }
 
     const importFullBuild = (data) => {
+        data.currentLoadoutIndex = 0;
         RemnantStorageApi.saveLocalLoadOuts(data);
         const l = RemnantStorageApi.getLocalLoadOuts();
         setInternalLoadouts(l);
         setSelectedBuild(l.loadouts[0]);
+        setCurrentLoadoutIndex(0);
+        setLoadoutName(l.loadouts[l.currentLoadoutIndex].loadoutName);
     }
 
     const saveLoadouts = (index) => {
@@ -190,6 +194,9 @@ function RemnantBuilderApp() {
                             const l = RemnantStorageApi.getLocalLoadOuts();
                             setInternalLoadouts(l);
                             setSelectedBuild(l.loadouts[0]);
+                            setCurrentLoadoutIndex(0);
+                            setLoadoutName(l.loadouts[0].loadoutName);
+                            toast.success("Successfully reset all builds!");
                         }}>
                             <Tooltip title={"Remove all builds"}>
                                 <DeleteIcon style={{color: 'red'}}/>
@@ -229,6 +236,8 @@ function RemnantBuilderApp() {
                                   saveLoadouts={saveLoadouts}/>
                 <RelicsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
                                  saveLoadouts={saveLoadouts}/>
+                <LongGunsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
+                                 saveLoadouts={saveLoadouts}/>
 
                 <Dialog open={buildPreviewOpen} onClose={(event, reason) => {
                     setBuildPreviewOpen(false);
@@ -262,7 +271,9 @@ function RemnantBuilderApp() {
                                         setBuildPreviewOpen(false);
                                         const l = RemnantStorageApi.getLocalLoadOuts();
                                         setSelectedBuild(l.loadouts[0]);
+                                        setLoadoutName(l.loadouts[l.currentLoadoutIndex].loadoutName);
                                         toast.success(`Successfully imported build!`);
+
                                     }}>
                                         Import
                                     </Button>
@@ -329,6 +340,7 @@ function RemnantBuilderApp() {
                     <DialogActions>
                         <Button onClick={() => {
                             exportBuildFile(selectedBuild, 'single');
+                            setSelectedBuild(internalLoadouts.loadouts[0]);
                             setExportSingleBuildOpen(false);
                         }}>
                             Export

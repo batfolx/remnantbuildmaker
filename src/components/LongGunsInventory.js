@@ -1,5 +1,5 @@
 import {useState} from "react";
-import relicsItemsJson from "../items/Relics.json";
+import longGunsJson from "../items/LongGuns.json";
 import {
     Autocomplete,
     Box,
@@ -14,16 +14,15 @@ import {BorderColor} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
-
-export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
 
     let loadout = loadouts.loadouts[currentLoadoutIndex];
-    const [openRelicSearch, setOpenRelicSearch] = useState(false);
+    const [openLongGunSearch, setOpenLongGunSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
-    const [searchedRelics, setSearchedRelics] = useState(relicsItemsJson);
+    const [searchedLongGuns, setSearchedLongGuns] = useState(longGunsJson);
 
-    const getRelicSlotComponent = () => {
-        const currentRelic = loadout.relic;
+    const getLongGunSlotComponent = () => {
+        const currentLongGun = loadout.longGun;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -39,34 +38,34 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
                  maxHeight={500} padding={"10px"}
                  border={2}
                  borderRadius={3}
-                 maxWidth={250}
+                 maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
-                     setOpenRelicSearch(true);
+                     setOpenLongGunSearch(true);
                  }}
             >
                 <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                    <Typography textAlign={'center'} variant={'h5'}>{currentRelic.itemName}</Typography>
-                    <Typography color={'orange'}>Relic</Typography>
-                    <img alt={currentRelic.itemImageLinkFullPath} src={currentRelic.itemImageLinkFullPath}
-                         style={{width: 150, height: 150}}/>
+                    <Typography textAlign={'center'} variant={'h5'}>{currentLongGun.itemName}</Typography>
+                    <Typography color={'orange'}>Long Gun</Typography>
+                    <img alt={currentLongGun.itemImageLinkFullPath} src={currentLongGun.itemImageLinkFullPath}
+                         style={{width: 350, height: 150}}/>
                 </Box>
-                {highlightText(currentRelic.itemDescription)}
+                {highlightText(currentLongGun.itemDescription)}
             </Box>
         );
     }
 
-    const displaySearchedRelics = ()  => {
+    const displaySearchedLongGuns = ()  => {
         return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
-            {searchedRelics.map((relic, index) => {
-                if (relic.itemName === "") {
+            {searchedLongGuns.map((longGun, index) => {
+                if (longGun.itemName === "") {
                     return <Box key={index}/>
                 }
 
-                const relicIsSelected = loadout.relic.itemId === relic.itemId;
+                const longGunIsSelected = loadout.longGun.itemId === longGun.itemId;
 
                 return <Box
-                    key={relic.itemName + index}
+                    key={longGun.itemName + index}
                     style={{
                         borderColor: BorderColor,
                         cursor: "pointer",
@@ -75,26 +74,26 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
                     }}
                     maxHeight={500} padding={"10px"}
                     onClick={() => {
-                        if (relicIsSelected) {
+                        if (longGunIsSelected) {
                             return;
                         }
-                        loadout.relic = relic;
-                        setOpenRelicSearch(false);
+                        loadout.longGun = longGun;
+                        setOpenLongGunSearch(false);
                         setSearchedValue(null);
                         saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
-                    width={250}
+                    width={350}
                     justifyContent={'center'}>
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <Typography textAlign={'center'} variant={'h5'}>{relic.itemName}</Typography>
-                        <Typography color={'orange'}>{relic.itemType}</Typography>
-                        <img alt={relic.itemImageLinkFullPath} src={relic.itemImageLinkFullPath}
-                             style={{width: 150, height: 150}}/>
+                        <Typography textAlign={'center'} variant={'h5'}>{longGun.itemName}</Typography>
+                        <Typography color={'orange'}>Long Guns</Typography>
+                        <img alt={longGun.itemImageLinkFullPath} src={longGun.itemImageLinkFullPath}
+                             style={{width: 350, height: 150}}/>
                     </Box>
-                    {highlightText(relic.itemDescription)}
-                    {relicIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
+                    {highlightText(longGun.itemDescription)}
+                    {longGunIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
 
                 </Box>
             })}
@@ -105,11 +104,11 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
         <Box>
             <Box marginLeft={"5%"} marginTop={'25px'}>
                 <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Relics
+                    Long Guns
                 </Typography>
             </Box>
             <Box display={'flex'} justifyContent={'center'}>
-                {getRelicSlotComponent()}
+                {getLongGunSlotComponent()}
             </Box>
 
             <Dialog
@@ -120,36 +119,36 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
                 }}
                 fullWidth={true}
                 maxWidth={'xl'}
-                open={openRelicSearch} onClose={(event, reason) => {
+                open={openLongGunSearch} onClose={(event, reason) => {
                 if (reason === 'backdropClick') {
                     return false;
                 }
-                setOpenRelicSearch(false);
+                setOpenLongGunSearch(false);
             }}>
                 <DialogActions>
                     <Autocomplete
                         fullWidth={true}
                         getOptionLabel={(option) => getOptionLabel(option)}
                         value={searchedValue}
-                        renderInput={(params) => <TextField {...params} label="Search Relics" variant="outlined"/>}
+                        renderInput={(params) => <TextField {...params} label="Search Long Guns" variant="outlined"/>}
                         onChange={(event, newValue) => {
                             setSearchedValue(newValue);
                         }}
                         onInputChange={(event, newValue) => {
-                            const filteredOptions = relicsItemsJson.filter((r) => {
+                            const filteredOptions = longGunsJson.filter((r) => {
                                 const label = getOptionLabel(r).toLowerCase();
                                 return label.includes(newValue.toLowerCase());
                             });
-                            setSearchedRelics(filteredOptions);
+                            setSearchedLongGuns(filteredOptions);
                             setSearchedValue(newValue);
                         }}
-                        options={relicsItemsJson}/>
-                    <IconButton onClick={() => setOpenRelicSearch(false)}>
+                        options={longGunsJson}/>
+                    <IconButton onClick={() => setOpenLongGunSearch(false)}>
                         <CloseIcon/>
                     </IconButton>
                 </DialogActions>
                 <DialogContent>
-                    {displaySearchedRelics()}
+                    {displaySearchedLongGuns()}
                 </DialogContent>
 
             </Dialog>
