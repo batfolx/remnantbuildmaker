@@ -76,8 +76,8 @@ function RemnantBuilderApp() {
                     return;
                 }
 
-                if (buildData.loadouts.length !== 5) {
-                    toast.error("Expected build data loadouts length to be 5, but was not.");
+                if (buildData.loadouts.length !== RemnantStorageApi.MAX_LOADOUTS) {
+                    toast.error(`Expected build data loadouts length to be ${RemnantStorageApi.MAX_LOADOUTS}, but was not.`);
                     return;
                 }
             }
@@ -93,7 +93,7 @@ function RemnantBuilderApp() {
     const [internalLoadouts, setInternalLoadouts] = useState(RemnantStorageApi.getLocalLoadOuts());
     const [selectedBuild, setSelectedBuild] = useState(internalLoadouts.loadouts[0]);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
-    const [loadoutName, setLoadoutName] = useState("");
+    const [loadoutName, setLoadoutName] = useState(internalLoadouts.loadouts[internalLoadouts.currentLoadoutIndex].loadoutName);
 
     const overwriteBuild = (buildData) => {
         delete buildData.buildType;
@@ -117,8 +117,9 @@ function RemnantBuilderApp() {
         if (!index) {
             index = currentLoadoutIndex;
         }
-        internalLoadouts.currentLoadoutIndex = index;
-        RemnantStorageApi.saveLocalLoadOuts(internalLoadouts);
+        const loadoutsCopy = {...internalLoadouts};
+        loadoutsCopy.currentLoadoutIndex = index;
+        RemnantStorageApi.saveLocalLoadOuts(loadoutsCopy);
         setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
     }
 
@@ -132,7 +133,8 @@ function RemnantBuilderApp() {
                 onClick={() => {
                     setCurrentLoadoutIndex(index);
                     saveLoadouts(index);
-                    setLoadoutName(internalLoadouts.loadouts[index].loadoutName);
+                    const loadoutsCopy = {...internalLoadouts};
+                    setLoadoutName(loadoutsCopy.loadouts[index].loadoutName);
                 }}
                 backgroundColor={isHighlighted ? 'white' : 'clear'}
                 border={1}
@@ -219,6 +221,11 @@ function RemnantBuilderApp() {
                     {getLoadoutSelector("III", 2)}
                     {getLoadoutSelector("IV", 3)}
                     {getLoadoutSelector("V", 4)}
+                    {getLoadoutSelector("VI", 5)}
+                    {getLoadoutSelector("VII", 6)}
+                    {getLoadoutSelector("VIII", 7)}
+                    {getLoadoutSelector("IX", 8)}
+                    {getLoadoutSelector("X", 9)}
                 </Box>
                 <ToastContainer/>
 

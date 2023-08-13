@@ -9,7 +9,7 @@ import mutators from "./items/Mutators.json";
 
 class RemnantStorageApi {
 
-    static MAX_LOADOUTS = 5;
+    static MAX_LOADOUTS = 10;
     static LOADOUT_KEY = "remnantLoadouts";
     static currentVersion = "1.0.0";
 
