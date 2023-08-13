@@ -6,7 +6,7 @@ import {
     ShockTextColor,
     SuppressionTextColor,
     UnHiLightedTextColor,
-    BleedingTextColor
+    BleedingTextColor, AcidTextColor
 } from "./constants";
 
 export function containsNumbers(str) {
@@ -32,7 +32,9 @@ export const highlightText = (text) => {
                     } else if (t.includes("BLEED")) {
                         color = BleedingTextColor;
                     } else if (t.includes("BULWARK")) {
-                        color = BulwarkTextColor
+                        color = BulwarkTextColor;
+                    } else if (t.includes("CORRO") || t.includes("ACID")) {
+                        color = AcidTextColor;
                     }
 
 

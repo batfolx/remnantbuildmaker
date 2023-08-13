@@ -5,6 +5,7 @@ import longGuns from "./items/LongGuns.json";
 import meleeWeapons from "./items/MeleeWeapons.json";
 import handGuns from "./items/Handguns.json";
 import weaponMods from "./items/WeaponMods.json";
+import mutators from "./items/Mutators.json";
 
 class RemnantStorageApi {
 
@@ -40,17 +41,24 @@ class RemnantStorageApi {
         const firstMeleeWeapon = meleeWeapons[0];
         const firstHandGun = handGuns[0];
         const firstWeaponMod = weaponMods[1];
+        const meleeMutators = mutators.filter((mutator) => mutator.itemDescription.toLowerCase().includes("melee"));
+        const rangedMutators = mutators.filter((mutator) => !mutator.itemDescription.toLowerCase().includes("melee"));
+        const meleeWeaponMod = weaponMods.filter(w => w.itemName === "Accelerator")[0];
         const entry = {
             loadoutName: "",
             lastEdited: d,
             rings: firstFourRings,
             amulet: firstAmulet,
             relic: firstRelic,
-            mutator: {},
+            longGunMutator: rangedMutators[0],
+            handGunMutator: rangedMutators[1],
+            meleeMutator: meleeMutators[0],
             weaponMod: firstWeaponMod,
+            handGunWeaponMod: firstWeaponMod,
             longGun: firstLongGun,
             handGun: firstHandGun,
-            meleeWeapon: firstMeleeWeapon
+            meleeWeapon: firstMeleeWeapon,
+            meleeWeaponMod: meleeWeaponMod
         };
         const loadouts = Array.from({length: this.MAX_LOADOUTS}, () => ({...entry}))
         return {

@@ -2,6 +2,7 @@ import {useState} from "react";
 import longGunsJson from "../items/LongGuns.json";
 import weaponModsJson from "../items/WeaponMods.json";
 import handGunsJson from "../items/Handguns.json";
+import mutators from "../items/Mutators.json";
 import {
     Autocomplete,
     Box,
@@ -25,6 +26,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
     const specialWeapons = [...handGunsJson.filter((handGun) => handGun.isSpecialWeapon).map((handGun) => handGun.lockedModInfo.modName),
         ...longGunsJson.filter((longGun) => longGun.isSpecialWeapon).map((longGun) => longGun.lockedModInfo.modName)];
     const chooseableMods = weaponModsJson.filter((weaponMod) => !specialWeapons.includes(weaponMod.itemName));
+    const rangedMutators = mutators.filter((mutator) => !mutator.itemDescription.toLowerCase().includes("melee"));
     const [openLongGunSearch, setOpenLongGunSearch] = useState(false);
     const [searchedLongGunValue, setSearchedLongGunValue] = useState(null);
     const [searchedLongGuns, setSearchedLongGuns] = useState(longGunsJson);
@@ -32,8 +34,11 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
     const [openWeaponModSearch, setOpenWeaponModSearch] = useState(false);
     const [searchedModValue, setSearchedModValue] = useState(null);
     const [modSearchResults, setModSearchResults] = useState(chooseableMods);
-    console.log(loadout.longGun);
-    console.log(loadout.weaponMod);
+
+    const [openMutatorModSearch, setOpenMutatorModSearch] = useState(false);
+    const [searchedMutatorValue, setSearchedMutatorValue] = useState(null);
+    const [mutatorSearchResults, setMutatorSearchResults] = useState(rangedMutators);
+
 
     const getLongGunSlotComponent = () => {
         const currentLongGun = loadout.longGun;
@@ -102,6 +107,41 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                          style={{width: 200, height: 200}}/>
                 </Box>
                 {highlightText(currentWeaponMod.itemDescription)}
+            </Box>
+        );
+    }
+
+
+    const getMutatorSlotComponent = () => {
+        const currentMutator = loadout.longGunMutator;
+        return (
+            <Box style={{
+                borderColor: BorderColor,
+                cursor: "pointer",
+                boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
+                transition: 'box-shadow 0.2s'
+            }}
+                 sx={{
+                     ':hover': {
+                         boxShadow: 20
+                     }
+                 }}
+                 padding={"10px"}
+                 border={2}
+                 borderRadius={3}
+                 maxWidth={350}
+                 justifyContent={'center'}
+                 onClick={() => {
+                     setOpenMutatorModSearch(true);
+                 }}
+            >
+                <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                    <Typography textAlign={'center'} variant={'h5'}>{currentMutator.itemName}</Typography>
+                    <Typography color={'orange'}>Mutator</Typography>
+                    <img alt={currentMutator.itemImageLinkFullPath} src={currentMutator.itemImageLinkFullPath}
+                         style={{width: 200, height: 200}}/>
+                </Box>
+                {highlightText(currentMutator.itemDescription)}
             </Box>
         );
     }
@@ -200,6 +240,49 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
         </Box>
     }
 
+
+    const displaySearchedMutators = () => {
+        return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
+            {mutatorSearchResults.map((mutator, index) => {
+                if (mutator.itemName === "") {
+                    return <Box key={index}/>
+                }
+                const modIsSelected = loadout.longGunMutator.itemId === mutator.itemId;
+                return <Box
+                    key={mutator.itemName + index}
+                    style={{
+                        borderColor: BorderColor,
+                        cursor: "pointer",
+                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                        transition: 'box-shadow 0.2s'
+                    }}
+                    padding={"10px"}
+                    onClick={() => {
+                        if (modIsSelected) {
+                            return;
+                        }
+                        loadout.longGunMutator = mutator;
+                        setOpenMutatorModSearch(false);
+                        setSearchedMutatorValue(null);
+                        saveLoadouts();
+                    }}
+                    border={2}
+                    borderRadius={3}
+                    width={350}
+                    justifyContent={'center'}>
+                    <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                        <Typography textAlign={'center'} variant={'h5'}>{mutator.itemName}</Typography>
+                        <Typography color={'orange'}>Weapon Mods</Typography>
+                        <img alt={mutator.itemImageLinkFullPath} src={mutator.itemImageLinkFullPath}
+                             style={{width: 250, height: 250}}/>
+                    </Box>
+                    {highlightText(mutator.itemDescription)}
+                    {modIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
+                </Box>
+            })}
+        </Box>
+    }
+
     return (
         <Box>
             <Box marginTop={'25px'}>
@@ -210,6 +293,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getLongGunSlotComponent()}
                 {getWeaponModSlotComponent()}
+                {getMutatorSlotComponent()}
             </Box>
             <Dialog
                 PaperProps={{
@@ -253,7 +337,6 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
             </Dialog>
 
 
-
             <Dialog
                 PaperProps={{
                     sx: {
@@ -292,6 +375,48 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 </DialogActions>
                 <DialogContent>
                     {displaySearchedMods()}
+                </DialogContent>
+            </Dialog>
+
+
+            <Dialog
+                PaperProps={{
+                    sx: {
+                        height: "100%",
+                    }
+                }}
+                fullWidth={true}
+                maxWidth={'xl'}
+                open={openMutatorModSearch} onClose={(event, reason) => {
+                if (reason === 'backdropClick') {
+                    return false;
+                }
+                setOpenMutatorModSearch(false);
+            }}>
+                <DialogActions>
+                    <Autocomplete
+                        fullWidth={true}
+                        getOptionLabel={(option) => getOptionLabel(option)}
+                        value={searchedMutatorValue}
+                        renderInput={(params) => <TextField {...params} label="Search Mutators" variant="outlined"/>}
+                        onChange={(event, newValue) => {
+                            setSearchedMutatorValue(newValue);
+                        }}
+                        onInputChange={(event, newValue) => {
+                            const filteredOptions = rangedMutators.filter((r) => {
+                                const label = getOptionLabel(r).toLowerCase();
+                                return label.includes(newValue.toLowerCase());
+                            });
+                            setMutatorSearchResults(filteredOptions);
+                            setSearchedMutatorValue(newValue);
+                        }}
+                        options={rangedMutators}/>
+                    <IconButton onClick={() => setOpenMutatorModSearch(false)}>
+                        <CloseIcon/>
+                    </IconButton>
+                </DialogActions>
+                <DialogContent>
+                    {displaySearchedMutators()}
                 </DialogContent>
             </Dialog>
 
