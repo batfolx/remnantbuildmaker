@@ -68,7 +68,7 @@ export async function exportBuildFile(loadouts, buildType) {
     ReactGA.event({
         category: CATEGORY_BUILDMAKER,
         action: ACTION_EXPORT_BUILD,
-        label: "Export Build"
+        label: `Export Build ${buildType}`
     });
 }
 

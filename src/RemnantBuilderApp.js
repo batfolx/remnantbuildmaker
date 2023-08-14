@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import {BorderColor} from "./constants";
+import {BorderColor, CATEGORY_BUILDMAKER, ACTION_IMPORT_BUILD, ACTION_SWITCH_BUILD} from "./constants";
 import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
 import {useState} from "react";
@@ -104,6 +104,11 @@ function RemnantBuilderApp() {
         internalLoadouts.loadouts[index] = buildData;
         delete buildData.selectedIndex;
         saveLoadouts();
+        ReactGA.event({
+            category: CATEGORY_BUILDMAKER,
+            action: ACTION_IMPORT_BUILD,
+            label: `Import Single Build`
+        });
     }
 
     const importFullBuild = (data) => {
@@ -114,6 +119,11 @@ function RemnantBuilderApp() {
         setSelectedBuild(l.loadouts[0]);
         setCurrentLoadoutIndex(0);
         setLoadoutName(l.loadouts[l.currentLoadoutIndex].loadoutName);
+        ReactGA.event({
+            category: CATEGORY_BUILDMAKER,
+            action: ACTION_IMPORT_BUILD,
+            label: `Import Full Build`
+        });
     }
 
     const saveLoadouts = (index) => {
@@ -134,6 +144,11 @@ function RemnantBuilderApp() {
                 width={100}
                 style={{cursor: 'pointer', borderColor: BorderColor}}
                 onClick={() => {
+                    ReactGA.event({
+                        category: CATEGORY_BUILDMAKER,
+                        action: ACTION_SWITCH_BUILD,
+                        label: `Switch build from ${currentLoadoutIndex + 1} to ${index + 1}`
+                    });
                     setCurrentLoadoutIndex(index);
                     saveLoadouts(index);
                     const loadoutsCopy = {...internalLoadouts};

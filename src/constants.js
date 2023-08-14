@@ -9,6 +9,8 @@ const SuppressionTextColor = 'rgb(63, 65, 91)';
 const BurningTextColor = 'rgb(159, 103, 78)';
 
 const ACTION_EXPORT_BUILD = "EXPORT_BUILD";
+const ACTION_IMPORT_BUILD = "IMPORT_BUILD";
+const ACTION_SWITCH_BUILD = "SWITCH_BUILD";
 const CATEGORY_BUILDMAKER = "CATERGORY_BUILDMAKER";
 
 module.exports = {
@@ -18,5 +20,7 @@ module.exports = {
     AcidTextColor,
     BleedingTextColor, BulwarkTextColor, ShockTextColor, SuppressionTextColor, BurningTextColor,
     ACTION_EXPORT_BUILD,
+    ACTION_IMPORT_BUILD,
+    ACTION_SWITCH_BUILD,
     CATEGORY_BUILDMAKER
 }
