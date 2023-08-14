@@ -13,7 +13,7 @@ import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {
     BorderColor,
-    sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent
+    sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent, sendImportSingleBuildEvent
 } from "./constants";
 import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
@@ -107,6 +107,7 @@ function RemnantBuilderApp() {
         internalLoadouts.loadouts[index] = buildData;
         delete buildData.selectedIndex;
         saveLoadouts();
+        sendImportSingleBuildEvent();
     }
 
     const importFullBuild = (data) => {
