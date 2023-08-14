@@ -10,7 +10,10 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {BorderColor} from "../constants";
+import {
+    BorderColor,
+    sendHandGunSearchEvent, sendHandGunWeaponModSearchEvent, sendMutatorSearchEvent
+} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
@@ -63,6 +66,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                      if (loadout.handGun.isSpecialWeapon) {
                          return;
                      }
+                     sendHandGunWeaponModSearchEvent();
                      setOpenWeaponModSearch(true);
                  }}
             >
@@ -97,6 +101,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendMutatorSearchEvent();
                      setOpenMutatorModSearch(true);
                  }}
             >
@@ -173,6 +178,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendHandGunSearchEvent();
                      setOpenHandGunSearch(true);
                  }}
             >

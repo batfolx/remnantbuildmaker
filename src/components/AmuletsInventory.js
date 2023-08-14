@@ -9,7 +9,7 @@ import {
     DialogContent
 } from "@mui/material";
 import amuletsItemsJson from "../items/Amulets.json";
-import {BorderColor} from "../constants";
+import { BorderColor, sendAmuletSearchEvent} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import {useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
@@ -42,6 +42,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                  maxWidth={250}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendAmuletSearchEvent();
                      setOpenAmuletSearch(true);
                  }}
             >

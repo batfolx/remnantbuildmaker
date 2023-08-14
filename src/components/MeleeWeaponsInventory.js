@@ -10,7 +10,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {BorderColor} from "../constants";
+import {BorderColor, sendMeleeSearchEvent, sendMutatorSearchEvent} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
@@ -50,6 +50,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendMeleeSearchEvent();
                      setOpenMeleeWeaponSearch(true);
                  }}
             >
@@ -174,6 +175,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendMutatorSearchEvent();
                      setOpenMutatorModSearch(true);
                  }}
             >

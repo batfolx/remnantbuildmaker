@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import {useState} from "react";
-import {BorderColor} from "../constants";
+import {BorderColor, sendRingSearchEvent} from "../constants";
 import {highlightText, getOptionLabel} from "../utilFunctions";
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -49,6 +49,7 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
                  maxWidth={250}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendRingSearchEvent();
                      setSelectedRingIndex(index);
                      setRingSelectorOpen(true);
                  }}

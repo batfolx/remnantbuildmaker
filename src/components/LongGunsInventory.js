@@ -13,7 +13,10 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {BorderColor} from "../constants";
+import {
+    BorderColor,
+    sendLongGunSearchEvent, sendMutatorSearchEvent, sendSearchLongGunWeaponModEvent
+} from "../constants";
 import {getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
@@ -60,6 +63,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendLongGunSearchEvent();
                      setOpenLongGunSearch(true);
                  }}
             >
@@ -97,6 +101,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                      if (loadout.longGun.isSpecialWeapon) {
                          return;
                      }
+                     sendSearchLongGunWeaponModEvent();
                      setOpenWeaponModSearch(true);
                  }}
             >
@@ -132,6 +137,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
+                     sendMutatorSearchEvent();
                      setOpenMutatorModSearch(true);
                  }}
             >
