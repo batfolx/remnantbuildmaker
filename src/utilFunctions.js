@@ -6,8 +6,9 @@ import {
     ShockTextColor,
     SuppressionTextColor,
     UnHiLightedTextColor,
-    BleedingTextColor, AcidTextColor
+    BleedingTextColor, AcidTextColor, ACTION_EXPORT_BUILD, CATEGORY_BUILDMAKER
 } from "./constants";
+import ReactGA from "react-ga4";
 
 export function containsNumbers(str) {
     return /[0-9]/.test(str);
@@ -64,5 +65,10 @@ export async function exportBuildFile(loadouts, buildType) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    ReactGA.event({
+        category: CATEGORY_BUILDMAKER,
+        action: ACTION_EXPORT_BUILD,
+        label: "Export Build"
+    });
 }
 

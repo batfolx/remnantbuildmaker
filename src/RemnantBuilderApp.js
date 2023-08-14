@@ -29,6 +29,8 @@ import LongGunsInventory from "./components/LongGunsInventory";
 import HandGunsInventory from "./components/HandGunsInventory";
 import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ReactGA from "react-ga4";
+
 
 const darkTheme = createTheme({
     palette: {
@@ -94,6 +96,7 @@ function RemnantBuilderApp() {
     const [selectedBuild, setSelectedBuild] = useState(internalLoadouts.loadouts[0]);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
     const [loadoutName, setLoadoutName] = useState(internalLoadouts.loadouts[internalLoadouts.currentLoadoutIndex].loadoutName);
+    ReactGA.send({ hitType: "pageview", page: "/", title: "Main Page Hit" });
 
     const overwriteBuild = (buildData) => {
         delete buildData.buildType;
