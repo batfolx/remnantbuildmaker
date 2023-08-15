@@ -15,7 +15,7 @@ export default class RemnantBuildWebApi {
         return response.data;
     }
 
-    static async getBuildByUrl(buildId) {
+    static async getBuildById(buildId) {
         const endpoint = `${this.getApiUrl()}/build/${buildId}`;
         const resp = await axios.get(endpoint);
         return resp.data;

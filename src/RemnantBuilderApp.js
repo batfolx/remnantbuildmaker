@@ -9,8 +9,6 @@ import {
     Tooltip,
     Typography
 } from "@mui/material";
-import {ThemeProvider, createTheme} from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import {
     BorderColor,
     sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent, sendImportSingleBuildEvent
@@ -36,13 +34,6 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ReactGA from "react-ga4";
 import RemnantBuildWebApi from "./buildWebApi";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-
-
-const darkTheme = createTheme({
-    palette: {
-        mode: 'dark',
-    },
-});
 
 function RemnantBuilderApp() {
 
@@ -166,8 +157,7 @@ function RemnantBuilderApp() {
     }
 
     return (
-        <ThemeProvider theme={darkTheme}>
-            <CssBaseline/>
+
             <Box>
                 <AppBar position={'static'}>
                     <Toolbar>
@@ -457,8 +447,6 @@ function RemnantBuilderApp() {
 
                 </Dialog>
             </Box>
-        </ThemeProvider>
-
     );
 }
 
