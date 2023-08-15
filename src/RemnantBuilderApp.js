@@ -1,7 +1,7 @@
 import {
     AppBar,
     Box,
-    Button, Dialog, DialogActions, DialogContent, DialogTitle,
+    Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle,
     IconButton,
     MenuItem, Select,
     TextField,
@@ -28,11 +28,14 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Filter5Icon from '@mui/icons-material/Filter5';
 import Filter1Icon from '@mui/icons-material/Filter1';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ShareIcon from '@mui/icons-material/Share';
 import LongGunsInventory from "./components/LongGunsInventory";
 import HandGunsInventory from "./components/HandGunsInventory";
 import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ReactGA from "react-ga4";
+import RemnantBuildWebApi from "./buildWebApi";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 
 const darkTheme = createTheme({
@@ -99,6 +102,9 @@ function RemnantBuilderApp() {
     const [selectedBuild, setSelectedBuild] = useState(internalLoadouts.loadouts[0]);
     const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
     const [loadoutName, setLoadoutName] = useState(internalLoadouts.loadouts[internalLoadouts.currentLoadoutIndex].loadoutName);
+    const [shareBuildOpen, setShareBuildOpen] = useState(false);
+    const [sharedBuildUrl, setSharedBuildUrl] = useState("");
+    const [shareBuildLoading, setShareBuildLoading] = useState(false);
     ReactGA.send({ hitType: "pageview", page: "/", title: "Main Page Hit" });
 
     const overwriteBuild = (buildData) => {
@@ -176,6 +182,11 @@ function RemnantBuilderApp() {
                         <IconButton onClick={() => window.open("https://remnant2.wiki.fextralife.com/Remnant+2+Wiki", "_blank")}>
                             <Tooltip title={"Go to Remnant 2 Wiki"}>
                                 <ExitToAppIcon/>
+                            </Tooltip>
+                        </IconButton>
+                        <IconButton onClick={() => setShareBuildOpen(true)}>
+                            <Tooltip title={"Generate Build URL"}>
+                                <ShareIcon/>
                             </Tooltip>
                         </IconButton>
                         <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
@@ -345,7 +356,9 @@ function RemnantBuilderApp() {
                     <DialogContent>
                         <Select
                             label={"Select Build"}
-                            fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                            fullWidth={true}
+                            value={selectedBuild}
+                            onChange={(e) => setSelectedBuild(e.target.value)}>
                             {internalLoadouts.loadouts.map((l, index) => {
                                 return (
                                     <MenuItem value={l}>
@@ -368,6 +381,75 @@ function RemnantBuilderApp() {
                         </Button>
                         <Button onClick={() => {
                             setExportSingleBuildOpen(false);
+                        }} color={'primary'} variant={'contained'}>
+                            Close
+                        </Button>
+                    </DialogActions>
+
+                </Dialog>
+
+
+                <Dialog fullWidth={true} maxWidth={'xl'} open={shareBuildOpen} onClose={(event, reason) => {
+                    setShareBuildOpen(false);
+                }}>
+                    <DialogTitle>
+                        Share Build
+                    </DialogTitle>
+                    <DialogContent>
+                        <Select
+                            label={"Select Build to share"}
+                            fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                            {internalLoadouts.loadouts.map((l, index) => {
+                                return (
+                                    <MenuItem value={l}>
+                                        Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
+                                    </MenuItem>
+                                )
+                            })}
+                        </Select>
+
+                        {shareBuildLoading && <CircularProgress/>}
+                        {sharedBuildUrl !== "" && <Box marginTop={'25px'}>
+                            <Box display={'flex'} justifyContent={"center"} alignItems={"center"}>
+                                <Typography variant={'h6'}>{sharedBuildUrl}</Typography>
+                                <IconButton onClick={() => {
+                                    navigator.clipboard.writeText(sharedBuildUrl)
+                                    toast.success("Copied to clipboard!")
+                                }}>
+                                    <ContentCopyIcon/>
+                                </IconButton>
+                            </Box>
+                            <Box display={'flex'} justifyContent={"center"}>
+                                <Typography>Make sure to copy this URL, it is unique to your build.</Typography>
+
+                            </Box>
+
+                        </Box>}
+
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={async () => {
+                            setShareBuildLoading(true);
+                            setSharedBuildUrl("");
+                            try {
+                                const resp = await RemnantBuildWebApi.uploadBuild(selectedBuild);
+                                if (!resp.success) {
+                                    throw new Error(resp.message);
+                                }
+                                const buildUuid = resp.data.buildId;
+                                const generatedLink = `${window.location.origin}/build/${buildUuid}`;
+                                setSharedBuildUrl(generatedLink);
+                            } catch (e) {
+                                toast.error(`Something went wrong with sharing build ${e}`);
+                            }
+                            setSelectedBuild(internalLoadouts.loadouts[0]);
+                            setExportSingleBuildOpen(false);
+                            setShareBuildLoading(false);
+                        }}>
+                            Share
+                        </Button>
+                        <Button onClick={() => {
+                            setShareBuildOpen(false);
                         }} color={'primary'} variant={'contained'}>
                             Close
                         </Button>
