@@ -174,11 +174,11 @@ function RemnantBuilderApp() {
                                 <ExitToAppIcon/>
                             </Tooltip>
                         </IconButton>
-                        <IconButton onClick={() => setShareBuildOpen(true)}>
+                        {/*<IconButton onClick={() => setShareBuildOpen(true)}>
                             <Tooltip title={"Generate Build URL"}>
                                 <ShareIcon/>
                             </Tooltip>
-                        </IconButton>
+                        </IconButton>*/}
                         <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
                             <Tooltip title={"Import Build File"}>
                                 <UploadFile/>

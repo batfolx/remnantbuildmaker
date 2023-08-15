@@ -92,7 +92,12 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                         if (meleeWeapon.isSpecialWeapon) {
                             const weaponModName = meleeWeapon.lockedModInfo.modName;
                             const filteredWeaponMod = weaponModsJson.filter((weaponMod) => weaponMod.itemName === weaponModName);
-                            loadout.meleeWeaponMod = filteredWeaponMod[0];
+                            if (!filteredWeaponMod || filteredWeaponMod.length === 0) {
+                                loadout.meleeWeaponMod = {itemName: ""}
+                            } else {
+                                loadout.meleeWeaponMod = filteredWeaponMod[0];
+                            }
+
                         } else {
                             loadout.meleeWeaponMod = {itemName: ""}
                         }
