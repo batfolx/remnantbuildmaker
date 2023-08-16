@@ -11,7 +11,7 @@ import {
     Typography
 } from "@mui/material";
 import {BorderColor, sendMeleeSearchEvent, sendMutatorSearchEvent} from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 import weaponModsJson from "../items/WeaponMods.json";
@@ -239,11 +239,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
 
     return (
         <Box>
-            <Box marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Melee Weapons
-                </Typography>
-            </Box>
+            {getHeaderComponent("Melee Weapons")}
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getMeleeWeaponSlot()}
                 {getWeaponModSlotComponent()}

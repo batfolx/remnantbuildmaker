@@ -14,7 +14,7 @@ import {
     BorderColor,
     sendHandGunSearchEvent, sendHandGunWeaponModSearchEvent, sendMutatorSearchEvent
 } from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 import longGunsJson from "../items/LongGuns.json";
@@ -292,11 +292,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
 
     return (
         <Box>
-            <Box marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Hand Guns
-                </Typography>
-            </Box>
+            {getHeaderComponent("Hand Guns")}
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getHandGunSlotComponent()}
                 {getWeaponModSlotComponent()}

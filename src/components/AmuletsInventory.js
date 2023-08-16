@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import amuletsItemsJson from "../items/Amulets.json";
 import { BorderColor, sendAmuletSearchEvent} from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import {useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -104,11 +104,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
 
     return (
         <Box>
-            <Box marginLeft={"5%"} marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Amulets
-                </Typography>
-            </Box>
+            {getHeaderComponent("Amulets")}
             <Box display={'flex'} justifyContent={'center'}>
                 {getAmuletSlotComponent()}
             </Box>

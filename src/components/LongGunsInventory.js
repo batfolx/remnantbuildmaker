@@ -17,7 +17,7 @@ import {
     BorderColor,
     sendLongGunSearchEvent, sendMutatorSearchEvent, sendSearchLongGunWeaponModEvent
 } from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
@@ -291,11 +291,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
 
     return (
         <Box>
-            <Box marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Long Guns
-                </Typography>
-            </Box>
+            {getHeaderComponent("Long Guns")}
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getLongGunSlotComponent()}
                 {getWeaponModSlotComponent()}

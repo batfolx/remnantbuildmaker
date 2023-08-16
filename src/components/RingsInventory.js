@@ -10,7 +10,7 @@ import {
 import PropTypes from "prop-types";
 import {useState} from "react";
 import {BorderColor, sendRingSearchEvent} from "../constants";
-import {highlightText, getOptionLabel} from "../utilFunctions";
+import {highlightText, getOptionLabel, getHeaderComponent} from "../utilFunctions";
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -113,10 +113,7 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
 
     return (
         <Box marginTop={'25px'}>
-            <Box marginLeft={'5%'} display={'flex'} justifyContent={'start'} alignItems={'start'}
-                 flexDirection={'column'}>
-                <Typography fontFamily={'Poppins'} variant={'h4'}>Rings</Typography>
-            </Box>
+            {getHeaderComponent("Rings")}
             <Box display={'flex'} justifyContent={'center'} gap={'10px'} flexWrap={'wrap'}>
                 {loadout.rings.map((ring, index) => {
                     return getRemnantRingSlotComponent(ring, index)

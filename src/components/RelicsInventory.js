@@ -11,7 +11,7 @@ import {
     Typography
 } from "@mui/material";
 import {BorderColor, sendRelicSearchEvent} from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -104,11 +104,7 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
 
     return (
         <Box>
-            <Box marginLeft={"5%"} marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Relics
-                </Typography>
-            </Box>
+            {getHeaderComponent("Relics")}
             <Box display={'flex'} justifyContent={'center'}>
                 {getRelicSlotComponent()}
             </Box>
