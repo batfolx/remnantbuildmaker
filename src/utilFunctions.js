@@ -55,8 +55,9 @@ export function getOptionLabel(item) {
 }
 
 export async function exportBuildFile(loadouts, buildType) {
-    loadouts.buildType = buildType;
-    const blob = new Blob([JSON.stringify(loadouts, null, 2)]);
+    const loadoutsCopy = {...loadouts};
+    loadoutsCopy.buildType = buildType;
+    const blob = new Blob([JSON.stringify(loadoutsCopy, null, 2)]);
     const href = await URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = href;

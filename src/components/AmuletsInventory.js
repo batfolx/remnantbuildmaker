@@ -14,16 +14,19 @@ import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunction
 import {useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CircleIcon from "@mui/icons-material/Circle";
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+export default function AmuletsInventory() {
 
-    let loadout = loadouts.loadouts[currentLoadoutIndex];
+    const loadouts = useSelector((state) => state.loadouts);
+    const dispatch = useDispatch();
     const [openAmuletSearch, setOpenAmuletSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
     const [searchedAmulets, setSearchedAmulets] = useState(amuletsItemsJson);
 
     const getAmuletSlotComponent = () => {
-        const currentAmulet = loadout.amulet;
+        const currentAmulet = loadouts.loadouts[loadouts.currentLoadoutIndex].amulet;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -64,7 +67,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                     return <Box key={index}/>
                 }
 
-                const amuletIsSelected = loadout.amulet.itemId === amulet.itemId;
+                const amuletIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].amulet.itemId === amulet.itemId;
 
                 return <Box
                     key={amulet.itemName + index}
@@ -79,10 +82,9 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                         if (amuletIsSelected) {
                             return;
                         }
-                        loadout.amulet = amulet;
+                        dispatch(actions.setLoadoutAmulet(amulet));
                         setOpenAmuletSearch(false);
                         setSearchedValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}

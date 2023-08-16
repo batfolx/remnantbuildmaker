@@ -15,14 +15,17 @@ import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
 import ringsItemsJson from "../items/rings.json"
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+export default function RingsInventory() {
 
-    const loadout = loadouts.loadouts[currentLoadoutIndex];
+    const loadouts = useSelector((state) => state.loadouts);
     const [ringSelectorOpen, setRingSelectorOpen] = useState(false);
     const [selectedRingIndex, setSelectedRingIndex] = useState(0);
     const [searchedRings, setSearchedRings] = useState(ringsItemsJson);
     const [searchedValue, setSearchedValue] = useState(null);
+    const dispatch = useDispatch();
 
     /**
      * Gets the ring slot component (rings 1-4)
@@ -73,7 +76,7 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
         return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
             {searchedRings.map((r) => {
 
-                const ringIsSelected = loadout.rings.some(loadoutRing => loadoutRing.itemId === r.itemId)
+                const ringIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].rings.some(loadoutRing => loadoutRing.itemId === r.itemId)
 
                 return <Box
                     key={r.itemName}
@@ -88,10 +91,12 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
                         if (ringIsSelected) {
                             return;
                         }
-                        loadout.rings[selectedRingIndex] = r;
+
+                        const currRings = [...loadouts.loadouts[loadouts.currentLoadoutIndex].rings];
+                        currRings[selectedRingIndex] = r;
+                        dispatch(actions.setLoadOutRings(currRings))
                         setRingSelectorOpen(false);
                         setSearchedValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -115,7 +120,7 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
         <Box marginTop={'25px'}>
             {getHeaderComponent("Rings")}
             <Box display={'flex'} justifyContent={'center'} gap={'10px'} flexWrap={'wrap'}>
-                {loadout.rings.map((ring, index) => {
+                {loadouts.loadouts[loadouts.currentLoadoutIndex].rings.map((ring, index) => {
                     return getRemnantRingSlotComponent(ring, index)
                 })}
             </Box>
@@ -171,7 +176,5 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
 }
 
 RingsInventory.propTypes = {
-    loadout: PropTypes.object,
-    currentLoadoutIndex: PropTypes.number,
-    saveLoadouts: PropTypes.func
+
 }
