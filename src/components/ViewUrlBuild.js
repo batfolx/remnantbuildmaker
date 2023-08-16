@@ -30,7 +30,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import {UploadFile} from "@mui/icons-material";
 import {useDispatch, useSelector} from "react-redux";
 import {actions} from "../reducers/loadoutReducer";
-import {sendImportSingleBuildEvent} from "../constants";
+import {importBuildFromUrlEvent} from "../constants";
 export default function ViewUrlBuild() {
 
     const dispatch = useDispatch();
@@ -75,7 +75,7 @@ export default function ViewUrlBuild() {
         delete buildDataCopy.buildType;
         const index = loadouts.loadouts.indexOf(selectedBuild);
         dispatch(actions.overwriteBuild({index: index, buildData: buildDataCopy}));
-        sendImportSingleBuildEvent();
+        importBuildFromUrlEvent(buildId);
     }
 
 

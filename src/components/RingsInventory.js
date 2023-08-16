@@ -8,8 +8,7 @@ import {
     TextField,
     Zoom
 } from "@mui/material";
-import PropTypes from "prop-types";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {BorderColor, sendRingSearchEvent} from "../constants";
 import {highlightText, getOptionLabel, getHeaderComponent} from "../utilFunctions";
 import {IconButton} from '@mui/material';
@@ -18,7 +17,6 @@ import CircleIcon from '@mui/icons-material/Circle';
 import ringsItemsJson from "../items/rings.json"
 import {useDispatch, useSelector} from "react-redux";
 import {actions} from "../reducers/loadoutReducer";
-import store from "../store/store";
 
 export default function RingsInventory() {
 
@@ -27,7 +25,6 @@ export default function RingsInventory() {
     const [selectedRingIndex, setSelectedRingIndex] = useState(0);
     const [searchedRings, setSearchedRings] = useState(ringsItemsJson);
     const [searchedValue, setSearchedValue] = useState(null);
-    const [zoomValues, setZoomValues] = useState([true, true, true, true]);
     const dispatch = useDispatch();
 
 
@@ -39,7 +36,7 @@ export default function RingsInventory() {
      */
     const getRemnantRingSlotComponent = (ring, index) => {
         return (
-            <Zoom in={zoomValues[index]} style={{transitionDelay: `${index * 75}ms`}}>
+            <Zoom in={true} style={{transitionDelay: `${index * 75}ms`}}>
             <Box key={ring.itemName + index} style={{
                 borderColor: BorderColor,
                 cursor: "pointer",

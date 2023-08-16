@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import {
     BorderColor,
-    sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent, sendImportSingleBuildEvent, REPO_NAME
+    sendImportFullBuildEvent, sendImportSingleBuildEvent, REPO_NAME, sendShareUrlBuildEvent
 } from "./constants";
 import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
@@ -397,12 +397,13 @@ function RemnantBuilderApp() {
                                 if (!resp.success) {
                                     throw new Error(resp.message);
                                 }
-                                const buildUuid = resp.data.buildId;
+                                const buildId = resp.data.buildId;
+                                sendShareUrlBuildEvent(buildId);
                                 let generatedLink;
                                 if (isProduction) {
-                                    generatedLink = `${window.location.origin}/${REPO_NAME}/build/${buildUuid}`;
+                                    generatedLink = `${window.location.origin}/${REPO_NAME}/build/${buildId}`;
                                 } else {
-                                    generatedLink = `${window.location.origin}/build/${buildUuid}`;
+                                    generatedLink = `${window.location.origin}/build/${buildId}`;
                                 }
 
                                 setSharedBuildUrl(generatedLink);
