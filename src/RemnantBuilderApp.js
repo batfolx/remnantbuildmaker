@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import {
     BorderColor,
-    sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent, sendImportSingleBuildEvent
+    sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent, sendImportSingleBuildEvent, REPO_NAME
 } from "./constants";
 import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
@@ -20,7 +20,7 @@ import AmuletsInventory from "./components/AmuletsInventory";
 import RelicsInventory from "./components/RelicsInventory";
 import {UploadFile} from "@mui/icons-material";
 import {useFilePicker} from 'use-file-picker';
-import {exportBuildFile} from "./utilFunctions";
+import {exportBuildFile, isProduction} from "./utilFunctions";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import Filter5Icon from '@mui/icons-material/Filter5';
@@ -174,11 +174,11 @@ function RemnantBuilderApp() {
                                 <ExitToAppIcon/>
                             </Tooltip>
                         </IconButton>
-                        <IconButton onClick={() => setShareBuildOpen(true)}>
+                        {<IconButton onClick={() => setShareBuildOpen(true)}>
                             <Tooltip title={"Generate Build URL"}>
                                 <ShareIcon/>
                             </Tooltip>
-                        </IconButton>
+                        </IconButton>}
                         <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
                             <Tooltip title={"Import Build File"}>
                                 <UploadFile/>
@@ -281,7 +281,7 @@ function RemnantBuilderApp() {
                                 >
                                     {internalLoadouts.loadouts.map((l, index) => {
                                         return (
-                                            <MenuItem value={l}>
+                                            <MenuItem key={index + l.loadoutName} value={l}>
                                                 Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
                                             </MenuItem>
                                         )
@@ -351,7 +351,7 @@ function RemnantBuilderApp() {
                             onChange={(e) => setSelectedBuild(e.target.value)}>
                             {internalLoadouts.loadouts.map((l, index) => {
                                 return (
-                                    <MenuItem value={l}>
+                                    <MenuItem key={index} value={l}>
                                         Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
                                     </MenuItem>
                                 )
@@ -391,7 +391,7 @@ function RemnantBuilderApp() {
                             fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
                             {internalLoadouts.loadouts.map((l, index) => {
                                 return (
-                                    <MenuItem value={l}>
+                                    <MenuItem key={index} value={l}>
                                         Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
                                     </MenuItem>
                                 )
@@ -427,7 +427,13 @@ function RemnantBuilderApp() {
                                     throw new Error(resp.message);
                                 }
                                 const buildUuid = resp.data.buildId;
-                                const generatedLink = `${window.location.origin}/build/${buildUuid}`;
+                                let generatedLink;
+                                if (isProduction) {
+                                    generatedLink = `${window.location.origin}/${REPO_NAME}/build/${buildUuid}`;
+                                } else {
+                                    generatedLink = `${window.location.origin}/build/${buildUuid}`;
+                                }
+
                                 setSharedBuildUrl(generatedLink);
                             } catch (e) {
                                 toast.error(`Something went wrong with sharing build ${e}`);

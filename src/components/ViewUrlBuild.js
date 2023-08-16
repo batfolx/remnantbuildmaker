@@ -12,6 +12,7 @@ import {
     getWeaponPreviewComponent,
 } from "../utilFunctions";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import HomeIcon from '@mui/icons-material/Home';
 export default function ViewUrlBuild() {
 
     const [loadoutData, setLoadoutData] = useState(null);
@@ -41,6 +42,7 @@ export default function ViewUrlBuild() {
             setLoadoutData(resp.data);
         } catch (e) {
             toast.error(`Error in fetching build ${e}`);
+            navigate("/");
         } finally {
             setFetchingLoadout(false);
         }
@@ -60,6 +62,13 @@ export default function ViewUrlBuild() {
                     >
                         Remnant Builder
                     </Typography>
+
+                    <IconButton onClick={() => {navigate("/")}}>
+                        <Tooltip title={"Back to Home"}>
+                            <HomeIcon/>
+                        </Tooltip>
+                    </IconButton>
+
                     <IconButton onClick={() => window.open("https://remnant2.wiki.fextralife.com/Remnant+2+Wiki", "_blank")}>
                         <Tooltip title={"Go to Remnant 2 Wiki"}>
                             <ExitToAppIcon/>
@@ -114,12 +123,6 @@ export default function ViewUrlBuild() {
                             {getMutatorPreviewComponent(loadoutData.meleeMutator, "Mutator")}
                         </Box>}
                     </Box>
-
-
-
-
-
-
 
                 </Box>
             )}

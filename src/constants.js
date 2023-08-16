@@ -135,3 +135,6 @@ export const sendSearchLongGunWeaponModEvent = () => {
         label: `Search Long Gun Weapon Mod`
     });
 }
+
+
+export const REPO_NAME = "remnantbuildmaker";

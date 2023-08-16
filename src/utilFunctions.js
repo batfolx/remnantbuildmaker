@@ -180,3 +180,5 @@ export function getHeaderComponent(itemHeaderName) {
     );
 }
 
+export const isProduction = window.location.href.includes("batfolx.github.io/remnantbuildmaker");
+
