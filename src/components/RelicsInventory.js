@@ -8,23 +8,28 @@ import {
     DialogContent,
     IconButton,
     TextField,
-    Typography
+    Typography,
+    Zoom
 } from "@mui/material";
 import {BorderColor, sendRelicSearchEvent} from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+export default function RelicsInventory() {
 
-    let loadout = loadouts.loadouts[currentLoadoutIndex];
+    const loadouts = useSelector((state) => state.loadouts);
+    const dispatch = useDispatch();
     const [openRelicSearch, setOpenRelicSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
     const [searchedRelics, setSearchedRelics] = useState(relicsItemsJson);
 
     const getRelicSlotComponent = () => {
-        const currentRelic = loadout.relic;
+        const currentRelic = loadouts.loadouts[loadouts.currentLoadoutIndex].relic;
         return (
+            <Zoom in={true} style={{transitionDelay: "100ms"}}>
             <Box style={{
                 borderColor: BorderColor,
                 cursor: "pointer",
@@ -54,6 +59,7 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
                 </Box>
                 {highlightText(currentRelic.itemDescription)}
             </Box>
+            </Zoom>
         );
     }
 
@@ -64,7 +70,7 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
                     return <Box key={index}/>
                 }
 
-                const relicIsSelected = loadout.relic.itemId === relic.itemId;
+                const relicIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].relic.itemId === relic.itemId;
 
                 return <Box
                     key={relic.itemName + index}
@@ -79,10 +85,9 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
                         if (relicIsSelected) {
                             return;
                         }
-                        loadout.relic = relic;
+                        dispatch(actions.setLoadoutRelic(relic));
                         setOpenRelicSearch(false);
                         setSearchedValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -104,11 +109,7 @@ export default function RelicsInventory({loadouts, currentLoadoutIndex, saveLoad
 
     return (
         <Box>
-            <Box marginLeft={"5%"} marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Relics
-                </Typography>
-            </Box>
+            {getHeaderComponent("Relics")}
             <Box display={'flex'} justifyContent={'center'}>
                 {getRelicSlotComponent()}
             </Box>

@@ -17,12 +17,15 @@ import {
     BorderColor,
     sendLongGunSearchEvent, sendMutatorSearchEvent, sendSearchLongGunWeaponModEvent
 } from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
-export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
+export default function LongGunsInventory() {
 
-    let loadout = loadouts.loadouts[currentLoadoutIndex];
+    const loadouts = useSelector((state) => state.loadouts);
+    const dispatch = useDispatch();
 
     // this line just looks through the hand guns and long guns and find all of the special weapons so that we can
     // filter
@@ -44,7 +47,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
 
 
     const getLongGunSlotComponent = () => {
-        const currentLongGun = loadout.longGun;
+        const currentLongGun = loadouts.loadouts[loadouts.currentLoadoutIndex].longGun;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -79,7 +82,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
     }
 
     const getWeaponModSlotComponent = () => {
-        const currentWeaponMod = loadout.weaponMod;
+        const currentWeaponMod = loadouts.loadouts[loadouts.currentLoadoutIndex].weaponMod;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -98,7 +101,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
-                     if (loadout.longGun.isSpecialWeapon) {
+                     if (loadouts.loadouts[loadouts.currentLoadoutIndex].longGun.isSpecialWeapon) {
                          return;
                      }
                      sendSearchLongGunWeaponModEvent();
@@ -118,7 +121,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
 
 
     const getMutatorSlotComponent = () => {
-        const currentMutator = loadout.longGunMutator;
+        const currentMutator = loadouts.loadouts[loadouts.currentLoadoutIndex].longGunMutator;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -159,7 +162,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                     return <Box key={index}/>
                 }
 
-                const longGunIsSelected = loadout.longGun.itemId === longGun.itemId;
+                const longGunIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].longGun.itemId === longGun.itemId;
 
                 return <Box
                     key={longGun.itemName + index}
@@ -178,14 +181,13 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (longGun.isSpecialWeapon) {
                             const weaponModName = longGun.lockedModInfo.modName;
                             const filteredWeaponMod = weaponModsJson.filter((weaponMod) => weaponMod.itemName === weaponModName);
-                            loadout.weaponMod = filteredWeaponMod[0];
+                            dispatch(actions.setLongGunWeaponMod(filteredWeaponMod[0]));
                         } else {
-                            loadout.weaponMod = chooseableMods[0];
+                            dispatch(actions.setLongGunWeaponMod(chooseableMods[0]));
                         }
-                        loadout.longGun = longGun;
+                        dispatch(actions.setLongGun(longGun));
                         setOpenLongGunSearch(false);
                         setSearchedLongGunValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -210,7 +212,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 if (weaponMod.itemName === "") {
                     return <Box key={index}/>
                 }
-                const modIsSelected = loadout.weaponMod.itemId === weaponMod.itemId;
+                const modIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].weaponMod.itemId === weaponMod.itemId;
                 return <Box
                     key={weaponMod.itemName + index}
                     style={{
@@ -224,10 +226,9 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (modIsSelected) {
                             return;
                         }
-                        loadout.weaponMod = weaponMod;
+                        dispatch(actions.setLongGunWeaponMod(weaponMod));
                         setOpenWeaponModSearch(false);
                         setSearchedModValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -253,7 +254,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 if (mutator.itemName === "") {
                     return <Box key={index}/>
                 }
-                const modIsSelected = loadout.longGunMutator.itemId === mutator.itemId;
+                const modIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].longGunMutator.itemId === mutator.itemId;
                 return <Box
                     key={mutator.itemName + index}
                     style={{
@@ -267,10 +268,9 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (modIsSelected) {
                             return;
                         }
-                        loadout.longGunMutator = mutator;
+                        dispatch(actions.setLoadoutLongGunMutator(mutator));
                         setOpenMutatorModSearch(false);
                         setSearchedMutatorValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -291,11 +291,7 @@ export default function LongGunsInventory({loadouts, currentLoadoutIndex, saveLo
 
     return (
         <Box>
-            <Box marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Long Guns
-                </Typography>
-            </Box>
+            {getHeaderComponent("Long Guns")}
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getLongGunSlotComponent()}
                 {getWeaponModSlotComponent()}

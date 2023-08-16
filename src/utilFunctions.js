@@ -6,7 +6,7 @@ import {
     ShockTextColor,
     SuppressionTextColor,
     UnHiLightedTextColor,
-    BleedingTextColor, AcidTextColor, ACTION_EXPORT_BUILD, CATEGORY_BUILDMAKER
+    BleedingTextColor, AcidTextColor, ACTION_EXPORT_BUILD, CATEGORY_BUILDMAKER, BorderColor
 } from "./constants";
 import ReactGA from "react-ga4";
 
@@ -55,8 +55,9 @@ export function getOptionLabel(item) {
 }
 
 export async function exportBuildFile(loadouts, buildType) {
-    loadouts.buildType = buildType;
-    const blob = new Blob([JSON.stringify(loadouts, null, 2)]);
+    const loadoutsCopy = {...loadouts};
+    loadoutsCopy.buildType = buildType;
+    const blob = new Blob([JSON.stringify(loadoutsCopy, null, 2)]);
     const href = await URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = href;
@@ -71,4 +72,114 @@ export async function exportBuildFile(loadouts, buildType) {
         label: `Export Build ${buildType}`
     });
 }
+
+export function getNonWeaponPreviewComponent(item, itemType) {
+    if (!item || !item.itemName) {
+        return <Box/>
+    }
+    return (<Box style={{
+            borderColor: BorderColor,
+            boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
+            transition: 'box-shadow 0.2s'
+        }}
+                 sx={{
+                     ':hover': {
+                         boxShadow: 20
+                     }
+                 }}
+                 maxHeight={500} padding={"10px"}
+                 border={2}
+                 borderRadius={3}
+                 maxWidth={250}
+                 justifyContent={'center'}
+        >
+            <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                <Typography textAlign={'center'} variant={'h5'}>{item.itemName}</Typography>
+                <Typography color={'orange'}>{itemType}</Typography>
+                <img alt={item.itemImageLinkFullPath} src={item.itemImageLinkFullPath}
+                     style={{width: 150, height: 150}}/>
+            </Box>
+            {highlightText(item.itemDescription)}
+        </Box>
+    )
+}
+
+export function getWeaponPreviewComponent(item, itemType) {
+
+    if (!item || !item.itemName) {
+        return <Box/>
+    }
+
+    return (<Box style={{
+            borderColor: BorderColor,
+            boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
+            transition: 'box-shadow 0.2s'
+        }}
+                 sx={{
+                     ':hover': {
+                         boxShadow: 20
+                     }
+                 }}
+                 maxHeight={500} padding={"10px"}
+                 border={2}
+                 borderRadius={3}
+                 maxWidth={350}
+                 justifyContent={'center'}
+        >
+            <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                <Typography textAlign={'center'} variant={'h5'}>{item.itemName}</Typography>
+                <Typography color={'orange'}>{itemType}</Typography>
+                <img alt={item.itemImageLinkFullPath} src={item.itemImageLinkFullPath}
+                     style={{width: 350, height: 150}}/>
+            </Box>
+            {highlightText(item.itemDescription)}
+        </Box>
+    )
+}
+
+
+export function getMutatorPreviewComponent(item, itemType) {
+
+    if (!item || !item.itemName) {
+        return <Box/>
+    }
+
+    return (<Box style={{
+            borderColor: BorderColor,
+            boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
+            transition: 'box-shadow 0.2s'
+        }}
+                 sx={{
+                     ':hover': {
+                         boxShadow: 20
+                     }
+                 }}
+                 maxHeight={500} padding={"10px"}
+                 border={2}
+                 borderRadius={3}
+                 maxWidth={350}
+                 justifyContent={'center'}
+        >
+            <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                <Typography textAlign={'center'} variant={'h5'}>{item.itemName}</Typography>
+                <Typography color={'orange'}>{itemType}</Typography>
+                <img alt={item.itemImageLinkFullPath} src={item.itemImageLinkFullPath}
+                     style={{width: 200, height: 200}}/>
+            </Box>
+            {highlightText(item.itemDescription)}
+        </Box>
+    )
+}
+
+
+export function getHeaderComponent(itemHeaderName) {
+    return (
+        <Box marginLeft={'5%'} display={'flex'} justifyContent={'start'} alignItems={'start'}
+             flexDirection={'column'}>
+            <Typography fontFamily={'Poppins'} variant={'h4'}>{itemHeaderName}</Typography>
+        </Box>
+    );
+}
+
+export const isProduction = window.location.href.includes("batfolx.github.io/remnantbuildmaker");
 

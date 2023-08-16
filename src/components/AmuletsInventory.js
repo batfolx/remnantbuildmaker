@@ -6,26 +6,31 @@ import {
     Autocomplete,
     TextField,
     IconButton,
-    DialogContent
+    DialogContent,
+    Zoom
 } from "@mui/material";
 import amuletsItemsJson from "../items/Amulets.json";
 import { BorderColor, sendAmuletSearchEvent} from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import {useState} from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CircleIcon from "@mui/icons-material/Circle";
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+export default function AmuletsInventory() {
 
-    let loadout = loadouts.loadouts[currentLoadoutIndex];
+    const loadouts = useSelector((state) => state.loadouts);
+    const dispatch = useDispatch();
     const [openAmuletSearch, setOpenAmuletSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
     const [searchedAmulets, setSearchedAmulets] = useState(amuletsItemsJson);
 
     const getAmuletSlotComponent = () => {
-        const currentAmulet = loadout.amulet;
+        const currentAmulet = loadouts.loadouts[loadouts.currentLoadoutIndex].amulet;
         return (
-            <Box style={{
+            <Zoom in={true} style={{transitionDelay: "100ms"}}>
+                <Box style={{
                 borderColor: BorderColor,
                 cursor: "pointer",
                 boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
@@ -54,6 +59,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                 </Box>
                 {highlightText(currentAmulet.itemDescription)}
             </Box>
+            </Zoom>
         );
     }
 
@@ -64,7 +70,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                     return <Box key={index}/>
                 }
 
-                const amuletIsSelected = loadout.amulet.itemId === amulet.itemId;
+                const amuletIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].amulet.itemId === amulet.itemId;
 
                 return <Box
                     key={amulet.itemName + index}
@@ -79,10 +85,9 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
                         if (amuletIsSelected) {
                             return;
                         }
-                        loadout.amulet = amulet;
+                        dispatch(actions.setLoadoutAmulet(amulet));
                         setOpenAmuletSearch(false);
                         setSearchedValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -104,11 +109,7 @@ export default function AmuletsInventory({loadouts, currentLoadoutIndex, saveLoa
 
     return (
         <Box>
-            <Box marginLeft={"5%"} marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Amulets
-                </Typography>
-            </Box>
+            {getHeaderComponent("Amulets")}
             <Box display={'flex'} justifyContent={'center'}>
                 {getAmuletSlotComponent()}
             </Box>

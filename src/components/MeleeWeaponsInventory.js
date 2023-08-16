@@ -11,14 +11,17 @@ import {
     Typography
 } from "@mui/material";
 import {BorderColor, sendMeleeSearchEvent, sendMutatorSearchEvent} from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 import weaponModsJson from "../items/WeaponMods.json";
 import mutators from "../items/Mutators.json";
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
-    let loadout = loadouts.loadouts[currentLoadoutIndex];
+export default function MeleeWeaponsInventory() {
+    const loadouts = useSelector((state) => state.loadouts);
+    const dispatch = useDispatch();
     const [openMeleeWeaponSearch, setOpenMeleeWeaponSearch] = useState(false);
     const [searchedValue, setSearchedValue] = useState(null);
     const [searchedMeleeWeapons, setSearchedMeleeWeapons] = useState(meleeWeaponsJson);
@@ -31,7 +34,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
     const [mutatorSearchResults, setMutatorSearchResults] = useState(meleeMutators);
 
     const getMeleeWeaponSlot = () => {
-        const currentMeleeWeapon = loadout.meleeWeapon;
+        const currentMeleeWeapon = loadouts.loadouts[loadouts.currentLoadoutIndex].meleeWeapon;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -72,7 +75,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                     return <Box key={index}/>
                 }
 
-                const longGunIsSelected = loadout.meleeWeapon.itemId === meleeWeapon.itemId;
+                const longGunIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].meleeWeapon.itemId === meleeWeapon.itemId;
 
                 return <Box
                     key={meleeWeapon.itemName + index}
@@ -93,19 +96,17 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                             const weaponModName = meleeWeapon.lockedModInfo.modName;
                             const filteredWeaponMod = weaponModsJson.filter((weaponMod) => weaponMod.itemName === weaponModName);
                             if (!filteredWeaponMod || filteredWeaponMod.length === 0) {
-                                loadout.meleeWeaponMod = {itemName: ""}
+                                dispatch(actions.setMeleeWeaponMod({itemName: ""}));
                             } else {
-                                loadout.meleeWeaponMod = filteredWeaponMod[0];
+                                dispatch(actions.setMeleeWeaponMod(filteredWeaponMod[0]));
                             }
 
                         } else {
-                            loadout.meleeWeaponMod = {itemName: ""}
+                            dispatch(actions.setMeleeWeaponMod({itemName: ""}));
                         }
-
-                        loadout.meleeWeapon = meleeWeapon;
+                        dispatch(actions.setMeleeWeapon(meleeWeapon));
                         setOpenMeleeWeaponSearch(false);
                         setSearchedValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -126,7 +127,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
     }
 
     const getWeaponModSlotComponent = () => {
-        const currentWeaponMod = loadout.meleeWeaponMod;
+        const currentWeaponMod = loadouts.loadouts[loadouts.currentLoadoutIndex].meleeWeaponMod;
         if (currentWeaponMod.itemName === "") {
             return <Box/>
         }
@@ -161,7 +162,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
 
 
     const getMutatorSlotComponent = () => {
-        const currentMutator = loadout.meleeMutator;
+        const currentMutator = loadouts.loadouts[loadouts.currentLoadoutIndex].meleeMutator;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -201,7 +202,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                 if (mutator.itemName === "") {
                     return <Box key={index}/>
                 }
-                const mutatorIsSelected = loadout.meleeMutator.itemId === mutator.itemId;
+                const mutatorIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].meleeMutator.itemId === mutator.itemId;
                 return <Box
                     key={mutator.itemName + index}
                     style={{
@@ -215,10 +216,9 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
                         if (mutatorIsSelected) {
                             return;
                         }
-                        loadout.meleeMutator = mutator;
+                        dispatch(actions.setLoadoutMeleeMutator(mutator));
                         setOpenMutatorModSearch(false);
                         setSearchedMutatorValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -239,11 +239,7 @@ export default function MeleeWeaponsInventory({loadouts, currentLoadoutIndex, sa
 
     return (
         <Box>
-            <Box marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Melee Weapons
-                </Typography>
-            </Box>
+            {getHeaderComponent("Melee Weapons")}
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getMeleeWeaponSlot()}
                 {getWeaponModSlotComponent()}

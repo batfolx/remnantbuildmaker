@@ -14,16 +14,18 @@ import {
     BorderColor,
     sendHandGunSearchEvent, sendHandGunWeaponModSearchEvent, sendMutatorSearchEvent
 } from "../constants";
-import {getOptionLabel, highlightText} from "../utilFunctions";
+import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 import longGunsJson from "../items/LongGuns.json";
 import weaponModsJson from "../items/WeaponMods.json";
 import mutators from "../items/Mutators.json";
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
-    let loadout = loadouts.loadouts[currentLoadoutIndex];
-
+export default function HandGunsInventory() {
+    const loadouts = useSelector((state) => state.loadouts);
+    const dispatch = useDispatch();
     // this line just looks through the hand guns and long guns and find all of the special weapons so that we can
     // filter
     const specialWeapons = [...handGunsJson.filter((handGun) => handGun.isSpecialWeapon).map((handGun) => handGun.lockedModInfo.modName),
@@ -44,7 +46,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
     const [mutatorSearchResults, setMutatorSearchResults] = useState(rangedMutators);
 
     const getWeaponModSlotComponent = () => {
-        const currentWeaponMod = loadout.handGunWeaponMod;
+        const currentWeaponMod = loadouts.loadouts[loadouts.currentLoadoutIndex].handGunWeaponMod;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -63,7 +65,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                  maxWidth={350}
                  justifyContent={'center'}
                  onClick={() => {
-                     if (loadout.handGun.isSpecialWeapon) {
+                     if (loadouts.loadouts[loadouts.currentLoadoutIndex].handGun.isSpecialWeapon) {
                          return;
                      }
                      sendHandGunWeaponModSearchEvent();
@@ -82,7 +84,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
     }
 
     const getMutatorSlotComponent = () => {
-        const currentMutator = loadout.handGunMutator;
+        const currentMutator = loadouts.loadouts[loadouts.currentLoadoutIndex].handGunMutator;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -122,7 +124,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 if (weaponMod.itemName === "") {
                     return <Box key={index}/>
                 }
-                const modIsSelected = loadout.handGunWeaponMod.itemId === weaponMod.itemId;
+                const modIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].handGunWeaponMod.itemId === weaponMod.itemId;
                 return <Box
                     key={weaponMod.itemName + index}
                     style={{
@@ -136,10 +138,9 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (modIsSelected) {
                             return;
                         }
-                        loadout.handGunWeaponMod = weaponMod;
+                        dispatch(actions.setHandGunWeaponMod(weaponMod))
                         setOpenWeaponModSearch(false);
                         setSearchedModValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -159,7 +160,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
     }
 
     const getHandGunSlotComponent = () => {
-        const currentHandGun = loadout.handGun;
+        const currentHandGun = loadouts.loadouts[loadouts.currentLoadoutIndex].handGun;
         return (
             <Box style={{
                 borderColor: BorderColor,
@@ -200,7 +201,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                     return <Box key={index}/>
                 }
 
-                const handGunIsSelected = loadout.handGun.itemId === handGun.itemId;
+                const handGunIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].handGun.itemId === handGun.itemId;
 
                 return <Box
                     key={handGun.itemName + index}
@@ -220,15 +221,14 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (handGun.isSpecialWeapon) {
                             const weaponModName = handGun.lockedModInfo.modName;
                             const filteredWeaponMod = weaponModsJson.filter((weaponMod) => weaponMod.itemName === weaponModName);
-                            loadout.handGunWeaponMod = filteredWeaponMod[0];
+                            dispatch(actions.setHandGunWeaponMod(filteredWeaponMod[0]));
                         } else {
-                            loadout.handGunWeaponMod = chooseableMods[0];
+                            dispatch(actions.setHandGunWeaponMod(chooseableMods[0]))
                         }
 
-                        loadout.handGun = handGun;
+                        dispatch(actions.setHandGun(handGun));
                         setOpenHandGunSearch(false);
                         setSearchedValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -254,7 +254,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                 if (mutator.itemName === "") {
                     return <Box key={index}/>
                 }
-                const modIsSelected = loadout.longGunMutator.itemId === mutator.itemId;
+                const modIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].longGunMutator.itemId === mutator.itemId;
                 return <Box
                     key={mutator.itemName + index}
                     style={{
@@ -268,10 +268,9 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
                         if (modIsSelected) {
                             return;
                         }
-                        loadout.handGunMutator = mutator;
+                        dispatch(actions.setLoadoutHandGunMutator(mutator));
                         setOpenMutatorModSearch(false);
                         setSearchedMutatorValue(null);
-                        saveLoadouts();
                     }}
                     border={2}
                     borderRadius={3}
@@ -292,11 +291,7 @@ export default function HandGunsInventory({loadouts, currentLoadoutIndex, saveLo
 
     return (
         <Box>
-            <Box marginTop={'25px'}>
-                <Typography variant={"h4"} fontFamily={'Poppins'}>
-                    Hand Guns
-                </Typography>
-            </Box>
+            {getHeaderComponent("Hand Guns")}
             <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={'10px'}>
                 {getHandGunSlotComponent()}
                 {getWeaponModSlotComponent()}

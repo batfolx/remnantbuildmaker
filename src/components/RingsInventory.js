@@ -5,24 +5,28 @@ import {
     DialogActions,
     DialogContent,
     Typography,
-    TextField
+    TextField,
+    Zoom
 } from "@mui/material";
-import PropTypes from "prop-types";
 import {useState} from "react";
 import {BorderColor, sendRingSearchEvent} from "../constants";
-import {highlightText, getOptionLabel} from "../utilFunctions";
+import {highlightText, getOptionLabel, getHeaderComponent} from "../utilFunctions";
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
 import ringsItemsJson from "../items/rings.json"
+import {useDispatch, useSelector} from "react-redux";
+import {actions} from "../reducers/loadoutReducer";
 
-export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoadouts}) {
+export default function RingsInventory() {
 
-    const loadout = loadouts.loadouts[currentLoadoutIndex];
+    const loadouts = useSelector((state) => state.loadouts);
     const [ringSelectorOpen, setRingSelectorOpen] = useState(false);
     const [selectedRingIndex, setSelectedRingIndex] = useState(0);
     const [searchedRings, setSearchedRings] = useState(ringsItemsJson);
     const [searchedValue, setSearchedValue] = useState(null);
+    const dispatch = useDispatch();
+
 
     /**
      * Gets the ring slot component (rings 1-4)
@@ -32,6 +36,7 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
      */
     const getRemnantRingSlotComponent = (ring, index) => {
         return (
+            <Zoom in={true} style={{transitionDelay: `${index * 75}ms`}}>
             <Box key={ring.itemName + index} style={{
                 borderColor: BorderColor,
                 cursor: "pointer",
@@ -62,6 +67,7 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
                 </Box>
                 {highlightText(ring.itemDescription)}
             </Box>
+            </Zoom>
         );
     }
 
@@ -70,64 +76,66 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
      * @returns {JSX.Element}
      */
     const displaySearchedRings = () => {
-        return <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
-            {searchedRings.map((r) => {
+        return (
+                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} gap={'15px'}>
+                    {searchedRings.map((r) => {
 
-                const ringIsSelected = loadout.rings.some(loadoutRing => loadoutRing.itemId === r.itemId)
+                        const ringIsSelected = loadouts.loadouts[loadouts.currentLoadoutIndex].rings.some(loadoutRing => loadoutRing.itemId === r.itemId)
 
-                return <Box
-                    key={r.itemName}
-                    style={{
-                        borderColor: BorderColor,
-                        cursor: "pointer",
-                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
-                        transition: 'box-shadow 0.2s'
-                    }}
-                    maxHeight={500} padding={"10px"}
-                    onClick={() => {
-                        if (ringIsSelected) {
-                            return;
-                        }
-                        loadout.rings[selectedRingIndex] = r;
-                        setRingSelectorOpen(false);
-                        setSearchedValue(null);
-                        saveLoadouts();
-                    }}
-                    border={2}
-                    borderRadius={3}
-                    width={250}
-                    justifyContent={'center'}>
-                    <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <Typography textAlign={'center'} variant={'h5'}>{r.itemName}</Typography>
-                        <Typography color={'orange'}>{r.itemType}</Typography>
-                        <img alt={r.itemImageLinkFullPath} src={r.itemImageLinkFullPath}
-                             style={{width: 150, height: 150}}/>
-                    </Box>
-                    {highlightText(r.itemDescription)}
-                    {ringIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
 
+                        return <Box
+                            key={r.itemName}
+                            style={{
+                                borderColor: BorderColor,
+                                cursor: "pointer",
+                                boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                                transition: 'box-shadow 0.2s'
+                            }}
+                            maxHeight={500} padding={"10px"}
+                            onClick={() => {
+                                if (ringIsSelected) {
+                                    return;
+                                }
+
+                                const currRings = [...loadouts.loadouts[loadouts.currentLoadoutIndex].rings];
+                                currRings[selectedRingIndex] = r;
+                                dispatch(actions.setLoadOutRings(currRings))
+                                setRingSelectorOpen(false);
+                                setSearchedValue(null);
+                            }}
+                            border={2}
+                            borderRadius={3}
+                            width={250}
+                            justifyContent={'center'}>
+                            <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                                <Typography textAlign={'center'} variant={'h5'}>{r.itemName}</Typography>
+                                <Typography color={'orange'}>{r.itemType}</Typography>
+                                <img alt={r.itemImageLinkFullPath} src={r.itemImageLinkFullPath}
+                                     style={{width: 150, height: 150}}/>
+                            </Box>
+                            {highlightText(r.itemDescription)}
+                            {ringIsSelected && <CircleIcon style={{color: 'orange'}}></CircleIcon>}
+
+                        </Box>
+                    })}
                 </Box>
-            })}
-        </Box>
+        )
     }
 
     return (
         <Box marginTop={'25px'}>
-            <Box marginLeft={'5%'} display={'flex'} justifyContent={'start'} alignItems={'start'}
-                 flexDirection={'column'}>
-                <Typography fontFamily={'Poppins'} variant={'h4'}>Rings</Typography>
-            </Box>
+            {getHeaderComponent("Rings")}
             <Box display={'flex'} justifyContent={'center'} gap={'10px'} flexWrap={'wrap'}>
-                {loadout.rings.map((ring, index) => {
+                {loadouts.loadouts[loadouts.currentLoadoutIndex].rings.map((ring, index) => {
                     return getRemnantRingSlotComponent(ring, index)
                 })}
             </Box>
 
             <Dialog PaperProps={{
-                        sx: {
-                            height: "100%"
-                        }
-                    }}
+                sx: {
+                    height: "100%"
+                }
+            }}
                     open={ringSelectorOpen}
                     fullWidth={true}
                     maxWidth={'xl'}
@@ -173,8 +181,4 @@ export default function RingsInventory({loadouts, currentLoadoutIndex, saveLoado
 
 }
 
-RingsInventory.propTypes = {
-    loadout: PropTypes.object,
-    currentLoadoutIndex: PropTypes.number,
-    saveLoadouts: PropTypes.func
-}
+RingsInventory.propTypes = {}

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import {
     BorderColor,
-    sendImportFullBuildEvent, sendSaveLoadoutEvent, sendLoadoutSwitchEvent, sendImportSingleBuildEvent
+    sendImportFullBuildEvent, sendImportSingleBuildEvent, REPO_NAME, sendShareUrlBuildEvent
 } from "./constants";
 import RingsInventory from "./components/RingsInventory";
 import RemnantStorageApi from "./storageApi";
@@ -20,7 +20,7 @@ import AmuletsInventory from "./components/AmuletsInventory";
 import RelicsInventory from "./components/RelicsInventory";
 import {UploadFile} from "@mui/icons-material";
 import {useFilePicker} from 'use-file-picker';
-import {exportBuildFile} from "./utilFunctions";
+import {exportBuildFile, isProduction} from "./utilFunctions";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import Filter5Icon from '@mui/icons-material/Filter5';
@@ -34,9 +34,13 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ReactGA from "react-ga4";
 import RemnantBuildWebApi from "./buildWebApi";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import {useDispatch, useSelector} from "react-redux";
+import {actions, saveLoadouts} from "./reducers/loadoutReducer";
 
 function RemnantBuilderApp() {
 
+    const loadouts = useSelector(state => state.loadouts);
+    const dispatch = useDispatch();
     const [openFileSelector,] = useFilePicker({
         accept: '.json',
         multiple: 'false',
@@ -89,59 +93,37 @@ function RemnantBuilderApp() {
     const [importedBuildData, setImportedBuildData] = useState({});
     const [importedBuildType, setImportedBuildType] = useState("single");
     const [exportSingleBuildOpen, setExportSingleBuildOpen] = useState(false);
-    const [internalLoadouts, setInternalLoadouts] = useState(RemnantStorageApi.getLocalLoadOuts());
-    const [selectedBuild, setSelectedBuild] = useState(internalLoadouts.loadouts[0]);
-    const [currentLoadoutIndex, setCurrentLoadoutIndex] = useState(internalLoadouts.currentLoadoutIndex);
-    const [loadoutName, setLoadoutName] = useState(internalLoadouts.loadouts[internalLoadouts.currentLoadoutIndex].loadoutName);
+    const [selectedBuild, setSelectedBuild] = useState(loadouts.loadouts[0]);
     const [shareBuildOpen, setShareBuildOpen] = useState(false);
     const [sharedBuildUrl, setSharedBuildUrl] = useState("");
     const [shareBuildLoading, setShareBuildLoading] = useState(false);
     ReactGA.send({ hitType: "pageview", page: "/", title: "Main Page Hit" });
 
     const overwriteBuild = (buildData) => {
-        delete buildData.buildType;
-        const index = internalLoadouts.loadouts.indexOf(selectedBuild);
-        internalLoadouts.loadouts[index] = buildData;
-        delete buildData.selectedIndex;
-        saveLoadouts();
+        const buildDataCopy = {...buildData};
+        delete buildDataCopy.buildType;
+        const index = loadouts.loadouts.indexOf(selectedBuild);
+        dispatch(actions.overwriteBuild({index: index, buildData: buildDataCopy}));
         sendImportSingleBuildEvent();
     }
 
     const importFullBuild = (data) => {
         data.currentLoadoutIndex = 0;
         RemnantStorageApi.saveLocalLoadOuts(data);
-        const l = RemnantStorageApi.getLocalLoadOuts();
-        setInternalLoadouts(l);
-        setSelectedBuild(l.loadouts[0]);
-        setCurrentLoadoutIndex(0);
-        setLoadoutName(l.loadouts[l.currentLoadoutIndex].loadoutName);
+        dispatch(actions.saveLoadouts(data));
+        setSelectedBuild(loadouts.loadouts[0]);
         sendImportFullBuildEvent();
     }
 
-    const saveLoadouts = (index) => {
-        if (!index) {
-            index = currentLoadoutIndex;
-        }
-        const loadoutsCopy = {...internalLoadouts};
-        loadoutsCopy.currentLoadoutIndex = index;
-        RemnantStorageApi.saveLocalLoadOuts(loadoutsCopy);
-        setInternalLoadouts(RemnantStorageApi.getLocalLoadOuts());
-        sendSaveLoadoutEvent();
-    }
-
     const getLoadoutSelector = (romanNumeral, index) => {
-        const isHighlighted = currentLoadoutIndex === index;
+        const isHighlighted = loadouts.currentLoadoutIndex === index;
         return (
             <Box
                 height={100}
                 width={100}
                 style={{cursor: 'pointer', borderColor: BorderColor}}
                 onClick={() => {
-                    sendLoadoutSwitchEvent(currentLoadoutIndex, index);
-                    setCurrentLoadoutIndex(index);
-                    saveLoadouts(index);
-                    const loadoutsCopy = {...internalLoadouts};
-                    setLoadoutName(loadoutsCopy.loadouts[index].loadoutName);
+                    dispatch(actions.setCurrentLoadOutIndex(index));
                 }}
                 backgroundColor={isHighlighted ? 'white' : 'clear'}
                 border={1}
@@ -174,18 +156,18 @@ function RemnantBuilderApp() {
                                 <ExitToAppIcon/>
                             </Tooltip>
                         </IconButton>
-                        {/*<IconButton onClick={() => setShareBuildOpen(true)}>
+                        {<IconButton onClick={() => setShareBuildOpen(true)}>
                             <Tooltip title={"Generate Build URL"}>
                                 <ShareIcon/>
                             </Tooltip>
-                        </IconButton>*/}
+                        </IconButton>}
                         <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
                             <Tooltip title={"Import Build File"}>
                                 <UploadFile/>
                             </Tooltip>
                         </IconButton>
                         <IconButton onClick={() => {
-                            exportBuildFile(internalLoadouts, "full");
+                            exportBuildFile(loadouts, "full");
                         }}>
                             <Tooltip title={"Export Full Build File"}>
                                 <Filter5Icon/>
@@ -202,10 +184,9 @@ function RemnantBuilderApp() {
                         <IconButton onClick={() => {
                             RemnantStorageApi.clearStorage();
                             const l = RemnantStorageApi.getLocalLoadOuts();
-                            setInternalLoadouts(l);
+                            saveLoadouts(l);
+                            dispatch(actions.overwriteAllBuilds(l));
                             setSelectedBuild(l.loadouts[0]);
-                            setCurrentLoadoutIndex(0);
-                            setLoadoutName(l.loadouts[0].loadoutName);
                             toast.success("Successfully reset all builds!");
                         }}>
                             <Tooltip title={"Remove all builds"}>
@@ -220,12 +201,10 @@ function RemnantBuilderApp() {
                 </Box>
                 <Box display={'flex'} justifyContent={'center'}>
                     <TextField
-                        value={loadoutName}
+                        value={loadouts.loadouts[loadouts.currentLoadoutIndex].loadoutName}
                         label={"Loadout Name"}
                         onChange={(e) => {
-                            setLoadoutName(e.target.value);
-                            internalLoadouts.loadouts[currentLoadoutIndex].loadoutName = e.target.value;
-                            saveLoadouts();
+                            dispatch(actions.setLoadoutName(e.target.value));
                         }}
                     >
 
@@ -245,19 +224,13 @@ function RemnantBuilderApp() {
                 </Box>
                 <ToastContainer/>
 
-                <RingsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                saveLoadouts={saveLoadouts}/>
-                <AmuletsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                  saveLoadouts={saveLoadouts}/>
-                <RelicsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                 saveLoadouts={saveLoadouts}/>
+                <RingsInventory />
+                <AmuletsInventory />
+                <RelicsInventory />
                 <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} alignContent={'start'}>
-                    <LongGunsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                       saveLoadouts={saveLoadouts}/>
-                    <HandGunsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                       saveLoadouts={saveLoadouts}/>
-                    <MeleeWeaponsInventory loadouts={internalLoadouts} currentLoadoutIndex={currentLoadoutIndex}
-                                           saveLoadouts={saveLoadouts}/>
+                    <LongGunsInventory />
+                    <HandGunsInventory />
+                    <MeleeWeaponsInventory/>
                 </Box>
 
 
@@ -279,9 +252,9 @@ function RemnantBuilderApp() {
                                     label={"Select Build to Overwrite"}
                                     onChange={(e) => setSelectedBuild(e.target.value)}
                                 >
-                                    {internalLoadouts.loadouts.map((l, index) => {
+                                    {loadouts.loadouts.map((l, index) => {
                                         return (
-                                            <MenuItem value={l}>
+                                            <MenuItem key={index + l.loadoutName} value={l}>
                                                 Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
                                             </MenuItem>
                                         )
@@ -291,9 +264,6 @@ function RemnantBuilderApp() {
                                     <Button variant={'contained'} onClick={() => {
                                         overwriteBuild(importedBuildData);
                                         setBuildPreviewOpen(false);
-                                        const l = RemnantStorageApi.getLocalLoadOuts();
-                                        setSelectedBuild(l.loadouts[0]);
-                                        setLoadoutName(l.loadouts[l.currentLoadoutIndex].loadoutName);
                                         toast.success(`Successfully imported build!`);
 
                                     }}>
@@ -349,9 +319,9 @@ function RemnantBuilderApp() {
                             fullWidth={true}
                             value={selectedBuild}
                             onChange={(e) => setSelectedBuild(e.target.value)}>
-                            {internalLoadouts.loadouts.map((l, index) => {
+                            {loadouts.loadouts.map((l, index) => {
                                 return (
-                                    <MenuItem value={l}>
+                                    <MenuItem key={index} value={l}>
                                         Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
                                     </MenuItem>
                                 )
@@ -364,7 +334,7 @@ function RemnantBuilderApp() {
                     <DialogActions>
                         <Button onClick={() => {
                             exportBuildFile(selectedBuild, 'single');
-                            setSelectedBuild(internalLoadouts.loadouts[0]);
+                            setSelectedBuild(loadouts.loadouts[0]);
                             setExportSingleBuildOpen(false);
                         }}>
                             Export
@@ -388,10 +358,11 @@ function RemnantBuilderApp() {
                     <DialogContent>
                         <Select
                             label={"Select Build to share"}
-                            fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
-                            {internalLoadouts.loadouts.map((l, index) => {
+                            fullWidth={true}
+                            value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                            {loadouts.loadouts.map((l, index) => {
                                 return (
-                                    <MenuItem value={l}>
+                                    <MenuItem key={index} value={l}>
                                         Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
                                     </MenuItem>
                                 )
@@ -400,17 +371,17 @@ function RemnantBuilderApp() {
 
                         {shareBuildLoading && <CircularProgress/>}
                         {sharedBuildUrl !== "" && <Box marginTop={'25px'}>
-                            <Box display={'flex'} justifyContent={"center"} alignItems={"center"}>
-                                <Typography variant={'h6'}>{sharedBuildUrl}</Typography>
+                            <Box display={'flex'} justifyContent={"center"} alignItems={"center"} flexWrap={'wrap'}>
+                                <Typography variant={'h6'} overflow={'hidden'}>{sharedBuildUrl}</Typography>
                                 <IconButton onClick={() => {
-                                    navigator.clipboard.writeText(sharedBuildUrl)
+                                    navigator.clipboard.writeText(sharedBuildUrl);
                                     toast.success("Copied to clipboard!")
                                 }}>
                                     <ContentCopyIcon/>
                                 </IconButton>
                             </Box>
                             <Box display={'flex'} justifyContent={"center"}>
-                                <Typography>Make sure to copy this URL, it is unique to your build.</Typography>
+                                <Typography>Make sure to copy this URL; it is unique to your build.</Typography>
 
                             </Box>
 
@@ -426,13 +397,20 @@ function RemnantBuilderApp() {
                                 if (!resp.success) {
                                     throw new Error(resp.message);
                                 }
-                                const buildUuid = resp.data.buildId;
-                                const generatedLink = `${window.location.origin}/build/${buildUuid}`;
+                                const buildId = resp.data.buildId;
+                                sendShareUrlBuildEvent(buildId);
+                                let generatedLink;
+                                if (isProduction) {
+                                    generatedLink = `${window.location.origin}/${REPO_NAME}/build/${buildId}`;
+                                } else {
+                                    generatedLink = `${window.location.origin}/build/${buildId}`;
+                                }
+
                                 setSharedBuildUrl(generatedLink);
                             } catch (e) {
                                 toast.error(`Something went wrong with sharing build ${e}`);
                             }
-                            setSelectedBuild(internalLoadouts.loadouts[0]);
+                            setSelectedBuild(loadouts.loadouts[0]);
                             setExportSingleBuildOpen(false);
                             setShareBuildLoading(false);
                         }}>

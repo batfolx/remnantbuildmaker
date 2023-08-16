@@ -6,6 +6,9 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ViewUrlBuild from "./components/ViewUrlBuild";
 import CssBaseline from "@mui/material/CssBaseline";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {REPO_NAME} from "./constants";
+import store from "./store/store";
+import {Provider} from "react-redux";
 
 ReactGA.initialize("G-3J2SNG6Z0B");
 
@@ -20,17 +23,19 @@ const darkTheme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <ThemeProvider theme={darkTheme}>
-            <CssBaseline/>
-            <BrowserRouter>
-                <Routes>
-                    <Route path={"/"} element={<RemnantBuilderApp/>}/>
-                    <Route path={"/build/:buildId"} element={<ViewUrlBuild/>}/>
-                </Routes>
+        <Provider store={store}>
+            <ThemeProvider theme={darkTheme}>
+                <CssBaseline/>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path={"/"} element={<RemnantBuilderApp/>}/>
+                        <Route path={`${REPO_NAME}`} element={<RemnantBuilderApp/>}/>
+                        <Route path={"/build/:buildId"} element={<ViewUrlBuild/>}/>
+                    </Routes>
 
-            </BrowserRouter>
-        </ThemeProvider>
-
+                </BrowserRouter>
+            </ThemeProvider>
+        </Provider>
     </React.StrictMode>
 );
 
