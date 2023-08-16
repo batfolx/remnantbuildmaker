@@ -6,7 +6,8 @@ import {
     Autocomplete,
     TextField,
     IconButton,
-    DialogContent
+    DialogContent,
+    Zoom
 } from "@mui/material";
 import amuletsItemsJson from "../items/Amulets.json";
 import { BorderColor, sendAmuletSearchEvent} from "../constants";
@@ -28,7 +29,8 @@ export default function AmuletsInventory() {
     const getAmuletSlotComponent = () => {
         const currentAmulet = loadouts.loadouts[loadouts.currentLoadoutIndex].amulet;
         return (
-            <Box style={{
+            <Zoom in={true} style={{transitionDelay: "100ms"}}>
+                <Box style={{
                 borderColor: BorderColor,
                 cursor: "pointer",
                 boxShadow: '2px 2px 4px rgba(150, 150, 150, 0.1)',
@@ -57,6 +59,7 @@ export default function AmuletsInventory() {
                 </Box>
                 {highlightText(currentAmulet.itemDescription)}
             </Box>
+            </Zoom>
         );
     }
 

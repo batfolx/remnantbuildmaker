@@ -8,7 +8,8 @@ import {
     DialogContent,
     IconButton,
     TextField,
-    Typography
+    Typography,
+    Zoom
 } from "@mui/material";
 import {BorderColor, sendRelicSearchEvent} from "../constants";
 import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
@@ -28,6 +29,7 @@ export default function RelicsInventory() {
     const getRelicSlotComponent = () => {
         const currentRelic = loadouts.loadouts[loadouts.currentLoadoutIndex].relic;
         return (
+            <Zoom in={true} style={{transitionDelay: "100ms"}}>
             <Box style={{
                 borderColor: BorderColor,
                 cursor: "pointer",
@@ -57,6 +59,7 @@ export default function RelicsInventory() {
                 </Box>
                 {highlightText(currentRelic.itemDescription)}
             </Box>
+            </Zoom>
         );
     }
 
