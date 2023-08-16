@@ -91,7 +91,7 @@ const loadoutReducer = createSlice({
         },
 
         overwriteAllBuilds: (state, action) => {
-            state = {...action};
+            state = {...action.payload};
             saveLoadouts(state);
         }
     }
