@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import RemnantBuilderApp from './RemnantBuilderApp';
 import ReactGA from "react-ga4";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import ViewUrlBuild from "./components/ViewUrlBuild";
 import CssBaseline from "@mui/material/CssBaseline";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
@@ -26,14 +26,14 @@ root.render(
         <Provider store={store}>
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline/>
-                <BrowserRouter>
+                <HashRouter>
                     <Routes>
                         <Route path={"/"} element={<RemnantBuilderApp/>}/>
                         <Route path={`${REPO_NAME}`} element={<RemnantBuilderApp/>}/>
                         <Route path={"/build/:buildId"} element={<ViewUrlBuild/>}/>
                     </Routes>
 
-                </BrowserRouter>
+                </HashRouter>
             </ThemeProvider>
         </Provider>
     </React.StrictMode>

@@ -401,9 +401,9 @@ function RemnantBuilderApp() {
                                 sendShareUrlBuildEvent(buildId);
                                 let generatedLink;
                                 if (isProduction) {
-                                    generatedLink = `${window.location.origin}/${REPO_NAME}/build/${buildId}`;
+                                    generatedLink = `${window.location.origin}/#/${REPO_NAME}/build/${buildId}`;
                                 } else {
-                                    generatedLink = `${window.location.origin}/build/${buildId}`;
+                                    generatedLink = `${window.location.origin}/#/build/${buildId}`;
                                 }
 
                                 setSharedBuildUrl(generatedLink);
