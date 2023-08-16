@@ -388,7 +388,8 @@ function RemnantBuilderApp() {
                     <DialogContent>
                         <Select
                             label={"Select Build to share"}
-                            fullWidth={true} value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                            fullWidth={true}
+                            value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
                             {internalLoadouts.loadouts.map((l, index) => {
                                 return (
                                     <MenuItem key={index} value={l}>
@@ -400,10 +401,10 @@ function RemnantBuilderApp() {
 
                         {shareBuildLoading && <CircularProgress/>}
                         {sharedBuildUrl !== "" && <Box marginTop={'25px'}>
-                            <Box display={'flex'} justifyContent={"center"} alignItems={"center"}>
+                            <Box display={'flex'} justifyContent={"center"} alignItems={"center"} flexWrap={'wrap'}>
                                 <Typography variant={'h6'}>{sharedBuildUrl}</Typography>
                                 <IconButton onClick={() => {
-                                    navigator.clipboard.writeText(sharedBuildUrl)
+                                    navigator.clipboard.writeText(sharedBuildUrl);
                                     toast.success("Copied to clipboard!")
                                 }}>
                                     <ContentCopyIcon/>
