@@ -84,7 +84,6 @@ const loadoutReducer = createSlice({
         },
 
         overwriteBuild: (state, action) => {
-            console.log("Action",action)
             const {index, buildData} = action.payload;
             state.loadouts[index] = buildData;
             saveLoadouts(state);
@@ -93,7 +92,12 @@ const loadoutReducer = createSlice({
         overwriteAllBuilds: (state, action) => {
             state = {...action.payload};
             saveLoadouts(state);
-        }
+        },
+
+        reset: () => {
+            RemnantStorageApi.clearStorage();
+            return RemnantStorageApi.getLocalLoadOuts();
+        },
     }
 });
 

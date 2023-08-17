@@ -185,7 +185,7 @@ function RemnantBuilderApp() {
                             RemnantStorageApi.clearStorage();
                             const l = RemnantStorageApi.getLocalLoadOuts();
                             saveLoadouts(l);
-                            dispatch(actions.overwriteAllBuilds(l));
+                            dispatch(actions.reset());
                             setSelectedBuild(l.loadouts[0]);
                             toast.success("Successfully reset all builds!");
                         }}>
