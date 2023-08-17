@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/remnantbuildmaker/static/css/main.98ec47ca.css",
-    "main.js": "/remnantbuildmaker/static/js/main.a6a16a3a.js",
+    "main.js": "/remnantbuildmaker/static/js/main.e7292f4b.js",
     "index.html": "/remnantbuildmaker/index.html",
     "main.98ec47ca.css.map": "/remnantbuildmaker/static/css/main.98ec47ca.css.map",
-    "main.a6a16a3a.js.map": "/remnantbuildmaker/static/js/main.a6a16a3a.js.map"
+    "main.e7292f4b.js.map": "/remnantbuildmaker/static/js/main.e7292f4b.js.map"
   },
   "entrypoints": [
     "static/css/main.98ec47ca.css",
-    "static/js/main.a6a16a3a.js"
+    "static/js/main.e7292f4b.js"
   ]
 }
