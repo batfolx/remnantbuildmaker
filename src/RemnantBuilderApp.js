@@ -20,7 +20,7 @@ import AmuletsInventory from "./components/AmuletsInventory";
 import RelicsInventory from "./components/RelicsInventory";
 import {UploadFile} from "@mui/icons-material";
 import {useFilePicker} from 'use-file-picker';
-import {exportBuildFile, getOptionLabel, isProduction} from "./utilFunctions";
+import {exportBuildFile, getOptionLabel, highlightText, isProduction} from "./utilFunctions";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import Filter5Icon from '@mui/icons-material/Filter5';
@@ -37,7 +37,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import SearchIcon from "@mui/icons-material/Search";
 import {useDispatch, useSelector} from "react-redux";
 import {actions, saveLoadouts} from "./reducers/loadoutReducer";
-
+import ClearIcon from '@mui/icons-material/Clear';
 import amulets from "./items/Amulets.json";
 import handGuns from "./items/Handguns.json";
 import longGuns from "./items/LongGuns.json";
@@ -450,9 +450,20 @@ function RemnantBuilderApp() {
                     maxWidth={'xl'}>
 
                 <DialogTitle>
-                    General Item Search
+                    <Box display={'flex'} justifyContent={'space-between'}>
+                        <Typography>
+                            General Item Search
+                        </Typography>
+
+                        <IconButton onClick={() => setGeneralSearchOpen(false)}>
+                            <Tooltip title={"Close general search"}>
+                                <ClearIcon/>
+                            </Tooltip>
+                        </IconButton>
+                    </Box>
+
                 </DialogTitle>
-                <DialogContent>
+                <DialogActions>
                     <Autocomplete
                         fullWidth={true}
                         getOptionLabel={(option) => getOptionLabel(option)}
@@ -463,18 +474,41 @@ function RemnantBuilderApp() {
                         onChange={(e, newValue) => setGeneralSearchValue(newValue)}
 
                         onInputChange={(event, newValue) => {
-                          const filteredOptions = allGeneralSearchItems.filter((r) => {
-                              const label = getOptionLabel(r).toLowerCase();
-                              return label.includes(newValue.toLowerCase());
-                          });
-                          setSearchedGeneralItems(filteredOptions);
-                          setGeneralSearchValue(newValue);
+                            const filteredOptions = allGeneralSearchItems.filter((r) => {
+                                const label = getOptionLabel(r).toLowerCase();
+                                return label.includes(newValue.toLowerCase());
+                            });
+                            setSearchedGeneralItems(filteredOptions);
+                            setGeneralSearchValue(newValue);
                         }}
-                    ></Autocomplete>
-
-
-
-
+                    />
+                </DialogActions>
+                <DialogContent>
+                    <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={'15px'}>
+                        {searchedGeneralItems.map((item, index) => {
+                            return <Box
+                                key={item.itemName + index}
+                                style={{
+                                    borderColor: BorderColor,
+                                    cursor: "pointer",
+                                    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                                    transition: 'box-shadow 0.2s'
+                                }}
+                                padding={"10px"}
+                                border={2}
+                                borderRadius={3}
+                                width={350}
+                                justifyContent={'center'}>
+                                <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                                    <Typography textAlign={'center'} variant={'h5'}>{item.itemName}</Typography>
+                                    <Typography color={'orange'}>{item.itemType}</Typography>
+                                    <img alt={item.itemImageLinkFullPath} src={item.itemImageLinkFullPath}
+                                         style={{width: 250, height: 250}}/>
+                                </Box>
+                                {highlightText(item.itemDescription)}
+                            </Box>
+                        })}
+                    </Box>
                 </DialogContent>
 
 
