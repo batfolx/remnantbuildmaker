@@ -1,5 +1,5 @@
 import {
-    AppBar,
+    AppBar, Autocomplete,
     Box,
     Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle,
     IconButton,
@@ -20,7 +20,7 @@ import AmuletsInventory from "./components/AmuletsInventory";
 import RelicsInventory from "./components/RelicsInventory";
 import {UploadFile} from "@mui/icons-material";
 import {useFilePicker} from 'use-file-picker';
-import {exportBuildFile, isProduction} from "./utilFunctions";
+import {exportBuildFile, getOptionLabel, isProduction} from "./utilFunctions";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import Filter5Icon from '@mui/icons-material/Filter5';
@@ -34,8 +34,18 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ReactGA from "react-ga4";
 import RemnantBuildWebApi from "./buildWebApi";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import SearchIcon from "@mui/icons-material/Search";
 import {useDispatch, useSelector} from "react-redux";
 import {actions, saveLoadouts} from "./reducers/loadoutReducer";
+
+import amulets from "./items/Amulets.json";
+import handGuns from "./items/Handguns.json";
+import longGuns from "./items/LongGuns.json";
+import meleeWeapons from "./items/MeleeWeapons.json";
+import relics from "./items/Relics.json";
+import rings from "./items/rings.json";
+import mutators from "./items/Mutators.json";
+import weaponMods from "./items/WeaponMods.json";
 
 function RemnantBuilderApp() {
 
@@ -97,7 +107,12 @@ function RemnantBuilderApp() {
     const [shareBuildOpen, setShareBuildOpen] = useState(false);
     const [sharedBuildUrl, setSharedBuildUrl] = useState("");
     const [shareBuildLoading, setShareBuildLoading] = useState(false);
-    ReactGA.send({ hitType: "pageview", page: "/", title: "Main Page Hit" });
+    const [generalSearchOpen, setGeneralSearchOpen] = useState(false);
+    const allGeneralSearchItems = [...amulets, ...handGuns, ...longGuns, ...meleeWeapons, ...mutators, ...relics, ...rings, ...weaponMods];
+    const [generalSearchValue, setGeneralSearchValue] = useState(null);
+    const [searchedGeneralItems, setSearchedGeneralItems] = useState(allGeneralSearchItems);
+
+    ReactGA.send({hitType: "pageview", page: "/", title: "Main Page Hit"});
 
     const overwriteBuild = (buildData) => {
         const buildDataCopy = {...buildData};
@@ -140,291 +155,331 @@ function RemnantBuilderApp() {
 
     return (
 
-            <Box>
-                <AppBar position={'static'}>
-                    <Toolbar>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
-                        >
-                            Remnant Builder
-                        </Typography>
-                        <IconButton onClick={() => window.open("https://remnant2.wiki.fextralife.com/Remnant+2+Wiki", "_blank")}>
-                            <Tooltip title={"Go to Remnant 2 Wiki"}>
-                                <ExitToAppIcon/>
-                            </Tooltip>
-                        </IconButton>
-                        {<IconButton onClick={() => setShareBuildOpen(true)}>
-                            <Tooltip title={"Generate Build URL"}>
-                                <ShareIcon/>
-                            </Tooltip>
-                        </IconButton>}
-                        <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
-                            <Tooltip title={"Import Build File"}>
-                                <UploadFile/>
-                            </Tooltip>
-                        </IconButton>
-                        <IconButton onClick={() => {
-                            exportBuildFile(loadouts, "full");
-                        }}>
-                            <Tooltip title={"Export Full Build File"}>
-                                <Filter5Icon/>
-                            </Tooltip>
-                        </IconButton>
-
-                        <IconButton onClick={() => {
-                            setExportSingleBuildOpen(true);
-                        }}>
-                            <Tooltip title={"Export Single Build"}>
-                                <Filter1Icon/>
-                            </Tooltip>
-                        </IconButton>
-                        <IconButton onClick={() => {
-                            RemnantStorageApi.clearStorage();
-                            const l = RemnantStorageApi.getLocalLoadOuts();
-                            saveLoadouts(l);
-                            dispatch(actions.reset());
-                            setSelectedBuild(l.loadouts[0]);
-                            toast.success("Successfully reset all builds!");
-                        }}>
-                            <Tooltip title={"Remove all builds"}>
-                                <DeleteIcon style={{color: 'red'}}/>
-                            </Tooltip>
-                        </IconButton>
-
-                    </Toolbar>
-                </AppBar>
-                <Box marginLeft={"5%"}>
-                    <Typography fontFamily={'Poppins'} variant={'h4'}>Loadout</Typography>
-                </Box>
-                <Box display={'flex'} justifyContent={'center'}>
-                    <TextField
-                        value={loadouts.loadouts[loadouts.currentLoadoutIndex].loadoutName}
-                        label={"Loadout Name"}
-                        onChange={(e) => {
-                            dispatch(actions.setLoadoutName(e.target.value));
-                        }}
+        <Box>
+            <AppBar position={'static'}>
+                <Toolbar>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
                     >
+                        Remnant Builder
+                    </Typography>
+                    <IconButton onClick={() => setGeneralSearchOpen(true)}>
+                        <Tooltip title={"General Item Search"}>
+                            <SearchIcon/>
+                        </Tooltip>
+                    </IconButton>
+                    <IconButton
+                        onClick={() => window.open("https://remnant2.wiki.fextralife.com/Remnant+2+Wiki", "_blank")}>
+                        <Tooltip title={"Go to Remnant 2 Wiki"}>
+                            <ExitToAppIcon/>
+                        </Tooltip>
+                    </IconButton>
+                    {<IconButton onClick={() => setShareBuildOpen(true)}>
+                        <Tooltip title={"Generate Build URL"}>
+                            <ShareIcon/>
+                        </Tooltip>
+                    </IconButton>}
+                    <IconButton variant={'outlined'} onClick={() => openFileSelector()}>
+                        <Tooltip title={"Import Build File"}>
+                            <UploadFile/>
+                        </Tooltip>
+                    </IconButton>
+                    <IconButton onClick={() => {
+                        exportBuildFile(loadouts, "full");
+                    }}>
+                        <Tooltip title={"Export Full Build File"}>
+                            <Filter5Icon/>
+                        </Tooltip>
+                    </IconButton>
 
-                    </TextField>
-                </Box>
-                <Box display={'flex'} margin={'25px'} gap={"25px"} justifyContent={'center'} flexWrap={'wrap'}>
-                    {getLoadoutSelector("I", 0)}
-                    {getLoadoutSelector("II", 1)}
-                    {getLoadoutSelector("III", 2)}
-                    {getLoadoutSelector("IV", 3)}
-                    {getLoadoutSelector("V", 4)}
-                    {getLoadoutSelector("VI", 5)}
-                    {getLoadoutSelector("VII", 6)}
-                    {getLoadoutSelector("VIII", 7)}
-                    {getLoadoutSelector("IX", 8)}
-                    {getLoadoutSelector("X", 9)}
-                </Box>
-                <ToastContainer/>
+                    <IconButton onClick={() => {
+                        setExportSingleBuildOpen(true);
+                    }}>
+                        <Tooltip title={"Export Single Build"}>
+                            <Filter1Icon/>
+                        </Tooltip>
+                    </IconButton>
+                    <IconButton onClick={() => {
+                        RemnantStorageApi.clearStorage();
+                        const l = RemnantStorageApi.getLocalLoadOuts();
+                        saveLoadouts(l);
+                        dispatch(actions.reset());
+                        setSelectedBuild(l.loadouts[0]);
+                        toast.success("Successfully reset all builds!");
+                    }}>
+                        <Tooltip title={"Remove all builds"}>
+                            <DeleteIcon style={{color: 'red'}}/>
+                        </Tooltip>
+                    </IconButton>
 
-                <RingsInventory />
-                <AmuletsInventory />
-                <RelicsInventory />
-                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} alignContent={'start'}>
-                    <LongGunsInventory />
-                    <HandGunsInventory />
-                    <MeleeWeaponsInventory/>
-                </Box>
-
-
-                <Dialog open={buildPreviewOpen} onClose={(event, reason) => {
-                    setBuildPreviewOpen(false);
-                }} fullWidth={true} maxWidth={'xl'}>
-                    <DialogTitle>
-                        Import {importedBuildType} build
-                    </DialogTitle>
-                    <DialogContent>
-                        {importedBuildType === 'single' ?
-                            <Box>
-                                <Typography>
-                                    Choose which build to overwrite
-                                </Typography>
-                                <Select
-                                    fullWidth
-                                    value={selectedBuild}
-                                    label={"Select Build to Overwrite"}
-                                    onChange={(e) => setSelectedBuild(e.target.value)}
-                                >
-                                    {loadouts.loadouts.map((l, index) => {
-                                        return (
-                                            <MenuItem key={index + l.loadoutName} value={l}>
-                                                Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
-                                            </MenuItem>
-                                        )
-                                    })}
-                                </Select>
-                                <DialogActions>
-                                    <Button variant={'contained'} onClick={() => {
-                                        overwriteBuild(importedBuildData);
-                                        setBuildPreviewOpen(false);
-                                        toast.success(`Successfully imported build!`);
-
-                                    }}>
-                                        Import
-                                    </Button>
-                                    <Button variant={'contained'} onClick={() => {
-                                        setBuildPreviewOpen(false);
-                                    }}>
-                                        Close
-                                    </Button>
-                                </DialogActions>
-
-                            </Box> :
-                            <Box>
-                                <Typography>
-                                    Clicking "Import" will overwrite all of your builds. Continue?
-                                </Typography>
-                                <DialogActions>
-                                    <Button onClick={() => {
-                                        importFullBuild(importedBuildData);
-                                        toast.success("Successfully imported all builds.");
-                                        setBuildPreviewOpen(false);
-                                        setImportedBuildData({});
-                                    }}>
-                                        Import
-                                    </Button>
-                                    <Button variant={'contained'} onClick={() => {
-                                        setBuildPreviewOpen(false);
-                                        setImportedBuildData({});
-                                    }}>
-                                        Close
-
-                                    </Button>
-                                </DialogActions>
-
-                            </Box>
-                        }
-
-                    </DialogContent>
-
-
-                </Dialog>
-
-                <Dialog fullWidth={true} maxWidth={'xl'} open={exportSingleBuildOpen} onClose={(event, reason) => {
-                    setExportSingleBuildOpen(false);
-                }}>
-                    <DialogTitle>
-                        Export Single Build
-                    </DialogTitle>
-                    <DialogContent>
-                        <Select
-                            label={"Select Build"}
-                            fullWidth={true}
-                            value={selectedBuild}
-                            onChange={(e) => setSelectedBuild(e.target.value)}>
-                            {loadouts.loadouts.map((l, index) => {
-                                return (
-                                    <MenuItem key={index} value={l}>
-                                        Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
-                                    </MenuItem>
-                                )
-                            })}
-
-
-                        </Select>
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={() => {
-                            exportBuildFile(selectedBuild, 'single');
-                            setSelectedBuild(loadouts.loadouts[0]);
-                            setExportSingleBuildOpen(false);
-                        }}>
-                            Export
-                        </Button>
-                        <Button onClick={() => {
-                            setExportSingleBuildOpen(false);
-                        }} color={'primary'} variant={'contained'}>
-                            Close
-                        </Button>
-                    </DialogActions>
-
-                </Dialog>
-
-
-                <Dialog fullWidth={true} maxWidth={'xl'} open={shareBuildOpen} onClose={(event, reason) => {
-                    setShareBuildOpen(false);
-                }}>
-                    <DialogTitle>
-                        Share Build
-                    </DialogTitle>
-                    <DialogContent>
-                        <Select
-                            label={"Select Build to share"}
-                            fullWidth={true}
-                            value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
-                            {loadouts.loadouts.map((l, index) => {
-                                return (
-                                    <MenuItem key={index} value={l}>
-                                        Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
-                                    </MenuItem>
-                                )
-                            })}
-                        </Select>
-
-                        {shareBuildLoading && <CircularProgress/>}
-                        {sharedBuildUrl !== "" && <Box marginTop={'25px'}>
-                            <Box display={'flex'} justifyContent={"center"} alignItems={"center"} flexWrap={'wrap'}>
-                                <Typography variant={'h6'} overflow={'hidden'}>{sharedBuildUrl}</Typography>
-                                <IconButton onClick={() => {
-                                    navigator.clipboard.writeText(sharedBuildUrl);
-                                    toast.success("Copied to clipboard!")
-                                }}>
-                                    <ContentCopyIcon/>
-                                </IconButton>
-                            </Box>
-                            <Box display={'flex'} justifyContent={"center"}>
-                                <Typography>Make sure to copy this URL; it is unique to your build.</Typography>
-
-                            </Box>
-
-                        </Box>}
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={async () => {
-                            setShareBuildLoading(true);
-                            setSharedBuildUrl("");
-                            try {
-                                const resp = await RemnantBuildWebApi.uploadBuild(selectedBuild);
-                                if (!resp.success) {
-                                    throw new Error(resp.message);
-                                }
-                                const buildId = resp.data.buildId;
-                                sendShareUrlBuildEvent(buildId);
-                                let generatedLink;
-                                if (isProduction) {
-                                    generatedLink = `${window.location.origin}/${REPO_NAME}/#/build/${buildId}`;
-                                } else {
-                                    generatedLink = `${window.location.origin}/#/build/${buildId}`;
-                                }
-
-                                setSharedBuildUrl(generatedLink);
-                            } catch (e) {
-                                toast.error(`Something went wrong with sharing build ${e}`);
-                            }
-                            setSelectedBuild(loadouts.loadouts[0]);
-                            setExportSingleBuildOpen(false);
-                            setShareBuildLoading(false);
-                        }}>
-                            Share
-                        </Button>
-                        <Button onClick={() => {
-                            setShareBuildOpen(false);
-                        }} color={'primary'} variant={'contained'}>
-                            Close
-                        </Button>
-                    </DialogActions>
-
-                </Dialog>
+                </Toolbar>
+            </AppBar>
+            <Box marginLeft={"5%"}>
+                <Typography fontFamily={'Poppins'} variant={'h4'}>Loadout</Typography>
             </Box>
+            <Box display={'flex'} justifyContent={'center'}>
+                <TextField
+                    value={loadouts.loadouts[loadouts.currentLoadoutIndex].loadoutName}
+                    label={"Loadout Name"}
+                    onChange={(e) => {
+                        dispatch(actions.setLoadoutName(e.target.value));
+                    }}
+                >
+
+                </TextField>
+            </Box>
+            <Box display={'flex'} margin={'25px'} gap={"25px"} justifyContent={'center'} flexWrap={'wrap'}>
+                {getLoadoutSelector("I", 0)}
+                {getLoadoutSelector("II", 1)}
+                {getLoadoutSelector("III", 2)}
+                {getLoadoutSelector("IV", 3)}
+                {getLoadoutSelector("V", 4)}
+                {getLoadoutSelector("VI", 5)}
+                {getLoadoutSelector("VII", 6)}
+                {getLoadoutSelector("VIII", 7)}
+                {getLoadoutSelector("IX", 8)}
+                {getLoadoutSelector("X", 9)}
+            </Box>
+            <ToastContainer/>
+
+            <RingsInventory/>
+            <AmuletsInventory/>
+            <RelicsInventory/>
+            <Box display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} alignContent={'start'}>
+                <LongGunsInventory/>
+                <HandGunsInventory/>
+                <MeleeWeaponsInventory/>
+            </Box>
+
+
+            <Dialog open={buildPreviewOpen} onClose={(event, reason) => {
+                setBuildPreviewOpen(false);
+            }} fullWidth={true} maxWidth={'xl'}>
+                <DialogTitle>
+                    Import {importedBuildType} build
+                </DialogTitle>
+                <DialogContent>
+                    {importedBuildType === 'single' ?
+                        <Box>
+                            <Typography>
+                                Choose which build to overwrite
+                            </Typography>
+                            <Select
+                                fullWidth
+                                value={selectedBuild}
+                                label={"Select Build to Overwrite"}
+                                onChange={(e) => setSelectedBuild(e.target.value)}
+                            >
+                                {loadouts.loadouts.map((l, index) => {
+                                    return (
+                                        <MenuItem key={index + l.loadoutName} value={l}>
+                                            Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
+                                        </MenuItem>
+                                    )
+                                })}
+                            </Select>
+                            <DialogActions>
+                                <Button variant={'contained'} onClick={() => {
+                                    overwriteBuild(importedBuildData);
+                                    setBuildPreviewOpen(false);
+                                    toast.success(`Successfully imported build!`);
+
+                                }}>
+                                    Import
+                                </Button>
+                                <Button variant={'contained'} onClick={() => {
+                                    setBuildPreviewOpen(false);
+                                }}>
+                                    Close
+                                </Button>
+                            </DialogActions>
+
+                        </Box> :
+                        <Box>
+                            <Typography>
+                                Clicking "Import" will overwrite all of your builds. Continue?
+                            </Typography>
+                            <DialogActions>
+                                <Button onClick={() => {
+                                    importFullBuild(importedBuildData);
+                                    toast.success("Successfully imported all builds.");
+                                    setBuildPreviewOpen(false);
+                                    setImportedBuildData({});
+                                }}>
+                                    Import
+                                </Button>
+                                <Button variant={'contained'} onClick={() => {
+                                    setBuildPreviewOpen(false);
+                                    setImportedBuildData({});
+                                }}>
+                                    Close
+
+                                </Button>
+                            </DialogActions>
+
+                        </Box>
+                    }
+
+                </DialogContent>
+
+
+            </Dialog>
+
+            <Dialog fullWidth={true} maxWidth={'xl'} open={exportSingleBuildOpen} onClose={(event, reason) => {
+                setExportSingleBuildOpen(false);
+            }}>
+                <DialogTitle>
+                    Export Single Build
+                </DialogTitle>
+                <DialogContent>
+                    <Select
+                        label={"Select Build"}
+                        fullWidth={true}
+                        value={selectedBuild}
+                        onChange={(e) => setSelectedBuild(e.target.value)}>
+                        {loadouts.loadouts.map((l, index) => {
+                            return (
+                                <MenuItem key={index} value={l}>
+                                    Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
+                                </MenuItem>
+                            )
+                        })}
+
+
+                    </Select>
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => {
+                        exportBuildFile(selectedBuild, 'single');
+                        setSelectedBuild(loadouts.loadouts[0]);
+                        setExportSingleBuildOpen(false);
+                    }}>
+                        Export
+                    </Button>
+                    <Button onClick={() => {
+                        setExportSingleBuildOpen(false);
+                    }} color={'primary'} variant={'contained'}>
+                        Close
+                    </Button>
+                </DialogActions>
+
+            </Dialog>
+
+
+            <Dialog fullWidth={true} maxWidth={'xl'} open={shareBuildOpen} onClose={(event, reason) => {
+                setShareBuildOpen(false);
+            }}>
+                <DialogTitle>
+                    Share Build
+                </DialogTitle>
+                <DialogContent>
+                    <Select
+                        label={"Select Build to share"}
+                        fullWidth={true}
+                        value={selectedBuild} onChange={(e) => setSelectedBuild(e.target.value)}>
+                        {loadouts.loadouts.map((l, index) => {
+                            return (
+                                <MenuItem key={index} value={l}>
+                                    Build {index + 1}, {l.loadoutName === "" ? "No Loadout Name" : l.loadoutName}
+                                </MenuItem>
+                            )
+                        })}
+                    </Select>
+
+                    {shareBuildLoading && <CircularProgress/>}
+                    {sharedBuildUrl !== "" && <Box marginTop={'25px'}>
+                        <Box display={'flex'} justifyContent={"center"} alignItems={"center"} flexWrap={'wrap'}>
+                            <Typography variant={'h6'} overflow={'hidden'}>{sharedBuildUrl}</Typography>
+                            <IconButton onClick={() => {
+                                navigator.clipboard.writeText(sharedBuildUrl);
+                                toast.success("Copied to clipboard!")
+                            }}>
+                                <ContentCopyIcon/>
+                            </IconButton>
+                        </Box>
+                        <Box display={'flex'} justifyContent={"center"}>
+                            <Typography>Make sure to copy this URL; it is unique to your build.</Typography>
+
+                        </Box>
+
+                    </Box>}
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={async () => {
+                        setShareBuildLoading(true);
+                        setSharedBuildUrl("");
+                        try {
+                            const resp = await RemnantBuildWebApi.uploadBuild(selectedBuild);
+                            if (!resp.success) {
+                                throw new Error(resp.message);
+                            }
+                            const buildId = resp.data.buildId;
+                            sendShareUrlBuildEvent(buildId);
+                            let generatedLink;
+                            if (isProduction) {
+                                generatedLink = `${window.location.origin}/${REPO_NAME}/#/build/${buildId}`;
+                            } else {
+                                generatedLink = `${window.location.origin}/#/build/${buildId}`;
+                            }
+
+                            setSharedBuildUrl(generatedLink);
+                        } catch (e) {
+                            toast.error(`Something went wrong with sharing build ${e}`);
+                        }
+                        setSelectedBuild(loadouts.loadouts[0]);
+                        setExportSingleBuildOpen(false);
+                        setShareBuildLoading(false);
+                    }}>
+                        Share
+                    </Button>
+                    <Button onClick={() => {
+                        setShareBuildOpen(false);
+                    }} color={'primary'} variant={'contained'}>
+                        Close
+                    </Button>
+                </DialogActions>
+
+            </Dialog>
+
+            <Dialog open={generalSearchOpen} onClose={() => setGeneralSearchOpen(false)} fullWidth={true}
+                    maxWidth={'xl'}>
+
+                <DialogTitle>
+                    General Item Search
+                </DialogTitle>
+                <DialogContent>
+                    <Autocomplete
+                        fullWidth={true}
+                        getOptionLabel={(option) => getOptionLabel(option)}
+                        value={generalSearchValue}
+                        options={allGeneralSearchItems}
+                        renderInput={(params) => <TextField {...params} label="Search all items"
+                                                            variant="outlined"/>}
+                        onChange={(e, newValue) => setGeneralSearchValue(newValue)}
+
+                        onInputChange={(event, newValue) => {
+                          const filteredOptions = allGeneralSearchItems.filter((r) => {
+                              const label = getOptionLabel(r).toLowerCase();
+                              return label.includes(newValue.toLowerCase());
+                          });
+                          setSearchedGeneralItems(filteredOptions);
+                          setGeneralSearchValue(newValue);
+                        }}
+                    ></Autocomplete>
+
+
+
+
+                </DialogContent>
+
+
+            </Dialog>
+        </Box>
     );
 }
 
