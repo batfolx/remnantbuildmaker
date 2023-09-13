@@ -13,13 +13,120 @@ rings_filename = 'rings.json'
 long_guns_url = "Long+Guns"
 handguns_url = "Handguns"
 melee_weapons_url = "Melee+Weapons"
+armor_head_url = "Head+Armor"
+armor_gloves_url = "Gloves"
+armor_body_url = "Body+Armor"
+armor_legs_url = "Leg+Armor"
 # relics_url, weapon_mods_url, mutators_mod, amulet_url, ring_url,
 # long_guns_url, handguns_url, melee_weapons_url
-endpoints = [long_guns_url]
+endpoints = [relics_url]
+# armor_head_url, armor_gloves_url, armor_body_url, armor_legs_url
+armor_endpoints = [long_guns_url]
 
+def get_title(element):
+    title = element.find("a", {"class": "wiki_tooltip"})
+    if title:
+        return title
+    else:
+        title = element.find("a", {"class": "wiki_link"})
+        if title:
+            return title
+        else:
+            return
+        
+def get_armor_data():
+    for endpoint in armor_endpoints:
+        url = f"{base_url}/{endpoint}"
+        r = requests.get(url)
+        soup = bs4.BeautifulSoup(r.content, 'html.parser')
+        class_name = "col-sm-2 col-xs-6"
+        elements = soup.find_all(class_=class_name)
+        items = []
+        for i, remnantItem in enumerate(elements):
+            title = get_title(remnantItem)
+            img = remnantItem.find("img")
+            item_name = ''
+            item_href = ''
+            item_img = ''
+            if title:
+                item_name = title.getText()
+                item_href = title.get("href")
+            else:
+                print(f"Currently on item {i + 1} / {len(elements)}, no data found, skipping")
+                continue
+
+            if img:
+                item_img = img.get("src")
+
+            item_full_href = f"{base_url}{item_href}"
+            r = requests.get(item_full_href)
+            item_soup = bs4.BeautifulSoup(r.content, 'lxml')
+            item_description = item_soup.find_all('tr', class_="infobox_a_description")
+            if item_description:
+                item_description = item_description[0]
+                item_description = item_description.getText()
+            else:
+                item_description = "No item description found."
+
+            if "Monster-Hunter-World" in item_img:
+                additional_item_img = item_soup.find_all('td', class_='infobox_a_image_background')
+                if additional_item_img:
+                    additional_item_img = additional_item_img[0].find_next('img')
+                    item_img = additional_item_img.get('src')
+
+            item_lore = item_soup.find_all('blockquote')
+            if item_lore:
+                item_lore = item_lore[0]
+                item_lore = item_lore.getText()
+            else:
+                item_lore = "No item lore found."
+
+            additional_armor_info = {}
+            armor_info = item_soup.find_all('tr', class_='infobox_a_damage')
+            if armor_info:
+                armor_info = armor_info[0]
+                armor_stats = armor_info.find_all_next('h4')
+                if armor_stats:
+                    print(armor_stats)
+                    armor_value = armor_stats[0].getText()
+                    armor_weight = armor_stats[1].getText()
+                    armor_bleed_resist = armor_stats[2].getText()
+                    armor_fire_resist = armor_stats[3].getText()
+                    armor_shock_resist = armor_stats[4].getText()
+                    armor_blight_resist = armor_stats[5].getText()
+                    armor_toxin_resist = armor_stats[6].getText()
+                    additional_armor_info["armorValue"] = armor_value
+                    additional_armor_info["armorWeight"] = armor_weight
+                    additional_armor_info["armorBleedResist"] = armor_bleed_resist
+                    additional_armor_info["armorFireResist"] = armor_fire_resist
+                    additional_armor_info["armorShockResist"] = armor_shock_resist
+                    additional_armor_info["armorBlightResist"] = armor_blight_resist
+                    additional_armor_info["armorToxinResist"] = armor_toxin_resist
+
+            item_payload = {
+                "itemId": i,
+                "itemName": item_name,
+                "itemHref": item_href,
+                "itemFullHref": item_full_href,
+                "itemImageLinkPath": item_img,
+                "itemImageLinkFullPath": f'{base_url}{item_img}',
+                "itemDescription": item_description,
+                "itemLore": item_lore,
+                "itemType": endpoint,
+                "armorInfo": additional_armor_info
+            }
+            print(f"Currently on item {i + 1} / {len(elements)}, item name being {item_name}")
+
+            time.sleep(1)
+            items.append(item_payload)
+
+        item_filename = f"{endpoint}.json"
+        with open(item_filename, 'w+') as f:
+            json.dump(items, f)
+        
+        
 
 def get_remnant_data():
-
     for endpoint in endpoints:
         url = f"{base_url}/{endpoint}"
         r = requests.get(url)
@@ -28,7 +135,7 @@ def get_remnant_data():
         elements = soup.find_all(class_=class_name)
         items = []
         for i, remnantItem in enumerate(elements):
-            title = remnantItem.find('a')
+            title = get_title(remnantItem)
             img = remnantItem.find("img")
             item_name = ''
             item_href = ''
@@ -85,11 +192,12 @@ def get_remnant_data():
                 if gun_dmg_stats:
                     print(gun_dmg_stats)
                     gun_dmg = gun_dmg_stats[0].getText()
-                    gun_rps = gun_dmg_stats[1].getText()
-                    gun_mag_size = gun_dmg_stats[2].getText()
-                    additional_gun_info["gunDamage"] = gun_dmg
-                    additional_gun_info["gunRPS"] = gun_rps
-                    additional_gun_info["gunMagSize"] = gun_mag_size
+                    if endpoint != melee_weapons_url:
+                        gun_rps = gun_dmg_stats[1].getText()
+                        gun_mag_size = gun_dmg_stats[2].getText()
+                        additional_gun_info["gunDamage"] = gun_dmg
+                        additional_gun_info["gunRPS"] = gun_rps
+                        additional_gun_info["gunMagSize"] = gun_mag_size
 
             gun_stats = item_soup.find_all('tr', class_='infobox_a_stats')
             if gun_stats:
@@ -102,18 +210,27 @@ def get_remnant_data():
 
                 additional_stats = gun_stats.find_all('span', class_='a_stat_value')
                 if additional_stats:
-                    ideal_range = additional_stats[0].getText()
-                    falloff_range = additional_stats[1].getText()
-                    max_ammo = additional_stats[2].getText()
-                    crit_chance = additional_stats[3].getText()
-                    weakspot_dmg_bonus = additional_stats[4].getText()
-                    stagger_modifier = additional_stats[5].getText()
-                    additional_gun_info["idealRange"] = ideal_range
-                    additional_gun_info["falloffRange"] = falloff_range
-                    additional_gun_info["maxAmmo"] = max_ammo
-                    additional_gun_info["critChance"] = crit_chance
-                    additional_gun_info["weakspotDamageBonus"] = weakspot_dmg_bonus
-                    additional_gun_info["staggerModifier"] = stagger_modifier
+                    if endpoint == melee_weapons_url:
+                        crit_chance = additional_stats[0].getText()
+                        weakspot_dmg_bonus = additional_stats[1].getText()
+                        stagger_modifier = additional_stats[2].getText()
+                        additional_gun_info["critChance"] = crit_chance
+                        additional_gun_info["weakspotDamageBonus"] = weakspot_dmg_bonus
+                        additional_gun_info["staggerModifier"] = stagger_modifier
+                    else:
+                        ideal_range = additional_stats[0].getText()
+                        falloff_range = additional_stats[1].getText()
+                        max_ammo = additional_stats[2].getText()
+                        crit_chance = additional_stats[3].getText()
+                        weakspot_dmg_bonus = additional_stats[4].getText()
+                        stagger_modifier = additional_stats[5].getText()
+                        additional_gun_info["idealRange"] = ideal_range
+                        additional_gun_info["falloffRange"] = falloff_range
+                        additional_gun_info["maxAmmo"] = max_ammo
+                        additional_gun_info["critChance"] = crit_chance
+                        additional_gun_info["weakspotDamageBonus"] = weakspot_dmg_bonus
+                        additional_gun_info["staggerModifier"] = stagger_modifier
+                        
 
 
             item_payload = {
@@ -141,3 +258,4 @@ def get_remnant_data():
             json.dump(items, f)
 
 get_remnant_data()
+# get_armor_data()
