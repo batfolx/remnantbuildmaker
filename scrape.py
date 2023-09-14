@@ -87,7 +87,7 @@ def get_trait_data():
     with open(trait_filename, 'w+') as f:
         json.dump(traits, f)
 
-def get_class_data():
+def get_archetype_data():
     url = f"{base_url}/Classes"
     r = requests.get(url)
     soup = bs4.BeautifulSoup(r.content, 'html.parser')
@@ -95,66 +95,66 @@ def get_class_data():
     elements = soup.find_all(class_=class_name)
     class_name = "col-sm-3"
     elements = elements[0].find_all(class_=class_name)
-    rClasses = []
-    for i, remnantClass in enumerate(elements):
-        title = get_title(remnantClass)
-        img = remnantClass.find("img")
-        rClass_name = ''
-        rClass_href = ''
-        rClass_img = ''
+    archetypes = []
+    for i, remnantArchetype in enumerate(elements):
+        title = get_title(remnantArchetype)
+        img = remnantArchetype.find("img")
+        archetype_name = ''
+        archetype_href = ''
+        archetype_img = ''
         if title:
-            rClass_name = title.getText().strip()
-            rClass_href = title.get("href")
+            archetype_name = title.getText().strip()
+            archetype_href = title.get("href")
         else:
-            print(f"Currently on class {i + 1} / {len(elements)}, no data found, skipping")
+            print(f"Currently on archetype {i + 1} / {len(elements)}, no data found, skipping")
             continue
 
         if img:
-            rClass_img = img.get("src")
+            archetype_img = img.get("src")
 
-        rClass_full_href = f"{base_url}{rClass_href}"
-        r = requests.get(rClass_full_href)
-        rClass_soup = bs4.BeautifulSoup(r.content, 'lxml')
+        archetype_full_href = f"{base_url}{archetype_href}"
+        r = requests.get(archetype_full_href)
+        archetype_soup = bs4.BeautifulSoup(r.content, 'lxml')
 
-        rClass_description = rClass_soup.find_all('blockquote')
-        if rClass_description:
-            rClass_description = rClass_description[0]
-            rClass_description = rClass_description.getText()
+        archetype_description = archetype_soup.find_all('blockquote')
+        if archetype_description:
+            archetype_description = archetype_description[0]
+            archetype_description = archetype_description.getText()
 
-        additional_rClass_info = {}
-        rClass_info = rClass_soup.find_all(class_="infobox")
-        if rClass_info:
-            rClass_info = rClass_info[0]
-            prime_perk_info = rClass_info.find(lambda tag: tag.name == "td" and "Prime Perk" in tag.text).find_next_sibling().find("a")
-            arch_trait_info = rClass_info.find(lambda tag: tag.name == "td" and "Archetype Trait" in tag.text).find_next_sibling().find("a")
-            rClass_perk_name = prime_perk_info.getText()
-            rClass_perk_href = prime_perk_info.get("href")
-            rClass_trait_name = arch_trait_info.getText()
-            rClass_trait_href = arch_trait_info.get("href")
-            additional_rClass_info["primePerk"] = rClass_perk_name
-            additional_rClass_info["primePerkUrl"] = rClass_perk_href
-            additional_rClass_info["archetypeTrait"] = rClass_trait_name
-            additional_rClass_info["archetypeTraitHref"] = rClass_trait_href
+        additional_archetype_info = {}
+        archetype_info = archetype_soup.find_all(class_="infobox")
+        if archetype_info:
+            archetype_info = archetype_info[0]
+            prime_perk_info = archetype_info.find(lambda tag: tag.name == "td" and "Prime Perk" in tag.text).find_next_sibling().find("a")
+            arch_trait_info = archetype_info.find(lambda tag: tag.name == "td" and "Archetype Trait" in tag.text).find_next_sibling().find("a")
+            archetype_perk_name = prime_perk_info.getText()
+            archetype_perk_href = prime_perk_info.get("href")
+            archetype_trait_name = arch_trait_info.getText()
+            archetype_trait_href = arch_trait_info.get("href")
+            additional_archetype_info["primePerk"] = archetype_perk_name
+            additional_archetype_info["primePerkUrl"] = archetype_perk_href
+            additional_archetype_info["archetypeTrait"] = archetype_trait_name
+            additional_archetype_info["archetypeTraitHref"] = archetype_trait_href
 
-        rClass_payload = {
-            "classId": i,
-            "className": rClass_name,
-            "classHref": rClass_href,
-            "classFullHref": rClass_full_href,
-            "classImageLinkPath": rClass_img,
-            "classImageLinkFullPath": f'{base_url}{rClass_img}',
-            "classDescription": rClass_description,
-            "classInfo": additional_rClass_info
+        archetype_payload = {
+            "archetypeId": i,
+            "archetypeName": archetype_name,
+            "archetypeHref": archetype_href,
+            "archetypeFullHref": archetype_full_href,
+            "archetypeImageLinkPath": archetype_img,
+            "archetypeImageLinkFullPath": f'{base_url}{archetype_img}',
+            "archetypeDescription": archetype_description,
+            "archetypeInfo": additional_archetype_info
         }
-        print(f"Currently on class {i + 1} / {len(elements)}, item name being {rClass_name}")
+        print(f"Currently on archetype {i + 1} / {len(elements)}, item name being {archetype_name}")
 
         time.sleep(1)
-        rClasses.append(rClass_payload)
+        archetypes.append(archetype_payload)
 
-    rClass_filename = f"{json_folder_url}Classes.json"
-    os.makedirs(os.path.dirname(rClass_filename), exist_ok=True)
-    with open(rClass_filename, 'w+') as f:
-        json.dump(rClasses, f) 
+    archetype_filename = f"{json_folder_url}Archetypes.json"
+    os.makedirs(os.path.dirname(archetype_filename), exist_ok=True)
+    with open(archetype_filename, 'w+') as f:
+        json.dump(archetypes, f) 
         
 def get_armor_data():
     for endpoint in armor_endpoints:
@@ -376,7 +376,7 @@ def get_remnant_data():
 print(f"-----FETCHING TRAIT DATA-----")
 get_trait_data()
 print(f"-----FETCHING CLASS DATA-----")
-get_class_data()
+get_archetype_data()
 print(f"-----FETCHING ARMOR DATA-----")
 get_armor_data()
 print(f"---FETCHING REMAINING DATA---")
