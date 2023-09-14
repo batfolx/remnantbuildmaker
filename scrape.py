@@ -2,10 +2,12 @@ import json
 import time
 import bs4
 import requests
+import os
 
+json_folder_url = "./src/data/"
 base_url = 'https://remnant2.wiki.fextralife.com'
 weapon_mods_url = "Weapon+Mods"
-mutators_mod = "Mutators"
+mutators_url = "Mutators"
 amulet_url = "Amulets"
 ring_url = "Rings"
 relics_url = "Relics"
@@ -17,11 +19,12 @@ armor_head_url = "Head+Armor"
 armor_gloves_url = "Gloves"
 armor_body_url = "Body+Armor"
 armor_legs_url = "Leg+Armor"
-# relics_url, weapon_mods_url, mutators_mod, amulet_url, ring_url,
+traits_url = "Traits"
+# relics_url, weapon_mods_url, mutators_url, amulet_url, ring_url,
 # long_guns_url, handguns_url, melee_weapons_url
-endpoints = [relics_url]
+endpoints = [relics_url, weapon_mods_url, mutators_url, amulet_url, ring_url,long_guns_url, handguns_url, melee_weapons_url]
 # armor_head_url, armor_gloves_url, armor_body_url, armor_legs_url
-armor_endpoints = [long_guns_url]
+armor_endpoints = [armor_head_url, armor_gloves_url, armor_body_url, armor_legs_url]
 
 def get_title(element):
     title = element.find("a", {"class": "wiki_tooltip"})
@@ -33,6 +36,125 @@ def get_title(element):
             return title
         else:
             return
+
+def get_trait_data():
+    url = f"{base_url}/Traits"
+    r = requests.get(url)
+    soup = bs4.BeautifulSoup(r.content, 'html.parser')
+    class_name = "col-sm-3"
+    elements = soup.find_all(class_=class_name)
+    traits = []
+    for i, remnantTrait in enumerate(elements):
+        title = get_title(remnantTrait)
+        img = remnantTrait.find("img")
+        trait_name = ''
+        trait_href = ''
+        trait_img = ''
+        if title:
+            trait_name = title.getText();
+            trait_href = title.get("href")
+        else:
+            print(f"Currently on trait {i + 1} / {len(elements)}, no data found, skipping")
+            continue
+        if img:
+            trait_img = img.get("src")
+
+        trait_full_href = f"{base_url}{trait_href}"
+        r = requests.get(trait_full_href)
+        trait_soup = bs4.BeautifulSoup(r.content, 'lxml')
+        trait_description = trait_soup.find_all('tr', class_="infobox_a_description")
+        if trait_description:
+            trait_description = trait_description[0]
+            trait_description = trait_description.getText()
+        else:
+            trait_description = "No trait description found."
+
+        trait_payload = {
+                "traitId": i,
+                "traitName": trait_name,
+                "traitHref": trait_href,
+                "traitFullHref": trait_full_href,
+                "traitImageLinkPath": trait_img,
+                "traitImageLinkFullPath": f'{base_url}{trait_img}',
+                "traitDescription": trait_description
+        }
+        print(f"Currently on trait {i + 1} / {len(elements)}, trait name being {trait_name}")
+        time.sleep(1)
+        traits.append(trait_payload)
+
+    trait_filename = f"{json_folder_url}Traits.json"
+    os.makedirs(os.path.dirname(trait_filename), exist_ok=True)
+    with open(trait_filename, 'w+') as f:
+        json.dump(traits, f)
+
+def get_class_data():
+    url = f"{base_url}/Classes"
+    r = requests.get(url)
+    soup = bs4.BeautifulSoup(r.content, 'html.parser')
+    class_name = "tabcontent All-tab tabcurrent"
+    elements = soup.find_all(class_=class_name)
+    class_name = "col-sm-3"
+    elements = elements[0].find_all(class_=class_name)
+    rClasses = []
+    for i, remnantClass in enumerate(elements):
+        title = get_title(remnantClass)
+        img = remnantClass.find("img")
+        rClass_name = ''
+        rClass_href = ''
+        rClass_img = ''
+        if title:
+            rClass_name = title.getText().strip()
+            rClass_href = title.get("href")
+        else:
+            print(f"Currently on class {i + 1} / {len(elements)}, no data found, skipping")
+            continue
+
+        if img:
+            rClass_img = img.get("src")
+
+        rClass_full_href = f"{base_url}{rClass_href}"
+        r = requests.get(rClass_full_href)
+        rClass_soup = bs4.BeautifulSoup(r.content, 'lxml')
+
+        rClass_description = rClass_soup.find_all('blockquote')
+        if rClass_description:
+            rClass_description = rClass_description[0]
+            rClass_description = rClass_description.getText()
+
+        additional_rClass_info = {}
+        rClass_info = rClass_soup.find_all(class_="infobox")
+        if rClass_info:
+            rClass_info = rClass_info[0]
+            prime_perk_info = rClass_info.find(lambda tag: tag.name == "td" and "Prime Perk" in tag.text).find_next_sibling().find("a")
+            arch_trait_info = rClass_info.find(lambda tag: tag.name == "td" and "Archetype Trait" in tag.text).find_next_sibling().find("a")
+            rClass_perk_name = prime_perk_info.getText()
+            rClass_perk_href = prime_perk_info.get("href")
+            rClass_trait_name = arch_trait_info.getText()
+            rClass_trait_href = arch_trait_info.get("href")
+            additional_rClass_info["primePerk"] = rClass_perk_name
+            additional_rClass_info["primePerkUrl"] = rClass_perk_href
+            additional_rClass_info["archetypeTrait"] = rClass_trait_name
+            additional_rClass_info["archetypeTraitHref"] = rClass_trait_href
+
+        rClass_payload = {
+            "classId": i,
+            "className": rClass_name,
+            "classHref": rClass_href,
+            "classFullHref": rClass_full_href,
+            "classImageLinkPath": rClass_img,
+            "classImageLinkFullPath": f'{base_url}{rClass_img}',
+            "classDescription": rClass_description,
+            "classInfo": additional_rClass_info
+        }
+        print(f"Currently on class {i + 1} / {len(elements)}, item name being {rClass_name}")
+
+        time.sleep(1)
+        rClasses.append(rClass_payload)
+
+    rClass_filename = f"{json_folder_url}Classes.json"
+    os.makedirs(os.path.dirname(rClass_filename), exist_ok=True)
+    with open(rClass_filename, 'w+') as f:
+        json.dump(rClasses, f) 
         
 def get_armor_data():
     for endpoint in armor_endpoints:
@@ -67,12 +189,6 @@ def get_armor_data():
                 item_description = item_description.getText()
             else:
                 item_description = "No item description found."
-
-            if "Monster-Hunter-World" in item_img:
-                additional_item_img = item_soup.find_all('td', class_='infobox_a_image_background')
-                if additional_item_img:
-                    additional_item_img = additional_item_img[0].find_next('img')
-                    item_img = additional_item_img.get('src')
 
             item_lore = item_soup.find_all('blockquote')
             if item_lore:
@@ -115,17 +231,17 @@ def get_armor_data():
                 "itemType": endpoint,
                 "armorInfo": additional_armor_info
             }
-            print(f"Currently on item {i + 1} / {len(elements)}, item name being {item_name}")
+            print(f"Currently on item {i + 1} / {len(elements)}, class name being {item_name}")
 
             time.sleep(1)
             items.append(item_payload)
 
-        item_filename = f"{endpoint}.json"
+        sanitized_filename = endpoint.replace("+","")
+        item_filename = f"{json_folder_url}{sanitized_filename}.json"
+        os.makedirs(os.path.dirname(item_filename), exist_ok=True)
         with open(item_filename, 'w+') as f:
             json.dump(items, f)
         
-        
-
 def get_remnant_data():
     for endpoint in endpoints:
         url = f"{base_url}/{endpoint}"
@@ -230,8 +346,6 @@ def get_remnant_data():
                         additional_gun_info["critChance"] = crit_chance
                         additional_gun_info["weakspotDamageBonus"] = weakspot_dmg_bonus
                         additional_gun_info["staggerModifier"] = stagger_modifier
-                        
-
 
             item_payload = {
                 "itemId": i,
@@ -253,9 +367,18 @@ def get_remnant_data():
             items.append(item_payload)
 
 
-        item_filename = f"{endpoint}.json"
+        sanitized_filename = endpoint.replace("+","")
+        item_filename = f"{json_folder_url}{sanitized_filename}.json"
+        os.makedirs(os.path.dirname(item_filename), exist_ok=True)
         with open(item_filename, 'w+') as f:
             json.dump(items, f)
 
+print(f"-----FETCHING TRAIT DATA-----")
+get_trait_data()
+print(f"-----FETCHING CLASS DATA-----")
+get_class_data()
+print(f"-----FETCHING ARMOR DATA-----")
+get_armor_data()
+print(f"---FETCHING REMAINING DATA---")
 get_remnant_data()
-# get_armor_data()
+print("-------------DONE-------------")

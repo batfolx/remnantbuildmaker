@@ -1,5 +1,5 @@
 import {useState} from "react";
-import meleeWeaponsJson from "../items/MeleeWeapons.json";
+import meleeWeaponsJson from "../data/MeleeWeapons.json";
 import {
     Autocomplete,
     Box,
@@ -14,8 +14,8 @@ import {BorderColor, sendMeleeSearchEvent, sendMutatorSearchEvent} from "../cons
 import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
-import weaponModsJson from "../items/WeaponMods.json";
-import mutators from "../items/Mutators.json";
+import weaponModsJson from "../data/WeaponMods.json";
+import mutators from "../data/Mutators.json";
 import {useDispatch, useSelector} from "react-redux";
 import {actions} from "../reducers/loadoutReducer";
 

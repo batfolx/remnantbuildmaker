@@ -14,7 +14,7 @@ import {highlightText, getOptionLabel, getHeaderComponent} from "../utilFunction
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
-import ringsItemsJson from "../items/rings.json"
+import ringsItemsJson from "../data/Rings.json"
 import {useDispatch, useSelector} from "react-redux";
 import {actions} from "../reducers/loadoutReducer";
 

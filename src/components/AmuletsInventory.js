@@ -9,7 +9,7 @@ import {
     DialogContent,
     Zoom
 } from "@mui/material";
-import amuletsItemsJson from "../items/Amulets.json";
+import amuletsItemsJson from "../data/Amulets.json";
 import { BorderColor, sendAmuletSearchEvent} from "../constants";
 import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import {useState} from "react";
