@@ -19,7 +19,7 @@ import RelicsInventory from "./components/RelicsInventory";
 import LongGunsInventory from "./components/LongGunsInventory";
 import HandGunsInventory from "./components/HandGunsInventory";
 import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
-import ClassesInventory from "./components/ArchetypesInventory";
+import ArchetypesInventory from "./components/ArchetypesInventory";
 import RemnantStorageApi from "./storageApi";
 import {useState} from "react";
 import {UploadFile} from "@mui/icons-material";
@@ -225,7 +225,7 @@ function RemnantBuilderApp() {
                 </Box>
                 <ToastContainer/>
 
-                <ClassesInventory />
+                <ArchetypesInventory />
                 <RingsInventory />
                 <AmuletsInventory />
                 <RelicsInventory />
