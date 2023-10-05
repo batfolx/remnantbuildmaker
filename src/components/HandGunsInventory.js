@@ -1,5 +1,5 @@
 import {useState} from "react";
-import handGunsJson from "../items/Handguns.json";
+import handGunsJson from "../data/Handguns.json";
 import {
     Autocomplete,
     Box,
@@ -17,9 +17,9 @@ import {
 import {getHeaderComponent, getOptionLabel, highlightText} from "../utilFunctions";
 import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
-import longGunsJson from "../items/LongGuns.json";
-import weaponModsJson from "../items/WeaponMods.json";
-import mutators from "../items/Mutators.json";
+import longGunsJson from "../data/LongGuns.json";
+import weaponModsJson from "../data/WeaponMods.json";
+import mutators from "../data/Mutators.json";
 import {useDispatch, useSelector} from "react-redux";
 import {actions} from "../reducers/loadoutReducer";
 

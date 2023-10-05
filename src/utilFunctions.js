@@ -54,6 +54,13 @@ export function getOptionLabel(item) {
     return `${item.itemName} ${item.itemDescription}`
 }
 
+export function getArchetypeLabel(archetype) {
+    if (typeof archetype === 'string') {
+        return archetype;
+    }
+    return `${archetype.archetypeName} - ${archetype.archetypeDescription}`;
+}
+
 export async function exportBuildFile(loadouts, buildType) {
     const loadoutsCopy = {...loadouts};
     loadoutsCopy.buildType = buildType;

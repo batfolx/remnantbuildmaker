@@ -1,5 +1,5 @@
 import {useState} from "react";
-import relicsItemsJson from "../items/Relics.json";
+import relicsItemsJson from "../data/Relics.json";
 import {
     Autocomplete,
     Box,

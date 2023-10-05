@@ -23,6 +23,11 @@ const loadoutReducer = createSlice({
             saveLoadouts(state);
         },
 
+        setLoadOutArchetypes: (state, action) => {
+            state.loadouts[state.currentLoadoutIndex].archetypes = action.payload;
+            saveLoadouts(state);
+        },
+
         setLoadOutRings: (state, action) => {
             state.loadouts[state.currentLoadoutIndex].rings = action.payload;
             saveLoadouts(state);

@@ -1,11 +1,12 @@
-import rings from "./items/rings.json";
-import amulets from "./items/Amulets.json";
-import relics from "./items/Relics.json";
-import longGuns from "./items/LongGuns.json";
-import meleeWeapons from "./items/MeleeWeapons.json";
-import handGuns from "./items/Handguns.json";
-import weaponMods from "./items/WeaponMods.json";
-import mutators from "./items/Mutators.json";
+import rings from "./data/Rings.json";
+import amulets from "./data/Amulets.json";
+import relics from "./data/Relics.json";
+import longGuns from "./data/LongGuns.json";
+import meleeWeapons from "./data/MeleeWeapons.json";
+import handGuns from "./data/Handguns.json";
+import weaponMods from "./data/WeaponMods.json";
+import mutators from "./data/Mutators.json";
+import archetypes from "./data/Archetypes.json";
 
 class RemnantStorageApi {
 
@@ -34,6 +35,7 @@ class RemnantStorageApi {
     }
 
     static generateDefaultLoadOut() {
+        const firstTwoArchetypes = archetypes.slice(0, 2);
         const firstFourRings = rings.slice(0, 4);
         const firstAmulet = amulets[0];
         const firstRelic = relics[0];
@@ -48,6 +50,7 @@ class RemnantStorageApi {
         const entry = {
             loadoutName: "",
             lastEdited: d,
+            archetypes: firstTwoArchetypes,
             rings: firstFourRings,
             amulet: firstAmulet,
             relic: firstRelic,

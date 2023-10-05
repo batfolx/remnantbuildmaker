@@ -12,6 +12,7 @@ export const SuppressionTextColor = 'rgb(63, 65, 91)';
 export const BurningTextColor = 'rgb(159, 103, 78)';
 
 export const ACTION_EXPORT_BUILD = "EXPORT_BUILD";
+const ACTION_ARCHETYPE_SEARCH = "ACTION_ARCHETYPE_SEARCH";
 const ACTION_IMPORT_BUILD = "IMPORT_BUILD";
 const ACTION_SWITCH_BUILD = "SWITCH_BUILD";
 const ACTION_AMULET_SEARCH = "AMULET_SEARCH";
@@ -26,6 +27,14 @@ const ACTION_MUTATOR_MOD_SEARCH = "ACTION_MUTATOR_MOD_SEARCH";
 const ACTION_BUILD_URL_SHARE = "ACTION_BUILD_URL_SHARE";
 const ACTION_BUILD_URL_IMPORT = "ACTION_BUILD_URL_IMPORT";
 export  const CATEGORY_BUILDMAKER = "CATERGORY_BUILDMAKER";
+
+export const sendArchetypeSearchEvent = () => {
+    ReactGA.event({
+        category: CATEGORY_BUILDMAKER,
+        action: ACTION_ARCHETYPE_SEARCH,
+        label: `Search Archetypes PROD: ${isProduction}`
+    });
+}
 
 export const sendLongGunWeaponModSearchEvent = () => {
     ReactGA.event({

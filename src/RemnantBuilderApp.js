@@ -14,10 +14,14 @@ import {
     sendImportFullBuildEvent, sendImportSingleBuildEvent, REPO_NAME, sendShareUrlBuildEvent
 } from "./constants";
 import RingsInventory from "./components/RingsInventory";
-import RemnantStorageApi from "./storageApi";
-import {useState} from "react";
 import AmuletsInventory from "./components/AmuletsInventory";
 import RelicsInventory from "./components/RelicsInventory";
+import LongGunsInventory from "./components/LongGunsInventory";
+import HandGunsInventory from "./components/HandGunsInventory";
+import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
+import ArchetypesInventory from "./components/ArchetypesInventory";
+import RemnantStorageApi from "./storageApi";
+import {useState} from "react";
 import {UploadFile} from "@mui/icons-material";
 import {useFilePicker} from 'use-file-picker';
 import {exportBuildFile, isProduction} from "./utilFunctions";
@@ -27,9 +31,6 @@ import Filter5Icon from '@mui/icons-material/Filter5';
 import Filter1Icon from '@mui/icons-material/Filter1';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
-import LongGunsInventory from "./components/LongGunsInventory";
-import HandGunsInventory from "./components/HandGunsInventory";
-import MeleeWeaponsInventory from "./components/MeleeWeaponsInventory";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ReactGA from "react-ga4";
 import RemnantBuildWebApi from "./buildWebApi";
@@ -224,6 +225,7 @@ function RemnantBuilderApp() {
                 </Box>
                 <ToastContainer/>
 
+                <ArchetypesInventory />
                 <RingsInventory />
                 <AmuletsInventory />
                 <RelicsInventory />

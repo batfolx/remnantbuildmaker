@@ -1,8 +1,8 @@
 import {useState} from "react";
-import longGunsJson from "../items/LongGuns.json";
-import weaponModsJson from "../items/WeaponMods.json";
-import handGunsJson from "../items/Handguns.json";
-import mutators from "../items/Mutators.json";
+import longGunsJson from "../data/LongGuns.json";
+import weaponModsJson from "../data/WeaponMods.json";
+import handGunsJson from "../data/Handguns.json";
+import mutators from "../data/Mutators.json";
 import {
     Autocomplete,
     Box,
