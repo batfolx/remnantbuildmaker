@@ -109,8 +109,19 @@
     "itemLore": "\nThe Krell had become entrenched around Elenran, but Linedhel refused to die a coward. She picked up a massive halberd and smashed through the Krell lines singlehanded, allowing the Pan warriors to overwhelm and defeat them.\n",
     "itemType": "Rings"
   },
-  {
+    {
     "itemId": 10,
+    "itemName": "Bisected Ring",
+    "itemHref": "/Bisected+Ring",
+    "itemFullHref": "https://remnant2.wiki.fextralife.com/Bisected+Ring",
+    "itemImageLinkPath": "/file/Remnant-2/bisected_ring_rings_remnant2_wiki_guide_250px.png",
+    "itemImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/bisected_ring_rings_remnant2_wiki_guide_250px.png",
+    "itemDescription": "\nGain Infinite Stamina. All damage received is increased by 15%\n",
+    "itemLore": "\nThe Labyrinth crumbles. Unstable. Processing power must be siphoned from one source to maintain another. Only thus does the Labyrinth stand..\n",
+    "itemType": "Rings"
+  },
+  {
+    "itemId": 11,
     "itemName": "Black Pawn Stamp",
     "itemHref": "/Black+Pawn+Stamp",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Black+Pawn+Stamp",
@@ -121,7 +132,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 11,
+    "itemId": 12,
     "itemName": "Blackout Ring",
     "itemHref": "/Blackout+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Blackout+Ring",
@@ -132,7 +143,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 12,
+    "itemId": 13,
     "itemName": "Blasting Cap Ring",
     "itemHref": "/Blasting+Cap+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Blasting+Cap+Ring",
@@ -143,7 +154,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 13,
+    "itemId": 14,
     "itemName": "Blessed Ring",
     "itemHref": "/Blessed+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Blessed+Ring",
@@ -154,7 +165,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 14,
+    "itemId": 15,
     "itemName": "Blood Jewel",
     "itemHref": "/Blood+Jewel",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Blood+Jewel",
@@ -165,7 +176,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 15,
+    "itemId": 16,
     "itemName": "Blood Tinged Ring",
     "itemHref": "/Blood+Tinged+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Blood+Tinged+Ring",
@@ -176,7 +187,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 16,
+    "itemId": 17,
     "itemName": "Booster Ring",
     "itemHref": "/Booster+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Booster+Ring",
@@ -187,7 +198,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 17,
+    "itemId": 18,
     "itemName": "Braided Thorns",
     "itemHref": "/Braided+Thorns",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Braided+Thorns",
@@ -198,7 +209,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 18,
+    "itemId": 19,
     "itemName": "Burden of the Audacious",
     "itemHref": "/Burden+of+the+Audacious",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Audacious",
@@ -209,7 +220,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 19,
+    "itemId": 20,
     "itemName": "Burden of the Destroyer",
     "itemHref": "/Burden+of+the+Destroyer",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Destroyer",
@@ -220,7 +231,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 20,
+    "itemId": 21,
     "itemName": "Burden of the Divine",
     "itemHref": "/Burden+of+the+Divine",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Divine",
@@ -231,7 +242,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 21,
+    "itemId": 22,
     "itemName": "Burden of the Follower",
     "itemHref": "/Burden+of+the+Follower",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Follower",
@@ -242,7 +253,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 22,
+    "itemId": 23,
     "itemName": "Burden of the Gambler",
     "itemHref": "/Burden+of+the+Gambler",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Gambler",
@@ -253,7 +264,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 23,
+    "itemId": 24,
     "itemName": "Burden of the Mariner",
     "itemHref": "/Burden+of+the+Mariner",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Mariner",
@@ -264,7 +275,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 24,
+    "itemId": 25,
     "itemName": "Burden of the Rebel",
     "itemHref": "/Burden+of+the+Rebel",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Rebel",
@@ -275,7 +286,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 25,
+    "itemId": 26,
     "itemName": "Burden of the Stargazer",
     "itemHref": "/Burden+of+the+Stargazer",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Stargazer",
@@ -286,7 +297,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 26,
+    "itemId": 27,
     "itemName": "Burden of the Warlock",
     "itemHref": "/Burden+of+the+Warlock",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Burden+of+the+Warlock",
@@ -297,7 +308,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 27,
+    "itemId": 28,
     "itemName": "Captain's Insignia",
     "itemHref": "/Captain's+Insignia",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Captain's+Insignia",
@@ -308,7 +319,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 28,
+    "itemId": 29,
     "itemName": "Cataloger's Jewel",
     "itemHref": "/Cataloger's+Jewel",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Cataloger's+Jewel",
@@ -319,7 +330,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 29,
+    "itemId": 30,
     "itemName": "Celerity Stone",
     "itemHref": "/Celerity+Stone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Celerity+Stone",
@@ -330,7 +341,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 30,
+    "itemId": 31,
     "itemName": "Compulsion Loop",
     "itemHref": "/Compulsion+Loop",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Compulsion+Loop",
@@ -341,7 +352,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 31,
+    "itemId": 32,
     "itemName": "Conservation Seal",
     "itemHref": "/Conservation+Seal",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Conservation+Seal",
@@ -352,7 +363,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 32,
+    "itemId": 33,
     "itemName": "Constant Variable Ring",
     "itemHref": "/Constant+Variable+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Constant+Variable+Ring",
@@ -363,7 +374,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 33,
+    "itemId": 34,
     "itemName": "Dead King's Memento",
     "itemHref": "/Dead+King's+Memento",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Dead+King's+Memento",
@@ -374,7 +385,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 34,
+    "itemId": 35,
     "itemName": "Deceiver's Band",
     "itemHref": "/Deceiver's+Band",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Deceiver's+Band",
@@ -385,7 +396,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 35,
+    "itemId": 36,
     "itemName": "Deep Pocket Ring",
     "itemHref": "/Deep+Pocket+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Deep+Pocket+Ring",
@@ -396,7 +407,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 36,
+    "itemId": 37,
     "itemName": "Defensive Action Loop",
     "itemHref": "/Defensive+Action+Loop",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Defensive+Action+Loop",
@@ -407,7 +418,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 37,
+    "itemId": 38,
     "itemName": "Dense Silicon Ring",
     "itemHref": "/Dense+Silicon+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Dense+Silicon+Ring",
@@ -418,7 +429,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 38,
+    "itemId": 39,
     "itemName": "Drakestone Pearl",
     "itemHref": "/Drakestone+Pearl",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Drakestone+Pearl",
@@ -429,7 +440,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 39,
+    "itemId": 40,
     "itemName": "Dran Memento",
     "itemHref": "/Dran+Memento",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Dran+Memento",
@@ -440,7 +451,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 40,
+    "itemId": 41,
     "itemName": "Dread Font",
     "itemHref": "/Dread+Font",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Dread+Font",
@@ -451,7 +462,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 41,
+    "itemId": 42,
     "itemName": "Dying Ember",
     "itemHref": "/Dying+Ember",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Dying+Ember",
@@ -462,7 +473,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 42,
+    "itemId": 43,
     "itemName": "Embrace of Sha'Hala",
     "itemHref": "/Embrace+of+Sha'Hala",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Embrace+of+Sha'Hala",
@@ -473,7 +484,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 43,
+    "itemId": 44,
     "itemName": "Encrypted Ring",
     "itemHref": "/Encrypted+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Encrypted+Ring",
@@ -484,7 +495,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 44,
+    "itemId": 45,
     "itemName": "Endaira's Endless Loop",
     "itemHref": "/Endaira's+Endless+Loop",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Endaira's+Endless+Loop",
@@ -495,7 +506,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 45,
+    "itemId": 46,
     "itemName": "Excess Coil",
     "itemHref": "/Excess+Coil",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Excess+Coil",
@@ -506,7 +517,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 46,
+    "itemId": 47,
     "itemName": "Fae Bruiser Ring",
     "itemHref": "/Fae+Bruiser+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Fae+Bruiser+Ring",
@@ -517,7 +528,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 47,
+    "itemId": 48,
     "itemName": "Fae Hunter Ring",
     "itemHref": "/Fae+Hunter+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Fae+Hunter+Ring",
@@ -528,7 +539,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 48,
+    "itemId": 49,
     "itemName": "Fae Protector Signet",
     "itemHref": "/Fae+Protector+Signet",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Fae+Protector+Signet",
@@ -539,7 +550,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 49,
+    "itemId": 50,
     "itemName": "Fae Shaman Ring",
     "itemHref": "/Fae+Shaman+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Fae+Shaman+Ring",
@@ -550,7 +561,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 50,
+    "itemId": 51,
     "itemName": "Fae Warrior Ring",
     "itemHref": "/Fae+Warrior+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Fae+Warrior+Ring",
@@ -561,7 +572,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 51,
+    "itemId": 52,
     "itemName": "Faelin's Sigil",
     "itemHref": "/Faelin's+Sigil",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Faelin's+Sigil",
@@ -572,7 +583,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 52,
+    "itemId": 53,
     "itemName": "Faerin's Sigil",
     "itemHref": "/Faerin's+Sigil",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Faerin's+Sigil",
@@ -583,7 +594,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 53,
+    "itemId": 54,
     "itemName": "Feastmaster's Signet",
     "itemHref": "/Feastmaster's+Signet",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Feastmaster's+Signet",
@@ -594,7 +605,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 54,
+    "itemId": 55,
     "itemName": "Feedback Loop",
     "itemHref": "/Feedback+Loop",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Feedback+Loop",
@@ -605,7 +616,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 55,
+    "itemId": 56,
     "itemName": "Fire Stone",
     "itemHref": "/Fire+Stone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Fire+Stone",
@@ -616,7 +627,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 56,
+    "itemId": 57,
     "itemName": "Flyweight's Sting",
     "itemHref": "/Flyweight's+Sting",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Flyweight's+Sting",
@@ -627,8 +638,8 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 57,
-    "itemName": "",
+    "itemId": 58,
+    "itemName": "Focusing Shard",
     "itemHref": "/Focusing+Shard",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Focusing+Shard",
     "itemImageLinkPath": "/file/Remnant-2/focused_jewel_rings_remnant2_wiki_guide_250px.png",
@@ -638,7 +649,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 58,
+    "itemId": 59,
     "itemName": "Frivolous Band",
     "itemHref": "/Frivolous+Band",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Frivolous+Band",
@@ -649,7 +660,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 59,
+    "itemId": 60,
     "itemName": "Galvanized Resupply Band",
     "itemHref": "/Galvanized+Resupply+Band",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Galvanized+Resupply+Band",
@@ -660,7 +671,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 60,
+    "itemId": 61,
     "itemName": "Game Master's Pride",
     "itemHref": "/Game+Master's+Pride",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Game+Master's+Pride",
@@ -671,7 +682,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 61,
+    "itemId": 62,
     "itemName": "Generating Band",
     "itemHref": "/Generating+Band",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Generating+Band",
@@ -682,7 +693,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 62,
+    "itemId": 63,
     "itemName": "Grounding Stone",
     "itemHref": "/Grounding+Stone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Grounding+Stone",
@@ -693,7 +704,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 63,
+    "itemId": 64,
     "itemName": "Guardian's Ring",
     "itemHref": "/Guardian's+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Guardian's+Ring",
@@ -704,7 +715,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 64,
+    "itemId": 65,
     "itemName": "Gunslinger's Ring",
     "itemHref": "/Gunslinger's+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Gunslinger's+Ring",
@@ -715,7 +726,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 65,
+    "itemId": 66,
     "itemName": "Hardcore Metal Band",
     "itemHref": "/Hardcore+Metal+Band",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Hardcore+Metal+Band",
@@ -726,7 +737,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 66,
+    "itemId": 67,
     "itemName": "Hardened Coil",
     "itemHref": "/Hardened+Coil",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Hardened+Coil",
@@ -737,7 +748,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 67,
+    "itemId": 68,
     "itemName": "Haymaker's Ring",
     "itemHref": "/Haymaker's+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Haymaker's+Ring",
@@ -748,7 +759,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 68,
+    "itemId": 69,
     "itemName": "Heart of the Wolf",
     "itemHref": "/Heart+of+the+Wolf",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Heart+of+the+Wolf",
@@ -759,7 +770,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 69,
+    "itemId": 70,
     "itemName": "Hex Ward",
     "itemHref": "/Hex+Ward",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Hex+Ward",
@@ -770,7 +781,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 70,
+    "itemId": 71,
     "itemName": "Kinetic Cycle Stone",
     "itemHref": "/Kinetic+Cycle+Stone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Kinetic+Cycle+Stone",
@@ -781,7 +792,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 71,
+    "itemId": 72,
     "itemName": "Lithic Signet",
     "itemHref": "/Lithic+Signet",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Lithic+Signet",
@@ -792,7 +803,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 72,
+    "itemId": 73,
     "itemName": "Lodestone Ring",
     "itemHref": "/Lodestone+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Lodestone+Ring",
@@ -803,7 +814,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 73,
+    "itemId": 74,
     "itemName": "Low Yield Recovery Ring",
     "itemHref": "/Low+Yield+Recovery+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Low+Yield+Recovery+Ring",
@@ -814,7 +825,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 74,
+    "itemId": 75,
     "itemName": "Mechanic's Cog",
     "itemHref": "/Mechanic's+Cog",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Mechanic's+Cog",
@@ -825,7 +836,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 75,
+    "itemId": 76,
     "itemName": "Metal Driver",
     "itemHref": "/Metal+Driver",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Metal+Driver",
@@ -836,7 +847,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 76,
+    "itemId": 77,
     "itemName": "Meteorite Shard Ring",
     "itemHref": "/Meteorite+Shard+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Meteorite+Shard+Ring",
@@ -847,7 +858,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 77,
+    "itemId": 78,
     "itemName": "Microcompressor",
     "itemHref": "/Microcompressor",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Microcompressor",
@@ -858,7 +869,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 78,
+    "itemId": 79,
     "itemName": "Momentum Driver",
     "itemHref": "/Momentum+Driver",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Momentum+Driver",
@@ -869,7 +880,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 79,
+    "itemId": 80,
     "itemName": "Outcast Ring",
     "itemHref": "/Outcast+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Outcast+Ring",
@@ -880,7 +891,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 80,
+    "itemId": 81,
     "itemName": "Point Focus Ring",
     "itemHref": "/Point+Focus+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Point+Focus+Ring",
@@ -891,7 +902,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 81,
+    "itemId": 82,
     "itemName": "Power Saver",
     "itemHref": "/Power+Saver",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Power+Saver",
@@ -902,7 +913,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 82,
+    "itemId": 83,
     "itemName": "Probability Cord",
     "itemHref": "/Probability+Cord",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Probability+Cord",
@@ -913,7 +924,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 83,
+    "itemId": 84,
     "itemName": "Propulsion Loop",
     "itemHref": "/Propulsion+Loop",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Propulsion+Loop",
@@ -924,7 +935,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 84,
+    "itemId": 85,
     "itemName": "Reaping Stone",
     "itemHref": "/Reaping+Stone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Reaping+Stone",
@@ -935,7 +946,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 85,
+    "itemId": 86,
     "itemName": "Rerouting Cable",
     "itemHref": "/Rerouting+Cable",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Rerouting+Cable",
@@ -946,7 +957,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 86,
+    "itemId": 87,
     "itemName": "Reserve Boosting Gem",
     "itemHref": "/Reserve+Boosting+Gem",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Reserve+Boosting+Gem",
@@ -957,7 +968,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 87,
+    "itemId": 88,
     "itemName": "Restriction Cord",
     "itemHref": "/Restriction+Cord",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Restriction+Cord",
@@ -968,7 +979,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 88,
+    "itemId": 89,
     "itemName": "Ring of Crisis",
     "itemHref": "/Ring+of+Crisis",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+Crisis",
@@ -979,7 +990,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 89,
+    "itemId": 90,
     "itemName": "Ring Of Deflection",
     "itemHref": "/Ring+Of+Deflection",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+Of+Deflection",
@@ -990,7 +1001,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 90,
+    "itemId": 91,
     "itemName": "Ring of Diversion",
     "itemHref": "/Ring+of+Diversion",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+Diversion",
@@ -1001,7 +1012,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 91,
+    "itemId": 92,
     "itemName": "Ring of Flawed Beauty",
     "itemHref": "/Ring+of+Flawed+Beauty",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+Flawed+Beauty",
@@ -1012,7 +1023,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 92,
+    "itemId": 93,
     "itemName": "Ring of Grace",
     "itemHref": "/Ring+of+Grace",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+Grace",
@@ -1023,7 +1034,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 93,
+    "itemId": 94,
     "itemName": "Ring of Omens",
     "itemHref": "/Ring+of+Omens",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+Omens",
@@ -1034,7 +1045,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 94,
+    "itemId": 95,
     "itemName": "Ring Of Restocking",
     "itemHref": "/Ring+Of+Restocking",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+Of+Restocking",
@@ -1045,7 +1056,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 95,
+    "itemId": 96,
     "itemName": "Ring Of Retribution",
     "itemHref": "/Ring+Of+Retribution",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+Of+Retribution",
@@ -1056,7 +1067,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 96,
+    "itemId": 97,
     "itemName": "Ring of the Forest Spirit",
     "itemHref": "/Ring+of+the+Forest+Spirit",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+the+Forest+Spirit",
@@ -1067,7 +1078,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 97,
+    "itemId": 98,
     "itemName": "Ring of the Robust",
     "itemHref": "/Ring+of+the+Robust",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ring+of+the+Robust",
@@ -1078,7 +1089,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 98,
+    "itemId": 99,
     "itemName": "Rock of Anguish",
     "itemHref": "/Rock+of+Anguish",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Rock+of+Anguish",
@@ -1089,7 +1100,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 99,
+    "itemId": 100,
     "itemName": "Rotward",
     "itemHref": "/Rotward",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Rotward",
@@ -1100,7 +1111,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 100,
+    "itemId": 101,
     "itemName": "Rusted Heirloom",
     "itemHref": "/Rusted+Heirloom",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Rusted+Heirloom",
@@ -1111,7 +1122,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 101,
+    "itemId": 102,
     "itemName": "Sagestone",
     "itemHref": "/Sagestone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Sagestone",
@@ -1122,7 +1133,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 102,
+    "itemId": 103,
     "itemName": "Sapphire Dreamstone",
     "itemHref": "/Sapphire+Dreamstone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Sapphire+Dreamstone",
@@ -1133,7 +1144,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 103,
+    "itemId": 104,
     "itemName": "Seal of the Empress",
     "itemHref": "/Seal+of+the+Empress",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Seal+of+the+Empress",
@@ -1144,7 +1155,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 104,
+    "itemId": 105,
     "itemName": "Shard Banded Ring",
     "itemHref": "/Shard+Banded+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Shard+Banded+Ring",
@@ -1155,7 +1166,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 105,
+    "itemId": 106,
     "itemName": "Shiny Hog Lure",
     "itemHref": "/Shiny+Hog+Lure",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Shiny+Hog+Lure",
@@ -1166,7 +1177,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 106,
+    "itemId": 107,
     "itemName": "Singed Ring",
     "itemHref": "/Singed+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Singed+Ring",
@@ -1177,7 +1188,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 107,
+    "itemId": 108,
     "itemName": "Slayer's Crest",
     "itemHref": "/Slayer's+Crest",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Slayer's+Crest",
@@ -1188,7 +1199,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 108,
+    "itemId": 109,
     "itemName": "Soul Guard",
     "itemHref": "/Soul+Guard",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Soul+Guard",
@@ -1199,7 +1210,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 109,
+    "itemId": 110,
     "itemName": "Soul Link",
     "itemHref": "/Soul+Link",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Soul+Link",
@@ -1210,7 +1221,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 110,
+    "itemId": 111,
     "itemName": "Spirit Stone",
     "itemHref": "/Spirit+Stone",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Spirit+Stone",
@@ -1221,7 +1232,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 111,
+    "itemId": 112,
     "itemName": "Stockpile Charger",
     "itemHref": "/Stockpile+Charger",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Stockpile+Charger",
@@ -1232,7 +1243,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 112,
+    "itemId": 113,
     "itemName": "Stone of Balance",
     "itemHref": "/Stone+of+Balance",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Stone+of+Balance",
@@ -1243,7 +1254,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 113,
+    "itemId": 114,
     "itemName": "Stone of Continuance",
     "itemHref": "/Stone+of+Continuance",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Stone+of+Continuance",
@@ -1254,7 +1265,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 114,
+    "itemId": 115,
     "itemName": "Stone of Expanse",
     "itemHref": "/Stone+of+Expanse",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Stone+of+Expanse",
@@ -1265,7 +1276,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 115,
+    "itemId": 116,
     "itemName": "Stone Of Malevolence",
     "itemHref": "/Stone+Of+Malevolence",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Stone+Of+Malevolence",
@@ -1276,7 +1287,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 116,
+    "itemId": 117,
     "itemName": "Stream Coupler",
     "itemHref": "/Stream+Coupler",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Stream+Coupler",
@@ -1287,7 +1298,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 117,
+    "itemId": 118,
     "itemName": "Subterfuge Link",
     "itemHref": "/Subterfuge+Link",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Subterfuge+Link",
@@ -1298,7 +1309,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 118,
+    "itemId": 119,
     "itemName": "Suppression Ward",
     "itemHref": "/Suppression+Ward",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Suppression+Ward",
@@ -1309,7 +1320,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 119,
+    "itemId": 120,
     "itemName": "Targeting Jewel",
     "itemHref": "/Targeting+Jewel",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Targeting+Jewel",
@@ -1320,7 +1331,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 120,
+    "itemId": 121,
     "itemName": "Tarnished Ring",
     "itemHref": "/Tarnished+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Tarnished+Ring",
@@ -1331,7 +1342,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 121,
+    "itemId": 122,
     "itemName": "Tear of Kaeula",
     "itemHref": "/Tear+of+Kaeula",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Tear+of+Kaeula",
@@ -1342,7 +1353,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 122,
+    "itemId": 123,
     "itemName": "Tempest Conduit",
     "itemHref": "/Tempest+Conduit",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Tempest+Conduit",
@@ -1353,7 +1364,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 123,
+    "itemId": 124,
     "itemName": "Tightly Wound Coil",
     "itemHref": "/Tightly+Wound+Coil",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Tightly+Wound+Coil",
@@ -1364,7 +1375,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 124,
+    "itemId": 125,
     "itemName": "Timekeeper's Jewel",
     "itemHref": "/Timekeeper's+Jewel",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Timekeeper's+Jewel",
@@ -1375,7 +1386,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 125,
+    "itemId": 126,
     "itemName": "Tomb Dweller's Ring",
     "itemHref": "/Tomb+Dweller's+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Tomb+Dweller's+Ring",
@@ -1386,7 +1397,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 126,
+    "itemId": 127,
     "itemName": "Vacuum Seal",
     "itemHref": "/Vacuum+Seal",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Vacuum+Seal",
@@ -1397,7 +1408,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 127,
+    "itemId": 128,
     "itemName": "Vestige of Power",
     "itemHref": "/Vestige+of+Power",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Vestige+of+Power",
@@ -1408,7 +1419,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 128,
+    "itemId": 129,
     "itemName": "Wax Sealed Ring",
     "itemHref": "/Wax+Sealed+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Wax+Sealed+Ring",
@@ -1419,7 +1430,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 129,
+    "itemId": 130,
     "itemName": "White Pawn Stamp",
     "itemHref": "/White+Pawn+Stamp",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/White+Pawn+Stamp",
@@ -1430,7 +1441,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 130,
+    "itemId": 131,
     "itemName": "Wind Hollow Circlet",
     "itemHref": "/Wind+Hollow+Circlet",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Wind+Hollow+Circlet",
@@ -1441,7 +1452,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 131,
+    "itemId": 132,
     "itemName": "Worn Admiral's Ring",
     "itemHref": "/Worn+Admiral's+Ring",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Worn+Admiral's+Ring",
@@ -1452,7 +1463,7 @@
     "itemType": "Rings"
   },
   {
-    "itemId": 132,
+    "itemId": 133,
     "itemName": "Zania's Malice",
     "itemHref": "/Zania's+Malice",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Zania's+Malice",
