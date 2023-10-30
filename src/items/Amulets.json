@@ -512,19 +512,19 @@
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ravager's+Mark",
     "itemImageLinkPath": "/file/Remnant-2/one-eyed_joker_idol_amulets_remnant2_wiki_guide.png",
     "itemImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/one-eyed_joker_idol_amulets_remnant2_wiki_guide.png",
-    "itemDescription": "\nIncreases all damage dealt to BLEEDING targets by 20%. Bonus increases to 30% for targets with 50% or lower Health.\n",
-    "itemLore": "\nThis artifact has gone by many names over the centuries. It was crafted by an ancient Pan ruler who mercilessly crushed all whom she believed might one day stand against her.\n",
+    "itemDescription": "\nNeutral Backdash creates a Magic Card lasting 1s. If Card absorbs enemy damage gain 25% Critical Chance for 5s. Neutral Backdash costs 30% additional Stamina.\n",
+    "itemLore": "\nThe Fae have always been a facetious race, though their sense of humor comes across as...savage to some.\n",
     "itemType": "Amulets"
   },
   {
     "itemId": 47,
     "itemName": "Range Finder",
-    "itemHref": "/Ravager's+Mark",
+    "itemHref": "/Range+Finder",
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Ravager's+Mark",
     "itemImageLinkPath": "/file/Remnant-2/range_finder_amulets_remnant2_wiki_guide.png",
     "itemImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/range_finder_amulets_remnant2_wiki_guide.png",
-    "itemDescription": "\nIncreases all damage dealt to BLEEDING targets by 20%. Bonus increases to 30% for targets with 50% or lower Health.\n",
-    "itemLore": "\nThis artifact has gone by many names over the centuries. It was crafted by an ancient Pan ruler who mercilessly crushed all whom she believed might one day stand against her.\n",
+    "itemDescription": "\nAfter killing an enemy, gain 10% Ranged damage and 2m Firearm Range. Stacks 3x Lasts 10s. ranged Weakspot Hits will refresh duration..\n",
+    "itemLore": "\nThe calculations and ambit ember revealed one and the same: our universe was not expanding but dying. In our arrogance, we sought to outwit both death and providence. In the end, we ushered it upon ourselves.\n",
     "itemType": "Amulets"
   },
   {
@@ -732,8 +732,8 @@
     "itemFullHref": "https://remnant2.wiki.fextralife.com/Void+Idol",
     "itemImageLinkPath": "/file/Remnant-2/wightless_weight_amulets_remnant2_wiki_guide.png",
     "itemImageLinkFullPath": "https://remnant2.wiki.fextralife.com/file/Remnant-2/wightless_weight_amulets_remnant2_wiki_guide.png",
-    "itemDescription": "\nIncreases Reload Speed by 20%. Reloads only require 50% of magazine from reserves to fully reload.\n",
-    "itemLore": "\nAnd had we come face-to-face with our creator, what would we have found? To be deprived of one's origin is to give it the purpose to seek. To discover the undiscoverable was our ultimate folly.My folly.\n",
+    "itemDescription": "\nIncreases Movement Speed by 0.75% and Reduces Stamina Costs of all actions by 0.75%  for every each 5 point of Armor Encumbrance.\n",
+    "itemLore": "\nWe must be allowed to choose our hardships. A burden borne willingly is infinitely lighter than that imposed by another.\n",
     "itemType": "Amulets"
   },
   {
